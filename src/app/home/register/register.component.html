@@ -1,0 +1,71 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div> 
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel [toggleable]="false">
+             <header>
+                New Member Registration &nbsp;&nbsp;&nbsp;<i *ngIf="isRegistering" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> 
+            </header>
+
+            <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit(registerForm.value, registerForm.valid)" class="uiform">
+              <div class="ui-g-row">
+                <div class="ui-grid-col-4 labelDiv">
+                  <label for="email" class="ui-widget labelCheckbox">Email Address:</label>
+                </div>
+                <div class="ui-grid-col-8">
+                  <input type="text" size="15" pInputText formControlName="email" class="inputWidth" autofocus />
+                  <kg-errorMessages class="uiMessage" [control]="registerForm.controls.email"></kg-errorMessages>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-4 labelDiv">
+                  <label class="ui-widget labelCheckbox">Password:</label>
+                </div>
+                <div class="ui-grid-col-8">
+                  <input type="password" size="15" pInputText formControlName="password" class="inputWidth" />
+                  <kg-errorMessages class="uiMessage" [control]="registerForm.controls.password"></kg-errorMessages>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-4 labelDiv">
+                  <label class="ui-widget labelCheckbox">Confirm Password:</label>
+                </div>
+                <div class="ui-grid-col-8">
+                  <input type="password" size="15" pInputText formControlName="confirmPassword" class="inputWidth" />
+                  <kg-errorMessages class="uiMessage" [control]="registerForm.controls.confirmPassword"></kg-errorMessages>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group" *ngIf="errorMessage != ''">
+                <div class="ui-grid-col-12">
+                  <p class="uiMessage">{{errorMessage}}</p>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-6">
+                  <kg-errorMessages class="uiMessage" [control]="registerForm"></kg-errorMessages>
+                </div>
+
+                <div class="ui-grid-col-3">
+                  <button pButton type="button" (click)="closeRegisterForm()" label="Cancel"></button>
+                </div>
+
+                <div class="ui-grid-col-3">
+                  <button pButton type="submit" label="Register" [disabled]="!registerForm.valid"></button>
+                </div>
+              </div>
+            </form>
+          </p-panel>
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

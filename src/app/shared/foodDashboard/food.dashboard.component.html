@@ -1,0 +1,79 @@
+<!--<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">-->
+<div class="ui-g-12">
+  <!--[ngStyle]="appPageHeaderDivStyle">-->
+  <p-panel>
+    <header>
+      <div class="ui-g-12">
+        <div class="ui-g-10">
+          Intake summary for: {{currentDate}}
+        </div>
+
+        <div class="ui-g-2">
+         <button pButton type="button" class="homeButton" (click)="diary()" label="Diary"></button>
+        </div>
+      </div>
+    </header>
+
+    <div>
+      <p>Today's intake: </p>
+      <p-dataTable [value]="baseMacroData " [responsive]="true" [stacked]="stacked">
+        <p-column field="calories" header="Calories">
+          <template let-col let-row="rowData" pTemplate type="body">
+            <div>
+              <div class="centerDiv">
+                <span [style.font-weight]="'bold'" [style.color]="'Green'">{{row[col.field]}}</span>
+                <span [style.font-weight]="'bold'" [style.color]="'Black'"> / {{totalCalories}}</span>
+              </div>
+            </div>
+          </template>
+        </p-column>
+
+        <p-column field="macroCarb" header="Carbs">
+          <template let-col let-row="rowData" pTemplate type="body">
+            <div>
+              <div class="centerDiv">
+                <span [style.font-weight]="'bold'" [style.color]="row['carColor']">{{row[col.field]}}</span>
+                <span [style.font-weight]="'bold'" [style.color]="'Black'"> / {{totalCarbs}}</span>
+              </div>
+            </div>
+          </template>
+        </p-column>
+
+        <p-column field="macroProtein" header="Protein">
+          <template let-col let-row="rowData" pTemplate type="body">
+            <div>
+              <div class="centerDiv">
+                <span [style.font-weight]="'bold'" [style.color]="row['proColor']">{{row[col.field]}}</span>
+                <span [style.font-weight]="'bold'" [style.color]="'Black'"> / {{totalProtein}}</span>
+              </div>
+            </div>
+          </template>
+        </p-column>
+
+        <p-column field="macroFat" header="Fat">
+          <template let-col let-row="rowData" pTemplate type="body">
+            <div>
+              <div class="centerDiv">
+                <span [style.font-weight]="'bold'" [style.color]="row['fatColor']">{{row[col.field]}}</span>
+                <span [style.font-weight]="'bold'" [style.color]="'Black'"> / {{totalFat}}</span>
+              </div>
+            </div>
+          </template>
+        </p-column>
+
+        <p-column field="calColor" header="CalColor" hidden="true"></p-column>
+        <p-column field="carColor" header="CalColor" hidden="true"></p-column>
+        <p-column field="proColor" header="CalColor" hidden="true"></p-column>
+        <p-column field="fatColor" header="CalColor" hidden="true"></p-column>
+      </p-dataTable>
+      <!--<br>
+        <p-column *ngFor="let col of macroCols " [field]="col.field " [header]="col.header "></p-column>
+      <p-panel header= "Remaining for today">
+        <p-dataTable [value]="baseMacroData " selectionMode="single " [(selection)]="selectedMacro " (onRowSelect)="onMacroSelect($event) ">
+          <p-column *ngFor="let col of macroCols " [field]="col.field " [header]="col.header "></p-column>
+        </p-dataTable>
+      </p-panel>-->
+    </div>
+  </p-panel>
+</div>

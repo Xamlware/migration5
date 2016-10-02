@@ -1,0 +1,95 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="Security challenge questions" [toggleable]="false">
+            <div class="ui raised segment">
+              <div>
+                <form [formGroup]="challengeForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div ui-grid-col-12>
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-12">
+                        <p>In order to provide more security for your sensitive data, please answer these challenge questions.
+                          If you forget your password, your email address changes or we need to verify you are you, we will
+                          ask you these questions to verify your identity.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Question 1:</label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <p-dropdown [options]="questionList" formControlName="question1"></p-dropdown>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Answer: </label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <input type="text" size="15" pInputText formControlName="answer1" class="inputWidth" />
+                        <kg-errorMessages class="uiMessage" [control]="challengeForm.controls.answer1"></kg-errorMessages>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Question 2:</label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <p-dropdown [options]="questionList" formControlName="question2"></p-dropdown>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Answer: </label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <input type="text" size="15" pInputText formControlName="answer2" class="inputWidth" />
+                        <kg-errorMessages class="uiMessage" [control]="challengeForm.controls.answer2"></kg-errorMessages>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Question 3:</label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <p-dropdown [options]="questionList" formControlName="question3"></p-dropdown>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Answer: </label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <input type="text" size="15" pInputText formControlName="answer3" class="inputWidth" />
+                        <kg-errorMessages class="uiMessage" [control]="challengeForm.controls.answer3"></kg-errorMessages>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-6">
+                      </div>
+                      <div class="ui-grid-col-6">
+                        <button pButton type="submit" label="Ok"></button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

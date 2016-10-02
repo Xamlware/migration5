@@ -1,0 +1,153 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-3">
+          <p-panel header="Your Profile" [toggleable]="false">
+            <!--<div *ngIf="userSettings && userSettings.emailAddress != null">-->
+            <div class="ui raised segment">
+              <form [formGroup]="profileForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                <!--<div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">User Name:</label></div>
+                    <div class="ui-grid-col-8">
+                      <input type="text" size="15" pInputText class="form-control" formControlName="userName" /></div>
+                  </div>-->
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">First Name:</label></div>
+                  <div class="ui-grid-col-8"><input type="text" size="15" pInputText class="form-control" formControlName="firstName" /></div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Last Name:</label></div>
+                  <div class="ui-grid-col-8"><input type="text" size="15" pInputText class="form-control" formControlName="lastName" /></div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Birth Date:</label></div>
+                  <div class="ui-grid-col-8"><input type="text" size="15" pInputText class="form-control" formControlName="dob" /></div>
+                </div>
+
+                <!--<div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Email:</label></div>
+                    <div class="ui-grid-col-8"><input type="text" size="15" pInputText class="form-control" formControlName="emailAddress"
+                      /></div>
+                  </div>-->
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Sex:</label></div>
+                  <div class="ui-grid-col-8">
+                    <p-selectButton [options]="sexes" formControlName="sex" (onChange)="onSexChanged($event)"></p-selectButton>
+                  </div>
+                </div>
+
+                <div class="ui-grid ui-grid-responsive">
+                  <div class="ui-grid-row">
+                    <div class="ui-grid-col-1">
+                      <p-checkbox binary="true" formControlName="profileMetric"></p-checkbox>
+                    </div>
+                    <div class="ui-grid-col-11">
+                      <p class="ui-widget labelCheckbox">Use metric for profile (Weight in kilos, height in meters, etc.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                  <div class="ui-g">
+                    <div class="ui-g-12 buttonContainer">
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-4">
+                          <button pButton type="button" (click)="onEditUserData()" label="Edit"></button>
+                        </div>
+
+                        <div class="ui-grid-col-4">
+                        </div>
+
+                        <div class="ui-grid-col-4">
+                          <button pButton type="submit" label="Update"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-3 ui-md-4 ui-lg-6">
+          <p-panel>
+            <header>
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-4 labelDiv ui-panel-title">
+                  <label class="ui-widget labelCheckbox">Your Biometric data:</label>
+                </div>
+
+                <div class="ui-grid-col-4">
+                </div>
+
+                <div class="ui-grid-col-1">
+                  <label class="ui-widget labelCheckbox">Display:</label>
+                </div>
+
+                <div class="ui-grid-col-3">
+                  <form [formGroup]="gridForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                    <p-dropdown [options]="grids" formControlName="grid" (onChange)="updateData($event)"></p-dropdown>
+                  </form>
+                </div>
+              </div>
+            </header>
+
+            <div *ngIf="userSettings && userSettings.userName != null">
+              <div *ngIf="isPhysicalGrid">
+                <p-dataTable [value]="physicalData" selectionMode="single" [(selection)]="selectedTablePhysical" (onRowSelect)="onPhysicalSelect($event)">
+                  <p-column *ngFor="let col of physicalCols" [field]="col.field" [header]="col.header"></p-column>
+                </p-dataTable>
+              </div>
+              <div *ngIf="isBloodGrid">
+                <p-dataTable [value]="bloodData" selectionMode="single" [(selection)]="selectedBlood" (onRowSelect)="onBloodSelect($event)">
+                  <p-column *ngFor="let col of bloodCols" [field]="col.field" [header]="col.header"></p-column>
+                </p-dataTable>
+              </div>
+              <div *ngIf="isLipidGrid">
+                <p-dataTable [value]="lipidData" selectionMode="single" [(selection)]="selectedLipid" (onRowSelect)="onLipidSelect($event)">
+                  <p-column *ngFor="let col of lipidCols" [field]="col.field" [header]="col.header"></p-column>
+                </p-dataTable>
+              </div>
+
+              <div *ngIf="isCalculationGrid">
+                <p-dataTable [value]="calculationData" selectionMode="single" [(selection)]="selectedCalculation" (onRowSelect)="onCalculationSelect($event)">
+                  <p-column *ngFor="let col of calculationCols" [field]="col.field" [header]="col.header"></p-column>
+                </p-dataTable>
+              </div>
+
+              <div class="ui-grid-row  buttonContainer">
+                <div class="ui-grid-col-1">
+                  <button pButton type="button" (click)="onAddData()" label="Add"></button>
+                </div>
+
+                <div class="ui-grid-col-1">
+                  <button pButton type="button" (click)="onEditData()" label="Edit"></button>
+                </div>
+
+                <div class="ui-grid-col-7">
+                </div>
+
+                <div class="ui-grid-col-2">
+                  <button pButton type="button" (click)="onCalculateMacros()" label="Calculate Macros"></button>
+                </div>
+
+                <div class="ui-grid-col-1">
+                  <button pButton type="button" (click)="onChartData()" label="Chart"></button>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-3 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

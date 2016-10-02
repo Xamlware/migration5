@@ -1,0 +1,104 @@
+.jumboText {  
+    /*font-weight: bold;*/
+    font-size:  30px;
+}
+
+.mediumText { 
+    margin-left: 25px;
+    margin-top: -30px;
+    font-size:  15px;
+}
+
+
+/*.buttonText { 
+    text-align: left;
+    font-weight: bold;
+    font-size:  12px;
+}*/
+
+
+.inlineBlock{
+    display: inline-block;
+}
+
+
+ul .mainList {
+    list-style-type: disc; 
+}
+
+ul .subList {
+    list-style-type: disc;
+}
+
+ul li {
+    margin-top: 30px;
+    font-size: 15px;
+    line-height: 0px;
+}
+
+ul li .listHeaderText {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 20px;
+}
+
+
+ul li .listSubText {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 20px;
+}
+
+.signupButton {
+    height: 50px;
+    width: 150px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 30px;
+ }
+
+
+.homeButton {
+     font-size: 20px;
+     margin-left: 0;
+}
+
+.homeButtonRight {
+    margin-left: 10px;
+}
+
+/*.homeButton.ui-button.ui-state-default {
+	border: 1px solid #89493C;
+    background: #89493C;
+}*/
+
+.bmargin20 {
+      margin-bottom: 70px;
+}
+
+.buttonDiv{
+    text-align: left;
+}
+
+.center {
+    margin:auto;
+}
+
+
+#ketoCarousel {
+    vertical-align: center;
+    align-content: center;
+}
+
+.menubar {
+    margin-bottom: 20px;
+    float: right;
+}
+
+
+.alignCenter{
+    text-align: center;
+}
+
+dashboardDiv {
+    margin-top: -30px;
+}

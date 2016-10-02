@@ -1,0 +1,58 @@
+{
+  "project": {
+    "version": "1.0.0-beta.15",
+    "name": "migration3"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": "assets",
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "mobile": false,
+      "styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/primeng/resources/themes/pepper-grinder/theme.css",
+        "../node_modules/primeng/resources/primeng.min.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "assets/js/jquery-ui.min.js", 
+        "../node_modules/reflect-metadata/Reflect.js",
+        "../node_modules/moment/min/moment.min.js",
+        "assets/js/site.js",
+        "assets/js/jquery.inputmask.bundle.js",
+        "../node_modules/fullcalendar/dist/fullcalendar.min.js",
+        "../node_modules/chart.js/dist/Chart.js"
+
+      ],
+      "environments": {
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [],
+  "packages": [],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "prefixInterfaces": false
+  }
+}

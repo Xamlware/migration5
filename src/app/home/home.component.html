@@ -1,0 +1,102 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+    <div class="ui-g borderDiv" [ngStyle]="selectedDivBorderStyle">
+        <div class="ui-g-12">
+            <div class="ui-g">
+                <div class="ui-g-row">
+                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                        <div class="ui-g-12 jumboText">
+                            <p>Lose weight quickly and safely with Ketogeniq!</p>
+                        </div>
+                        <div class="ui-g-12 mediumText bmargin20">
+                            <p>The easiest to use tracking app for the ketogenic lifestyle and way of eating.</p>
+                        </div>
+
+                        <div *ngIf="isLoggedIn" class="ui-g-12 dashboardDiv">
+                            <div class="ui-g-4 ui-md-4 ui-lg-2">
+                            </div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-8">
+                                <k-dash></k-dash>
+                            </div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-2">
+                            </div>
+                        </div>
+                        <div *ngIf="!isLoggedIn" class="ui-g-12 buttonDiv">
+                            <div class="ui-g-2 ui-md-2 ui-lg-3"></div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-3">
+                                <p class="buttonText">Not a member?</p>
+                                <button pButton type="button" class="homeButton" (click)="register()" label="Sign up"></button>
+                            </div>
+                            <div class="ui-g-4 ui-md-4 ui-lg-3" homeButton>
+                                <p class="buttonText">Already a member?</p>
+                                <button pButton type="button" class="homeButton" (click)="login()" label="Log in"></button>
+                                <!--<button pButton class="homeButton" (click)="testLink()" label="testLInk"></button>-->
+                                <!--<button pButton class="homeButton" (click)="showDialog()" label="test dialog"></button>-->
+                            </div>
+                            <div class="ui-g-2 ui-md-2 ui-lg-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-4 ui-md-4 ui-lg-6 alignCenter">
+                        <div class="ui-g-1 ui-md-2 ui-lg-2"></div>
+                        <div class="ui-g-4 ui-md-4 ui-lg-8">
+                            <p-galleria [images]="images" panelHeight="300" panelWidth="400" showCaption="true"></p-galleria>
+                        </div>
+                        <div class="ui-g-1 ui-md-2 ui-lg-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p-panel header="What can you do with the Ketogeniq applications?" [toggleable]="true">
+                        <ul class="mainList">
+                            <li class="listHeaderText">Track foods, nutrients, net carbs, and recipes</li>
+                            <li class="listHeaderText">Enter and track biometric and physical data</li>
+                            <ul class="subList">
+                                <li class="listSubText">Blood tests</li>
+                                <li class="listSubText">Diabetic markers</li>
+                                <li class="listSubText">Weight, measurements and user-defined metrics
+                            </ul>
+
+                            <li class="listHeaderText">Track foods, nutrients, net carbs, and recipes</li>
+                            <li class="listHeaderText">Chart progress</li>
+                            <li class="listHeaderText">Print reports</li>
+                            <li class="listHeaderText">Share data with friends</li>
+                        </ul>
+                    </p-panel>
+                </div>
+                <div class="ui-g-6">
+                    <p-panel header="How do I get started?" [toggleable]="true">
+                        <p>Read the FAQ</p>
+                        <p>Follow the steps in the getting started document.</p>
+                        <p>Learn the acronyms and KetoOn....</p>
+                    </p-panel>
+                </div>
+            </div>
+
+            <div class="ui-g-row">
+                <div class=ui-g-12>
+                    <div class="ui-g-6">
+                        <p-panel header="What is a ketogenic diet?" [toggleable]="true">
+                            <p>You have probably heard the rumors, misconceptions and misleading information that circulates
+                                on line and with most uninofrmed doctors.</p>
+                            <p>Unless you keep up with the scientific studies concerning high fat, low carb diets, you will
+                                be sadly out of date.
+                            </p>
+                            <p>So make sure that you visit the scientific documentation page for the links to you-tube videos
+                                and scientific studies which validate the claims of high-fat, low-carb diets.
+                        </p-panel>
+                    </div>
+                    <div class="ui-g-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

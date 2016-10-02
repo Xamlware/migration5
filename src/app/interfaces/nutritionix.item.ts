@@ -1,0 +1,44 @@
+export class NutritionixItemResults {
+  old_api_id: string;
+  item_id: string;
+  item_name: string;
+  leg_loc_id: string;
+  brand_id: string;
+  brand_name: string;
+  item_description: string;
+  updated_at: string;
+  nf_ingredient_statement: string;
+  nf_water_grams: number;
+  nf_calories: number;
+  nf_calories_from_fat: number;
+  nf_total_fat: number;
+  nf_saturated_fat: number;
+  nf_trans_fatty_acid: number;
+  nf_polyunsaturated_fat: number;
+  nf_monounsaturated_fat: number;
+  nf_cholesterol: number;
+  nf_sodium: number;
+  nf_total_carbohydrate: number;
+  nf_dietary_fiber: number;
+  nf_sugars: number;
+  nf_protein: number;
+  nf_vitamin_a_dv: number;
+  nf_vitamin_c_dv: number;
+  nf_calcium_dv: number;
+  nf_iron_dv: number;
+  nf_servings_per_container: number;
+  nf_serving_size_qty: number;
+  nf_serving_size_unit: number;
+  nf_serving_weight_grams: number;
+  allergen_contains_milk: boolean;
+  allergen_contains_eggs: boolean;
+  allergen_contains_fish: boolean;
+  allergen_contains_shellfish: boolean;
+  allergen_contains_tree_nuts: boolean;
+  allergen_contains_peanuts: boolean;
+  allergen_contains_wheat: boolean;
+  allergen_contains_soybeans: boolean;
+  allergen_contains_gluten: boolean;
+  usda_fields: boolean;
+}
+

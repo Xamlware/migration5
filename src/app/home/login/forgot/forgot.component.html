@@ -1,0 +1,70 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="Forgot password email verification" [toggleable]="false">
+            <div class="ui raised segment">
+              <div *ngIf="!emailSent">
+                <form [formGroup]="forgotForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div ui-grid-col-12>
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-12">
+                        <p>In order to provide a new password, please enter your email address below.</p>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-4 labelDiv">
+                        <label class="ui-widget labelCheckbox">Email Address:</label>
+                      </div>
+                      <div class="ui-grid-col-8">
+                        <input type="text" size="15" pInputText class="form-control" formControlName="email" autofocus/>
+                        <kg-errorMessages class="uiMessage" [control]="forgotForm.controls.email"></kg-errorMessages>
+                      </div>
+                    </div>
+
+                    <div class="ui-grid-row form-group">
+                      <div class="ui-grid-col-12">
+                        <button pButton type="submit" label="Ok"></button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div *ngIf="emailSent">
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-12">
+                  <p>We have sent an email to your registered email address. Please open this email and press on the verification
+                    link which will allow you to change your password. The link is only valid for 3 hours, past this point,
+                    you'll have to resend the verification.</p>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-12">
+                  <button pButton type="button" label="Ok" (click)="close()"></button>
+                </div>
+              </div>
+
+
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-12">
+                  <p> If you didn't receive the forgot password verification email:</p>
+                  <button pButton type="button" label="Resend forgot password email"></button>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+
+      <div class="ui-g-6 ui-md-4 ui-lg-4">
+      </div>
+    </div>
+  </div>
+</div>

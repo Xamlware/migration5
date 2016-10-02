@@ -1,0 +1,107 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="{{mode}} Phyiscal Data" [toggleable]="false">
+            <div class="ui raised segment">
+              <form [formGroup]="physicalForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Date:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <p-calendar formControlName="date" showAnim="slideDown" [showIcon]="true" [inline]="false"></p-calendar>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Weight:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <input type="text" size="15" pInputText class="form-control" formControlName="weight" autofocus />
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Height:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <input type="text" size="15" pInputText class="form-control" formControlName="height" />
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Waist:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <input type="text" size="15" pInputText class="form-control" formControlName="waist" />
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Hips:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <input [disabled]="sex==='F'" type="text" size="15" pInputText class="form-control" formControlName="hips" />
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Neck:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <div class="ui-grid-col-8">
+                      <input type="text" size="15" pInputText class="form-control" formControlName="neck" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-4 labelDiv">
+                    <label class="ui-widget labelCheckbox">Activity Level:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <p-selectButton [options]="activityLevels" formControlName="activityLevel"></p-selectButton>
+                  </div>
+                </div>
+
+                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                  <div class="ui-g">
+                    <div class="ui-g-12 buttonContainer">
+                      <div class="ui-grid-row">
+
+                        <div class="ui-grid-col-3">
+                        </div>
+                        <div class="ui-grid-col-3">
+                          <button pButton type="button" (click)="onReset()" label="Reset"></button>
+                        </div>
+
+                        <div class="ui-grid-col-3">
+                          <button pButton type="button" (click)="onCancel()" label="Cancel"></button>
+                        </div>
+
+                        <div class="ui-grid-col-3">
+                          <button pButton type="submit" label="Update"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p-panel>
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

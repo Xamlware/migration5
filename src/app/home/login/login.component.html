@@ -1,0 +1,90 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel [toggleable]="false">
+            <header>
+              Member Login &nbsp;&nbsp;&nbsp;<i *ngIf="isLoggingIn" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+            </header>
+
+
+            <div class="ui raised segment">
+              <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-3 labelDiv">
+                    <label class="ui-widget labelCheckbox">Email Address:</label>
+                  </div>
+                  <div class="ui-grid-col-8">
+                    <input type="text" size="15" pInputText class="form-control" formControlName="email" autofocus/>
+                    <kg-errorMessages class="uiMessage" [control]="loginForm.controls.email"></kg-errorMessages>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-g-12">
+
+                    <div class="ui-grid-col-3 labelDiv">
+                      <label class="ui-widget labelCheckbox">Password:</label>
+                    </div>
+                    <div class="ui-grid-col-7">
+                      <input type="password" size="15" pInputText class="form-control" formControlName="password" />
+                      <kg-errorMessages class="uiMessage" [control]="loginForm.controls.password"></kg-errorMessages>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group" *ngIf="loginMessage != undefined && loginMessage != ''">
+                  <p class="uiMessage">{{loginMessage}}</p>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-g-7">
+                    <div class="ui-g-12">
+                      <div class="ui-grid-col-4">
+                        <button pButton type="button" (click)="forgotUserName()" icon="fa-question" iconPos="left" label="User Name"></button>
+                      </div>
+                      <div class="ui-grid-col-4">
+                        <button pButton type="button" (click)="forgotPassword()" icon="fa-question" iconPos="left" label="Password"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-g-6">
+                    <div class="ui-grid-col-6 changeDiv">
+                      <button pButton type="button" (click)="changePassword()" icon="fa-key" iconPos="left" label="Change Password"></button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-g-8">
+                    <p>Login Problems: <a href="mailto:ketosupport@ketogeniq.com" class="linkText">Contact Us</a></p>
+                  </div>
+
+                  <div class="ui-g-4">
+                    <div class="ui-g-12">
+                      <div class="ui-grid-col-6">
+                        <button pButton type="button" (click)="closeLoginForm()" label="Cancel"></button>
+                      </div>
+
+                      <div class="ui-grid-col-6">
+                        <button pButton type="submit" label="Login"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p-panel>
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
