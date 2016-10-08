@@ -11,6 +11,7 @@ import { ErrorObject } from '../../interfaces/errorObject';
 declare var swal: any;
 
 @Component({
+
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
 })

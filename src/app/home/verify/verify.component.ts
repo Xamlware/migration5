@@ -7,8 +7,9 @@ import { SettingsService } from '../../services/settings.service';
 
 
 @Component({
+
     templateUrl: 'verify.component.html',
-    styleUrls: ['verify.component.css']
+    styleUrls: ['verify.component.css'],
 })
 
 export class VerifyComponent {

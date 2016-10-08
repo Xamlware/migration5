@@ -25,4 +25,6 @@ import {routing} from './home.routing'
 
 }) 
 
-export class HomeModule {} 
+export class HomeModule {
+    
+} 

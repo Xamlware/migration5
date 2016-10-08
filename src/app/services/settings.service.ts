@@ -17,6 +17,7 @@ import { CalculationFactory } from '../factories/calculation.factory';
 import { AuthorizationService } from '../services/authorization.service';
 import { Token } from '../interfaces/token';
 import { NewUser } from '../interfaces/newUser';
+import { DailyFood } from '../interfaces/dailyFood';
 import { FindHelper } from '../helpers/find.helper';
 import { LinkHelper } from '../helpers/link.helper';
 import { DataResponseObject } from '../interfaces/dataResponseObject';
@@ -69,10 +70,11 @@ export class SettingsService {
     //headers.append("Authorization", "Bearer " + this.accessToken);
     var encrParm = "FFF05" + LinkHelper.encryptString("Ketoa");
     console.log(this.constants.taskUrl + encrParm);
+   
     this.http.post(this.constants.taskUrl + encrParm, { headers: headers })
       .map((response: Response) => <DataResponseObject>response.json())
       .catch(this.handleError)
-      .subscribe(dro => this.dro = <DataResponseObject>dro,
+      .subscribe(dro => this.dro = dro,
       error => {
         this.errorMessage = error
       },
@@ -107,7 +109,7 @@ export class SettingsService {
     headers.append("Authorization", "Bearer " + s);
 
 
-    return <Observable<User>> this.http.get(this.constants.userUrl + userId, { headers: headers })
+    return this.http.get(this.constants.userUrl + userId, { headers: headers })
       .map((response: Response) => <User>response.json())
       .catch(this.handleError);
   }
@@ -130,7 +132,7 @@ export class SettingsService {
       .map((response: Response) => <User>response.json())
       .catch(this.handleError)
       .subscribe(
-      status => this.statusMessage = <User> status,
+      status => this.statusMessage = status,
       error => this.errorMessage = error,
       () => this.completeFinishNewUser()
       );
@@ -163,7 +165,7 @@ export class SettingsService {
       })
       .catch(this.handleError)
       .subscribe(
-      status => this.statusMessage = <User>status,
+      status => this.statusMessage = status,
       error => this.errorMessage = error,
       () => this.completeUpdateUser()
       );
@@ -175,7 +177,6 @@ export class SettingsService {
 
   setUserSettings(userSettings: User): string {
     var retVal = "Ok"
-
     try {
       this.userSettings = userSettings;
     }
@@ -256,6 +257,11 @@ export class SettingsService {
     return this.selectedLipid;
   }
 
+  setDailyFood(df: DailyFood) {
+    debugger;
+    this.userSettings.dailyFoodData = df;
+  }
+
   updateNutrientData(user: User) {
     this.userSettings = user;
     
@@ -273,13 +279,13 @@ export class SettingsService {
       })
       .catch(this.handleError)
       .subscribe(
-      status => this.statusMessage = <User>status,
+      status => this.statusMessage = status,
       error => this.errorMessage = error,
       () => this.completeUpdateNutrients()
       );
   }
 
   completeUpdateNutrients() { 
-    debugger;
+
   }
 }

@@ -22,6 +22,7 @@ import 'rxjs/add/observable/throw';
 
 
 @Component({
+
     templateUrl: 'register.component.html',
     styleUrls: ['register.component.css']
 })

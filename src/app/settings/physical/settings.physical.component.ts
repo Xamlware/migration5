@@ -15,6 +15,7 @@ import * as moment from "moment";
 
 
 @Component({
+  
   templateUrl: 'settings.physical.component.html',
   styleUrls: ['settings.physical.component.css']
 })

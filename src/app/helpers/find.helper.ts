@@ -5,6 +5,9 @@ import { CalculationFactory } from '../factories/calculation.factory';
 import { PhysicalFactory } from '../factories/physical.factory';
 import { User } from '../interfaces/user';
 import { Nutrient } from '../interfaces/nutrient';
+import { DailyFood, DailyFoodArray } from '../interfaces/dailyFood';
+import { DailyFoodItem } from '../interfaces/dailyFoodItem';
+import { MealType } from '../enums/mealType.enum';
 
 export class FindHelper {
     public static FindMeasurement(u: User): Measurement {
@@ -153,16 +156,63 @@ export class FindHelper {
         // });
 
         // if (nuts.length > 0) {
-            n = nuts.filter(r => {
-                return r.abbr === name;
-            });
+        n = nuts.filter(r => {
+            return r.abbr === name;
+        });
 
-            if (n.length > 0) {
-                rec = n[0];
-            }
+        if (n.length > 0) {
+            rec = n[0];
+        }
         // }
 
         return rec;
+    }
+
+
+
+    public static FindDailyFoodByKey(key: number, u: User) {
+        var rec: DailyFoodItem = null;
+
+        var dfi = u.dailyFoodData.items.filter(di => {
+            return di.pK_DailyFoodItem === key;
+        });
+
+        if (dfi.length > 0) {
+            rec = dfi[0];
+        }
+
+        return rec;
+    }
+
+
+    public static FindDailyFoodArrayByKey(key: number, meal: MealType, dfa: DailyFoodArray): boolean {
+        var array: DailyFoodItem[];
+        
+        switch (meal) {
+            case MealType.breakfast:
+                array = dfa.breakfast;
+                break;
+            case MealType.lunch:
+                array = dfa.lunch;
+                break;
+            case MealType.dinner:
+                array = dfa.dinner;
+                break;
+            case MealType.snack:
+                array = dfa.snack;
+                break;
+        }
+
+
+        return this.findFoodInMeal(meal, array, key);
+    }
+
+    private static findFoodInMeal(mealType: MealType, dfi: DailyFoodItem[], key: number): boolean {
+        var item = dfi.filter(di => {
+            return di.pK_DailyFoodItem === key;
+        });
+
+        return (item.length > 0);
     }
 
 }

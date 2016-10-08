@@ -54,7 +54,7 @@ export class SettingsPhysicalService {
       })
       .catch(this.handleError)
       .subscribe(
-      dro => this.dro = <DataResponseObject>dro,
+      dro => this.dro = dro,
       error => this.errorMessage = error,
       () => this.completeAddPhysical()
       );

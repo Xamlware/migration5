@@ -6,7 +6,6 @@ import { ChallengeQuestions } from '../../../interfaces/challengeQuestions';
 import { ChallengeService } from '../../../services/challenge.service';
 
 @Component({
-
   templateUrl: 'challenge.component.html',
   styleUrls: ['challenge.component.css']
 })

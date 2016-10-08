@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 import { Router } from '@angular/router';
-import {LoginService} from '../services/login.service';
-import {ThemeService} from '../services/theme.service';
-import {SettingsService} from '../services/settings.service';
-import {LoggedIn} from '../interfaces/loggedIn';
-import {Galleria, Panel, Button} from 'primeng/primeng'
-import {User} from '../interfaces/user';
-import {LocalUser} from '../interfaces/localUser';
+import { LoginService } from '../services/login.service';
+import { ThemeService } from '../services/theme.service';
+import { SettingsService } from '../services/settings.service';
+import { LoggedIn } from '../interfaces/loggedIn';
+import { Galleria, Panel, Button } from 'primeng/primeng'
+import { User } from '../interfaces/user';
+import { LocalUser } from '../interfaces/localUser';
 import { LinkHelper } from '../helpers/link.helper';
 import { FoodDashboardComponent } from '../shared/foodDashboard/food.dashboard.component';
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
         private settingsService: SettingsService,
         private router: Router,
         private ls: LoginService) {
-console.log("in home");
+
         this.images = [];
         this.images.push({ source: 'assets/broccoli.jpg', alt: 'Broccoli', title: '' });
         this.images.push({ source: 'assets/coconut.jpg', alt: 'Coconut', title: '' });
@@ -43,6 +43,7 @@ console.log("in home");
 
         this.isLoggedIn = this.ls.isLoggedIn;
         if (!this.isLoggedIn) {
+            debugger;
             this.clearUserSettings();
         }
     }

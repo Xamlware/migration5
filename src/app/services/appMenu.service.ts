@@ -17,17 +17,16 @@ export class AppMenuService {
       {
         label: 'Home',
         routerLink: ['']
-       }
-      ,  {
+      },  {
         label: 'Documents',
-        routerLink: ['/document']
+        routerLink: ['/documents']
       }, {
-      //   label: 'KetoCalculator',
-      //   routerLink: ['/calculator']
-      // }, {
-      //   label: 'Verify',
-      //   routerLink: ['/verify']
-      // }, {
+        label: 'KetoCalculator',
+        routerLink: ['/calculator']
+      }, {
+        label: 'Verify',
+        routerLink: ['/verify']
+      }, {
         label: 'About',
         routerLink: ['/about']
       }];
@@ -40,34 +39,33 @@ export class AppMenuService {
         routerLink: ['']
       }, {
         label: 'Documents',
-        routerLink: ['/document']
+        routerLink: ['/documents']
       }, {
-      //   label: 'Food',
-      //   routerLink: ['/food']
-      // }, {
+        label: 'Food',
+        routerLink: ['/food']
+      }, {
         label: 'KetoCalculator',
         routerLink: ['/calculator']
       }, {
         label: 'Settings',
         routerLink: ['/settings']
       }, {
-      //   label: 'Themes',
-      //   routerLink: ['/themes']
-      // }, {
+        label: 'Themes',
+        routerLink: ['/themes']
+      }, {
         label: 'About',
         routerLink: ['/about']
-      }];  
-    // }, {
-    //     label: 'Logout',
-    //     routerLink: ['/logout']
-    //     //command: (event: Event) => { this.onLogout() }
-    //   }];
+      }, {
+        label: 'Logout',
+        routerLink: ['/logout']
+        //command: (event: Event) => { this.onLogout() }
+      }];
   }
 
   
-  // onLogout() {
-  //   this.setIsLogout(true);
-  // }
+  onLogout() {
+    this.setIsLogout(true);
+  }
 
   setIsLogout(isLogout: boolean): void {
     this.isLogout$.next(isLogout);

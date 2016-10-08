@@ -36,14 +36,12 @@ export class ThemeService {
     if(theme === undefined || theme === null || theme == "") {
       theme = (theme === null || theme === undefined || theme === "" ? "Black-Tie" : theme);
     }
-
+    
     this.selectedTheme = theme;
     var ft = this.findTheme(this.selectedTheme);
-    //var e = document.getElementsByTagName('*');
-
-    // var d = document.getElementById('themeStyleSheet')
-    // d.setAttribute('href', this.getThemePath(theme));
-    // this.setNewTheme(ft);
+    var d = document.getElementById('themeStyleSheet')
+    //d.setAttribute('href', this.getThemePath(theme));
+    this.setNewTheme(ft);
   }
 
   findTheme(themeName: string): Theme {
@@ -85,7 +83,7 @@ export class ThemeService {
     }
 
     getNewTheme(): Observable<Theme> {
-        return this.theme$.asObservable(); 
+        return this.theme$.asObservable();
     }
 
 }

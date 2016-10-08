@@ -10,7 +10,7 @@ export class Themes {
 
   getThemes(): Theme[] {
     var themeArray: Theme[] = [];
-    var basePath: string = "../node_module/primeng/resources/themes/";
+    var basePath: string = "vendor/primeng/resources/themes/";
     var endPath: string = "/theme.css";
 
 

@@ -3,12 +3,10 @@ import { SpinnerReturn } from '../../interfaces/spinnerReturn';
 import { Theme } from '../../interfaces/theme';
 import { Round } from '../../helpers/math.helper';
 import { ThemeService } from '../../services/theme.service';
-
-
 @Component({
   selector: 'kg-spinner',
-  templateUrl: 'kgSpinner.component.html',
-  styleUrls: ['kgSpinner.component.css']
+  templateUrl: './app/shared/numberSpinner/kgSpinner.component.html',
+  styleUrls: ['./app/shared/numberSpinner/kgSpinner.component.css']
 })
 
 export class KgSpinnerComponent implements OnInit {

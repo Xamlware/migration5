@@ -1,1 +1,35 @@
-<button pButton type="button" class="homeButton" (click)="logout()" label="Log out"></button>
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="New member email verification" [toggleable]="false">
+            <div class="ui raised segment">
+              <div>
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-12">
+                    <p>If you wish to logout of Ketogeniq press 'Log out'; otherwise, press 'Cancel' to return to Ketogeniq's home page.</p>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-6">
+                        <button pButton type="button" (click)="logout()" label="Log out"></button>
+                  </div>
+                  <div class="ui-grid-col-6">
+                        <button pButton type="button" (click)="Cancel()" label="Cancel"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

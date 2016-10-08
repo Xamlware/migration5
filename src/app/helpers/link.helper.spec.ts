@@ -15,7 +15,7 @@ import { VerifyAdmin } from '../interfaces/verifyAdmin';
 // import { Calculation } from '../interfaces/calculation'
 // import { ActivityLevelType } from '../enums/activityLevelType.enum';
 //import {CalculatorComponent} from '../classes/calculator.component';
-import * as moment from "moment";
+import moment = require("moment");
 
 // describe('Link Helper Unit Tests', () => {
 //   var adminLink = Guid.MakeNew().ToString();

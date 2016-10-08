@@ -4,9 +4,12 @@ import { Blood } from './blood';
 import { Lipid } from './lipid';
 import { Calculation } from './calculation';
 import { Nutrient } from './nutrient';
+import { Food } from './food';
+import { DailyFood } from './dailyFood';
 
 export interface IUser {
     userId: number;
+    pK_User: number;
     identityId: string;
     isVerified: string;
     verifyCode: string
@@ -26,11 +29,13 @@ export interface IUser {
     lipidData: Lipid[];
     calculationData: Calculation[];
     nutrientData: Nutrient[];
+    dailyFoodData: DailyFood;
     theme: string;
 }
 
 export class User implements IUser {
-    userId: number;
+    userId: number = 0;
+    pK_User: number = 0;
     identityId: string = "";
     isVerified: string = "";
     verifyCode: string = "";
@@ -50,5 +55,11 @@ export class User implements IUser {
     lipidData: Lipid[] = [];
     calculationData: Calculation[] = [];
     nutrientData: Nutrient[] = [];
+    // breakfast: Food[];
+    // lunch: Food[];
+    // dinner: Food[];
+    // snack: Food[];
+    dailyFoodData: DailyFood = new DailyFood();
+  
     theme: string = "";
 }

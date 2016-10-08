@@ -14,6 +14,7 @@ export class UserFactory {
     createNewUser() : User{
         var u: User = new User();
         u.userId = 0;
+        u.pK_User = 0;
         u.userName = "";   
         u.firstName = "";
         u.lastName = "";
@@ -36,6 +37,7 @@ export class UserFactory {
     createUser(u: User) : User {
         var ur: User = new User;
         ur.userId = u.userId;
+        u.pK_User = u.pK_User;
         ur.userName = u.userName; 
         ur.firstName = u.firstName;
         ur.lastName = u.lastName;        

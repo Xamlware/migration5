@@ -26,6 +26,7 @@ export class NutritionixItemResults {
   nf_vitamin_c_dv: number;
   nf_calcium_dv: number;
   nf_iron_dv: number;
+  nf_potassium: number;
   nf_servings_per_container: number;
   nf_serving_size_qty: number;
   nf_serving_size_unit: number;

@@ -147,6 +147,7 @@ export class LoginService {
         var creds = JSON.stringify(this.email);
         var headers = new Headers();
         var t = this.ss.adminToken;
+        
         var encrParm = LinkHelper.encryptAdminLink(parm, t)
         headers.append("content-type", this.constants.jsonContentType);
 
@@ -172,7 +173,6 @@ export class LoginService {
     }
 
     completeValidateUser(localUser: LocalUser) {
-        debugger;
         this.isLoggingIn = false;
         if (this.dro != undefined) {
             if (this.dro.errorMessage != null && this.dro.errorMessage != "") {

@@ -11,6 +11,7 @@ import { VerifyLink } from '../../../interfaces/verifyLink';
 import { LinkHelper } from '../../../helpers/link.helper';
 
 @Component({
+
   templateUrl: 'forgotVerify.component.html',
   styleUrls: ['forgotVerify.component.css']
 })

@@ -11,11 +11,10 @@ import {DataResponseObject} from '../../interfaces/dataResponseObject';
 
 
 @Component({
+
   templateUrl: 'verifyEmail.component.html',
   styleUrls: ['verifyEmail.component.css']
 })
-
-
 export class VerifyEmailComponent implements OnInit {
   validationCode: string;
   apiResults: DataResponseObject;
