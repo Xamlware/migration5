@@ -4,7 +4,7 @@ import { AuthGuardService } from './services/authGuard.service';
 export const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'  },
     { path: 'home',  loadChildren: './app/home/home.module#HomeModule' },
-    { path: 'documents',  loadChildren: './app/document/document.module#DocumentModule' },
+    { path: 'document',  loadChildren: './app/document/document.module#DocumentModule' },
     { path: 'calculator', loadChildren: './app/calculator/calculator.module#CalculatorModule'},
     //{ path: 'food',  loadChildren: './app/food/food.module#FoodModule', canActivate: [ AuthGuardService ] },
     //{ path: 'themes',  loadChildren: './app/themes/themes.module#ThemesModule', canActivate: [ AuthGuardService ] },

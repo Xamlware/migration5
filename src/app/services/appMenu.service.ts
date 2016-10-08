@@ -20,7 +20,7 @@ export class AppMenuService {
        }
       ,  {
         label: 'Documents',
-        routerLink: ['/documents']
+        routerLink: ['/document']
       }, {
       //   label: 'KetoCalculator',
       //   routerLink: ['/calculator']
@@ -40,17 +40,17 @@ export class AppMenuService {
         routerLink: ['']
       }, {
         label: 'Documents',
-        routerLink: ['/documents']
+        routerLink: ['/document']
       }, {
       //   label: 'Food',
       //   routerLink: ['/food']
       // }, {
-      //   label: 'KetoCalculator',
-      //   routerLink: ['/calculator']
-      // }, {
-      //   label: 'Settings',
-      //   routerLink: ['/settings']
-      // }, {
+        label: 'KetoCalculator',
+        routerLink: ['/calculator']
+      }, {
+        label: 'Settings',
+        routerLink: ['/settings']
+      }, {
       //   label: 'Themes',
       //   routerLink: ['/themes']
       // }, {
