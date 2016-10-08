@@ -9,7 +9,7 @@ import { SettingsService } from '../services/settings.service';
 import moment = require("moment");
 
 @Component({
-  
+  moduleId: module.id,
   templateUrl: 'food.component.html',
   styleUrls: ['food.component.css']
 })

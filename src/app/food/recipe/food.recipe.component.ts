@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
-                
+        moduleId: module.id,        
         templateUrl: 'food.recipe.component.html',
         styleUrls: ['food.recipe.component.css']
 })

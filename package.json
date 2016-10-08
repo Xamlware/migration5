@@ -1,5 +1,5 @@
 {
-  "name": "migration3",
+  "name": "migration4",
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "2.1.0-rc.0",
     "@angular/platform-browser-dynamic": "2.1.0-rc.0",
     "@angular/router": "3.0.2",
+    "angular-cli": "^1.0.0-beta.17",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.3.0",
     "core-js": "^2.4.1",
@@ -39,7 +40,7 @@
     "@types/jasmine": "^2.5.35",
     "@types/jquery": "^2.0.33",
     "@types/moment": "^2.13.0",
-    "angular-cli": "1.0.0-beta.17",
+    "angular-cli": "^1.0.0-beta.17",
     "codelyzer": "1.0.0-beta.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.7.0",

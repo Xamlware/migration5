@@ -12,7 +12,7 @@ import { MealType } from '../../enums/mealType.enum';
 //import { TableOptions, TableColumn, ColumnMode } from 'angular2-data-table';
 
 @Component({
-        
+        moduleId: module.id,
         selector: 'k-fooddiary ',
         templateUrl: 'food.diary.component.html',
         styleUrls: ['food.diary.component.css']
