@@ -79,7 +79,7 @@ export class CalculatorComponent implements OnInit {
     selectedTableMacro: Macro;
     selectedMacro: Macro;
     calorieDifferenceType: string;
-    firstCalc: boolean = false;;
+    firstCalc: boolean = false;; 
     startValue: number;
     proteinRange: number[];
 

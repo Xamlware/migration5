@@ -1,0 +1,23 @@
+.outside { 
+  position: absolute; 
+  display: table; 
+} 
+
+.inside {
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+}
+
+.copyright{
+    font-size: 10;
+    font-weight: bold;
+}
+
+:host .ui-menuitem li:not(:first-child) {
+  margin-top: 20px;
+}
+
+.ui-menu .ui-menuitem {
+    float: right;
+}

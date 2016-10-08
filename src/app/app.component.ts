@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {  Component, OnInit, HostListener } from '@angular/core';
 
 import { AppMenuService } from './services/appMenu.service';
 import { LoginService } from './services/login.service';
@@ -11,38 +10,39 @@ import { LoggedIn } from './interfaces/loggedIn';
 import { Menubar, MenuItem, Button } from 'primeng/primeng'
 
 @Component({
-  selector: 'kg-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
-
+    selector: 'kg-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 
 })
 
 export class AppComponent implements OnInit {
-  private items: MenuItem[];
-  appPageHeaderDivStyle: {};
-  selectedTheme: Theme;
-  errorMessage: string;
-  loggedIn: LoggedIn; 
-  loggedInEmail: string = "";
-  isLoggedIn: boolean;
+    private items: MenuItem[];
+    appPageHeaderDivStyle: {};
+    selectedTheme: Theme;
+    errorMessage: string;
+    loggedIn: LoggedIn; 
+    loggedInEmail: string = "";
+    isLoggedIn: boolean;
 
-  constructor(private as: AppMenuService,
-    private ts: ThemeService,
-    private ss: SettingsService,
-    private ls: LoginService,
-    private r: Router) { }
+    constructor(
+        private as: AppMenuService,
+        private ts: ThemeService,
+        private ss: SettingsService,
+        private ls: LoginService) {
+    }
 
-  // constructor(
-  //     ,
-  //     
-  //     ) {
-  // }
+    // @HostListener('window:unload', ['$event'])
+    // unloadHandler(event) {
+    // }
 
+    // @HostListener('window:beforeunload', ['$event'])
+    // beforeUnloadHander(event) {
+    //     this.onShutdown;
+    // }
 
-  ngOnInit() {
-    console.log("in home");
-    
+    ngOnInit() {
+
         this.ts.getNewTheme()
             .subscribe(
             theme => this.selectedTheme = theme,
@@ -52,8 +52,8 @@ export class AppComponent implements OnInit {
             () => this.completeGetNewTheme()
             );
 
-    this.ts.setTheme("Pepper-Grinder");
-    this.items = this.as.getNoLoginMenu();
+        this.ts.setTheme("Pepper-Grinder");
+        this.items = this.as.getNoLoginMenu();
 
         this.ls.getLoggedIn()
             .subscribe(
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
                         this.ts.setTheme(us.theme);
                     }
 
-
+                    
                 }
                 else {
                     this.items = this.as.getNoLoginMenu();
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     completeLoggedIn(email: string) {
         this.loggedInEmail = email;
         this.isLoggedIn = (this.loggedInEmail.length > 0);
-
+       
         // this.as.getIsLogout()
         //     .subscribe(
         //     logout => {
@@ -89,18 +89,18 @@ export class AppComponent implements OnInit {
         //             this.items = this.as.getNoLoginMenu();
         //         }
         //     });
-  }
+    }
 
-  completeGetNewTheme() {
-    this.appPageHeaderDivStyle = this.ts.getAppPageHeaderDivStyle();
-  }
+    completeGetNewTheme() {
+        this.appPageHeaderDivStyle = this.ts.getAppPageHeaderDivStyle();
+    }
 
-  // onShutdown() {
-  //     alert("shutting down");
-  //     this.ss.updateProfileInformation(this.ss.getUserSettings());
-  // }
+    onShutdown() {
+        alert("shutting down");
+        this.ss.updateProfileInformation(this.ss.getUserSettings());
+    }
 
-  // onLogout() {
+    onLogout() {
 
-  // }
+    }
 }
