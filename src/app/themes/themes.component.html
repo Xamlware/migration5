@@ -1,0 +1,79 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-3">
+          <div class="ui-grid-row">
+            <div class="ui-g-2 labelDiv">
+              <label class="ui-widget labelCheckbox">Select Theme:</label>
+            </div>
+            <div class="ui-g-10">
+              <div class="ui raised segment">
+                <form [formGroup]="themeForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div class="ui-grid-row">
+                    <div class="ui-g-2 labelDiv">
+                      <p-dropdown [options]="themesList" formControlName="theme" (onChange)="onThemeSelect()"></p-dropdown>
+                    </div>
+                  </div>
+                  <div class="ui-grid-row">
+                    <div class="ui-g-4 labelDiv">
+                      <button pButton type="button" (click)="setTheme()" label="Set Theme"></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p-panel header="Theme" [toggleable]="false">
+          <form [formGroup]="themesForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+            <p-dialog header="Theme switch Dialog" [(visible)]="display" modal="modal" showEffect="fade">
+              <p>"This is the text to display in the dialog.!"</p>
+            </p-dialog>
+
+            <div class="ui-grid-row">
+              <div class="ui-g-2 labelDiv">
+                <button pButton type="button" (click)="showDialog()" icon="fa-external-link-square" label="Show Dialog"></button>
+              </div>
+
+              <div class="ui-g-6 ui-md-4 ui-lg-5">
+              </div>
+
+              <div class="ui-g-6 ui-md-4 ui-lg-5">
+                <div class="ui-g-12">
+                  <p-menubar [model]="items"></p-menubar>
+                </div>
+              </div>
+            </div>
+
+            <div class="ui-grid-row">
+              <div class="ui-g-4 labelDiv">
+                <p-accordion>
+                  <p-accordionTab header="Tab I">
+                    Tab One
+                  </p-accordionTab>
+                  <p-accordionTab header="Tab II">
+                    Tab Two
+                  </p-accordionTab>
+                  <p-accordionTab header="Tab III">
+                    Tab Three
+                  </p-accordionTab>
+                </p-accordion>
+
+              </div>
+              <div class="ui-grid-row">
+                <div class="ui-g-2 labelDiv">
+                  <!--<p-calendar formControlName="calendar" [inline]="true"></p-calendar>-->
+                </div>
+              </div>
+            </div>
+          </form>
+        </p-panel>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
