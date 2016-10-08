@@ -1,0 +1,230 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="Food Settings" [toggleable]="false">
+            <div class="ui raised segment">
+              <form [formGroup]="foodSettingsForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                <div class="ui-grid-row form-group">
+                  <div class="ui-grid-col-1">
+                    <p-checkbox binary="true" formControlName="nutrientMetric"></p-checkbox>
+                  </div>
+                  <div class="ui-grid-col-11">
+                    <p class="ui-widget labelCheckbox">Use metric for nutrients/Foods (quantity in grams, liquid in mililiters, etc.</p>
+                  </div>
+                </div>
+
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-1">
+                    <p-checkbox binary="true" formControlName="recipeMetric"></p-checkbox>
+                  </div>
+                  <div class="ui-grid-col-11">
+                    <p class="ui-widget labelCheckbox">Use metric for recipes (quantity in grams, liquid in mililiters, etc.</p>
+                  </div>
+                </div>
+
+
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-12">
+                    <p-panel header="Nutrients to track" [toggleable]="false">
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-3">
+                            <label class="ui-widget">Standard:</label>
+                          </div>
+                          <div class="ui-grid-col-5">
+                            <label class="ui-widget">Fats:</label>
+                          </div>
+                          <div class="ui-grid-col-4">
+                            <label class="ui-widget">Metals:</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-3">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="fiber"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Fiber</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-5">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="satFat"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Saturated Fat</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="sodium"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Sodium</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-3">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="sugars"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Sugars</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-5">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="polyFat"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Poly-unsaturated Fat</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="calcium"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Calcium</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-3">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="cholesterol"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Cholesterol</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-5">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="monoFat"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Mono-unsaturated Fat</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="iron"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Iron</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-3">
+                            &nbsp;
+                          </div>
+
+                          <div class="ui-grid-col-5">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="transFat"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Trans-unsaturated Fat</p>
+                            </div>
+                          </div>
+
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="potassium"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Potassium</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-4">
+                            <label class="ui-widget labelCheckbox">Vitamins:</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="vitC"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Vitamin C</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                          <div class="ui-grid-col-4">
+                            <div class="ui-grid-col-1">
+                              <p-checkbox binary="true" formControlName="vitA"></p-checkbox>
+                            </div>
+                            <div class="ui-grid-col-11">
+                              <p class="ui-widget labelCheckbox">Vitamin A</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </p-panel>
+                  </div>
+                </div>
+                <br>
+                <div class="ui-grid-row buttonDiv">
+                  <div class="ui-grid-col-4">
+                    &nbsp;
+                  </div>
+                  <div class="ui-grid-col-2">
+                    <button pButton type="button" icon="fa-times" iconPos="left" (click)="onCancel()" label="Cancel"></button>
+                  </div>
+                  <div *ngIf="isChanged" class="ui-grid-col-2">
+                    <button pButton type="submit" [style.margin-left]="'3px'" icon="fa-floppy-o" iconPos="left" label="Save"></button>
+                  </div>
+                  <div class="ui-grid-col-4">
+                    &nbsp;
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+
+      <div class="ui-g-6 ui-md-4 ui-lg-4">
+      </div>
+    </div>
+  </div>

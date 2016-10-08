@@ -1,0 +1,54 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-5">
+          <p-panel header="Food" [toggleable]="false">
+            <div class="ui raised segment">
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-12">
+                  <p>Welcome to the food diary, food selection and recipe manager.</p>
+                  <p>The foods in our database number over 750,000 and have not been entered by other users. We add to this
+                    list constantly. You can create your own food list if the foods you eat are not in our database. </p>
+                  <p>Besides tracking foods, you can save meals and recall them for rapid data entry. We will also maintain
+                    a list of commonly eaten foods for you to select from.</p>
+
+                  <p>Please select what you wish to do:</p>
+                </div>
+              </div>
+
+              <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                <div class="ui-g">
+                  <div class="ui-g-12 buttonContainer">
+                    <div class="ui-grid-row">
+                      <div class="ui-grid-col-3">
+                        <button pButton type="button" icon="fa-cutlery" iconPos="left" (click)="trackFood()" label="Food Diary"></button>
+                      </div>
+
+                      <div class="ui-grid-col-3">
+                        <button pButton type="button" icon="fa-cutlery" iconPos="left" (click)="createRecipe()" label="Create Recipe"></button>
+                      </div>
+
+                      <div class="ui-grid-col-3">
+                        <button pButton type="button" icon="fa-file-o" iconPos="left" (click)="exportFood()" label="Export food"></button>
+                      </div>
+
+                      <div class="ui-grid-col-3">
+                        <button pButton type="button" icon="fa-cog" iconPos="left" (click)="settings()" label="Settings"></button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <k-dash></k-dash>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

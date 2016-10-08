@@ -1,0 +1,421 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-3">
+          <p-panel header="Physical Settings" [toggleable]="false">
+            <div *ngIf="userSettings">
+              <div class="ui raised segment">
+                <form [formGroup]="physicalForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div *ngIf="selectedPhysical && !anonymous" class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>You have already entered your biographical and physical data measurements. Ketogeniq's calcuator will
+                        use the most recent measurements to calculate your dietary macros.</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="selectedPhysical && anonymous" class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>Please fill in your biographical and physical data measurements. Ketogeniq's calcuator will use these
+                        measurements to calculate your dietary macros.</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row">
+                    <div class="ui-grid-col-1">
+                      <p-checkbox binary="true" formControlName="measurementMetric" (onChange)="onMetricChanged($event)"></p-checkbox>
+                    </div>
+                    <div class="ui-grid-col-11">
+                      <p class="ui-widget labelCheckbox">Use metric for profile (Weight in kilos, height in meters, etc.)</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelDiv">Weight:  ({{weightUnits}})</label>
+                    </div>
+                    <div class="ui-grid-col-8"><input id="in" type="text" size="15" pInputText class="form-control" formControlName="weight" autofocus />
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group validation">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.weight"></kg-errorMessages>
+                    </div>
+                  </div>
+
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelDiv">Height: ({{heightUnits}})</label></div>
+                    <div class="ui-grid-col-8"><input id="in" type="text" size="15" pInputText class="form-control" formControlName="height" /></div>
+                  </div>
+                  <div class="ui-grid-row form-group validation">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.height"></kg-errorMessages>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelDiv">Neck: ({{neckUnits}})</label></div>
+                    <div class="ui-grid-col-8"><input id="in" type="text" size="15" pInputText class="form-control" formControlName="neck" /></div>
+                  </div>
+                  <div class="ui-grid-row form-group validation">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.neck"></kg-errorMessages>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelDiv">Waist: ({{waistUnits}})</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="waist" />
+                    </div>
+                  </div>
+                  <div class="ui-grid-row form-group validation">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.waist"></kg-errorMessages>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group" *ngIf="female === true">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelDiv">Hips:</label>
+                    </div>
+                    <div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="hips" />
+                    </div>
+                  </div>
+                  <div class="ui-grid-row form-group validation"  *ngIf="female === true">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.hips"></kg-errorMessages>
+                    </div>
+                  </div>
+
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelDiv">Birth Date:</label></div>
+                    <div class="ui-grid-col-8"><input id="in" type="text" size="15" pInputText class="form-control" formControlName="birth" /></div>
+                  </div>
+                  
+                  <div class="ui-grid-row form-group validation">
+                    <!--*ngIf="physicalForm.controls.weight.touched && !physicalForm.controls.weight.valid">-->
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+                    <div class="ui-grid-col-8 labelDiv">
+                      <kg-errorMessages [control]="physicalForm.controls.birth"></kg-errorMessages>
+                    </div>
+                  </div>
+
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelDiv">Activity Level:</label>
+                    </div>
+
+                    <div class="ui-grid-col-8">
+                      <p-selectButton [options]="activities" formControlName="activityLevel" (onChange)="onActivityChanged($event)"></p-selectButton>
+                    </div>
+
+                  </div>
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv">
+                    </div>
+
+                    <div class="ui-grid-col-8">
+                      <p>{{selectedActivityLevel.message}}
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelDiv">Sex:</label>
+                    </div>
+
+                    <div class="ui-grid-col-8">
+                      <p-selectButton [options]="sexes" formControlName="sex" (onChange)="onSexChanged($event)"></p-selectButton>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group buttonContainer">
+                    <div *ngIf="!anonymous" class="ui-grid-col-2">
+                      <button pButton type="button" (click)="onEditPhysicalData()" label="Edit"></button>
+                    </div>
+
+                    <div *ngIf="!anonymous" class="ui-grid-col-2">
+                      <button pButton type="button" (click)="onAddPhysicalData()" label="Add"></button>
+                    </div>
+
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-3">
+          <p-panel header="Macronutrient Calculation" [toggleable]="false">
+            <div>
+              <!--*ngIf="selectedCalculation">-->
+              <div class="ui raised segment">
+                <form [formGroup]="macroForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-4">
+                      <label class="ui-widget labelCheckbox">Ketogenic goal:</label>
+                      <p></p>
+                    </div>
+                    <div class="ui-grid-col-8">
+                      <p-selectButton [options]="goals" formControlName="goal" (onChange)="onGoalChanged($event)"> Weight</p-selectButton>
+                    </div>
+                  </div>
+
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>With a ketogenic diet, it is recommended to keep your carbohydate intake below 30g, but most choose
+                        20g Net Carbs as the maximum level. Please select the carb grams you desire:</p>
+                    </div>
+                  </div>
+
+                  <!--<div class="ui-grid-row form-group">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Carbohydrates ({{carbUnits}}):</label></div>
+                    <div class="ui-grid-col-8"><input id="in" type="text" size="15" pInputText class="form-control" formControlName="macroCarbs" />
+                    </div>
+                  </div>-->
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Carbohydrates:</label></div>
+                    <div class="ui-grid-col-8 spinnerMargin">
+                      <kg-spinner spinName="carbGoal" [range]=[10,50] [increment]=5 [startValue]=20 [precision]=0 (onChanged)="onChanged($event)"></kg-spinner>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>The healthy protein range to maintain current muscle mass is about .6g protein per pound of LBM. If
+                        you wish to add muscle mass, use 0.8g – 1.2g per pound of LBM. Please select the range that suits
+                        you.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-4 labelDiv">
+                      <label class="ui-widget labelCheckbox">Protein:</label>
+                    </div>
+
+                    <div class="ui-grid-col-8 spinnerMargin">
+                      <kg-spinner spinName="proteinGoal" [range]=[.6,1.2] [increment]=.1 [startValue]=.6 [precision]=1 (onChanged)="onChanged($event)"></kg-spinner>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="proteinGoal" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>When you choose your calorie deficit/surplus, keep it between 15-30% for a deficit and between 10-15%
+                        for a surplus. Values outside of these ranges are can be dangerous and can have negative effects
+                        on your dieting, according to this
+                        <a href="http://www.ncbi.nlm.nih.gov/pubmed/1615888" style="color: rgb(0,255,0)">
+                          <font color="FF00CC">study</font>
+                        </a>.</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-4 labelDiv" *ngIf="selectedGoal==='lose'">
+                      <label class="ui-widget labelCheckbox">Caloric Deficit:</label>
+                    </div>
+
+                    <div class="ui-grid-col-4 labelDiv" *ngIf="selectedGoal==='maintain'">
+                      <label class="ui-widget labelCheckbox">Caloric Deficit:</label>
+                    </div>
+
+                    <div class="ui-grid-col-4 labelDiv" *ngIf="selectedGoal==='gain'">
+                      <label class="ui-widget labelCheckbox">Caloric Excess:</label>
+                    </div>
+
+                    <div class="ui-grid-col-8 spinnerMargin">
+                      <kg-spinner spinName="calorieDifference" [range]=[10,30] [increment]=1 [startValue]="calorieDifference" [precision]=0 (onChanged)="onChanged($event)"></kg-spinner>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="calorieDifference" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p-panel>
+                        <header>
+                          <div class="ui-grid-col-12 labelDiv">
+                            <label class="ui-widget labelCheckbox">{{calorieDifferenceType}}</label>
+                          </div>
+                        </header>
+                        <div>
+                          <p-dataTable [value]="macroData" selectionMode="single" [(selection)]="selectedMacro" (onRowSelect)="onMacroSelect($event)">
+                            <p-column *ngFor="let col of macroCols" [field]="col.field" [header]="col.header"></p-column>
+                          </p-dataTable>
+                        </div>
+                      </p-panel>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <div class="ui-grid-col-9">
+                      </div>
+
+                      <div class="ui-grid-col-3">
+                        <button pButton type="submit" label="Calculate" [disabled]="!physicalForm.valid || !macroForm.valid"></button>
+                      </div>
+
+                        <div class="ui-grid-col-3" *ngIf="physicalForm.valid && macroForm.valid && firstCalc">
+                        <button pButton type="buton" label="Save Calculation" (click)="onSaveCalculation()" [disabled]="!physicalForm.valid || !macroForm.valid"></button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-3">
+          <p-panel header="Calculated Macro values" [toggleable]="false">
+            <div *ngIf="selectedCalculation">
+              <div class="ui raised segment">
+                <form [formGroup]="calculationForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <!-- *ngIf="selectedPhysical">-->
+                      <p>Based on your entries for your biometric and physical data measurements, here are the calculated values
+                        for your biometrics and macros:</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>Ketogeniq's body fat calculator uses the U. S. Navy's fitness formula estimate body fat percent. It factors
+                        in waist, neck and hip (women) measurements as well as gender and height.</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">Body Fat:  {{selectedCalculation.displayFat}} {{fatUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="fat" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>Ketogeniq's calculator uses weight, height, age, and gender to estimate lean body mass (LBM), which
+                        would be your weight with all body fat removed.</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">LBM:  {{selectedCalculation.displayLbm}} {{lbmUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="lbm" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>The Katch McArdle formula takes into account lean body mass which gives an accurate Basal Resting Metabolism
+                        (BMR), especially for those with high body fat percentage).</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">K-M BMR:  {{selectedCalculation.displayKmBmr}} {{bmrUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="kmBmr" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>The Mifflin-St. Jeor equation is gaining popularity among the nutrition professionals for accurately
+                        estimating caloric needs. It uses weight, height, and age to estimate BMR.</p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">M-SJ BMR:  {{selectedCalculation.displayMjBmr}} {{bmrUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="mjBmr" />
+                    </div>-->
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>Ketogeniq averages the Katch-McArdle and Mifflin-St. Jeor equation to get an estimate of your real
+                        BMR.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">BMR:  {{selectedCalculation.displayBmr}} {{bmrUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="bmr" />
+                    </div>-->
+                  </div>
+
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12">
+                      <p>Total daily energy expenditure (TDEE) is calculated as a multiplier based on your activity level setting
+                        * BMR.</p>
+                    </div>
+                  </div>
+
+
+                  <div class="ui-grid-row form-group formDiv">
+                    <div class="ui-grid-col-12 labelDiv">
+                      <label class="ui-widget labelCheckbox">TDEE:  {{selectedCalculation.displayTdee}} ({{bmrUnits}}</label>
+                    </div>
+                    <!--<div class="ui-grid-col-8">
+                      <input id="in" type="text" size="15" pInputText class="form-control" formControlName="tdee" />
+                    </div>-->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

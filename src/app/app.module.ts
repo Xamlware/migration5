@@ -12,7 +12,7 @@ import { HomeModule } from './home/home.module';
 import { SettingsModule } from './settings/settings.module';
 import { ThemesModule } from './themes/themes.module';
 import { DocumentModule } from './document/document.module';
-//import { CalculatorModule } from './calculator/calculator.module';
+import { CalculatorModule } from './calculator/calculator.module';
 
 import { AboutModule } from './about/about.module';
 import { SharedModule }   from './shared/shared.module';
@@ -21,7 +21,7 @@ import { SharedModule }   from './shared/shared.module';
 
 @NgModule({
     imports: [ BrowserModule, RouterModule.forRoot(appRoutes), SharedModule.forRoot(),
-    HomeModule, DocumentModule, AboutModule, SettingsModule, ThemesModule ], //, FoodModule, CalculatorModule ],
+    HomeModule, DocumentModule, AboutModule, SettingsModule, ThemesModule, CalculatorModule ], //, FoodModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ],
     providers: [ appRoutingProviders ]

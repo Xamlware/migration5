@@ -1,0 +1,121 @@
+<h1> Diary Component</h1>
+<!--<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-4">
+          <p-panel header="Food" [toggleable]="false">
+            <div class="ui raised segment">
+              <div class="ui-grid-row form-group">
+                <div class="ui-grid-col-12">
+                  <p>Welcome to the food diary, food selection and recipe manager.</p>
+                  <p>The foods in our database number over 15,000 and have not been
+                  entered by other users. We add to this list constantly. You can create your own food list if the foods
+                  you eat are not in our database. </p> 
+                  <p>Besides tracking foods, you can save meals and recall them for rapid data entry. We will also maintain 
+                      a list of commonly eaten foods for you to select from.</p>
+                      
+                  <p>Please select what you wish to do:</p>
+                </div>
+              </div>
+
+              <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                <div class="ui-g">
+                  <div class="ui-g-12 buttonContainer">
+                    <div class="ui-grid-row">
+                      <div class="ui-grid-col-4">
+                        <button pButton type="button" (click)="onTrackFood()" label="Food Diary"></button>
+                      </div>
+
+                      <div class="ui-grid-col-4">
+                        <button pButton type="button" (click)="onCreateRecipe()" label="Create Recipe"></button>
+                      </div>
+
+                      <div class="ui-grid-col-4">
+                        <button pButton type="button" (click)="onCreateRecipe()" label="Export food data"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+
+  <!--
+      <div class="ui-g-3 ui-md-4 ui-lg-6">
+        <p-panel>
+          <header>
+            <!--<div class="ui-helper-clearfix">
+            <span class="ui-panel-title">Your Biometric data</span>
+            <div style="float: right">
+              <p-splitButton label="Display">
+                <p-splitButtonItem label="Physical Data" (onClick)="updateData('physical')"></p-splitButtonItem>
+                <p-splitButtonItem label="Calculation Data" (onClick)="updateData('calculation')"></p-splitButtonItem>
+                <p-splitButtonItem label="Blood Data" (onClick)="updateData('blood')"></p-splitButtonItem>
+                <p-splitButtonItem label="Lipid Data" (onClick)="updateData('lipid')"></p-splitButtonItem>
+              </p-splitButton>
+              </div>
+            </div>
+          </header>
+
+          <div *ngIf="userSettings">
+            <div *ngIf="isPhysicalGrid">
+              <p-dataTable [value]="physicalData" selectionMode="single" [(selection)]="selectedTablePhysical" (onRowSelect)="onPhysicalSelect($event)">
+                <p-column *ngFor="let col of physicalCols" [field]="col.field" [header]="col.header"></p-column>
+              </p-dataTable>
+            </div>
+            <div *ngIf="isBloodGrid">
+              <p-dataTable [value]="userSettings.bloodData" selectionMode="single" [(selection)]="selectedBlood" (onRowSelect)="onBloodSelect($event)">
+                <p-column *ngFor="let col of bloodCols" [field]="col.field" [header]="col.header"></p-column>
+              </p-dataTable>
+            </div>
+            <div *ngIf="isLipidGrid">
+              <p-dataTable [value]="userSettings.lipidData" selectionMode="single" [(selection)]="selectedLipid" (onRowSelect)="onLipidSelect($event)">
+                <p-column *ngFor="let col of lipidCols" [field]="col.field" [header]="col.header"></p-column>
+              </p-dataTable>
+            </div>
+
+            <div *ngIf="isCalculationGrid">
+              <p-dataTable [value]="userSettings.calculationData" selectionMode="single" [(selection)]="selectedCalculation" (onRowSelect)="onCalculationSelect($event)">
+                <p-column *ngFor="let col of calculationCols" [field]="col.field" [header]="col.header"></p-column>
+              </p-dataTable>
+            </div>
+
+            <div class="ui-grid-row  buttonContainer">
+              <div class="ui-grid-col-1">
+                <button pButton type="button" (click)="onAddData()" label="Add"></button>
+              </div>
+
+              <div class="ui-grid-col-1">
+                <button pButton type="button" (click)="onEditData()" label="Edit"></button>
+              </div>
+
+              <div class="ui-grid-col-7">
+              </div>
+
+              <div class="ui-grid-col-2">
+                <button pButton type="button" (click)="onCalculateMacros()" label="Calculate Macros"></button>
+              </div>
+
+              <div class="ui-grid-col-1">
+                <button pButton type="button" (click)="onChartData()" label="Chart"></button>
+              </div>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+
+      <div class="ui-g-3 ui-md-4 ui-lg-4">
+      </div>
+    </div>
+  </div>
+</div>
+</div>-->

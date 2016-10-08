@@ -6,7 +6,7 @@ export const appRoutes: Routes = [
     { path: 'home',  loadChildren: './app/home/home.module#HomeModule' },
     { path: 'document',  loadChildren: './app/document/document.module#DocumentModule' },
     { path: 'calculator', loadChildren: './app/calculator/calculator.module#CalculatorModule'},
-    //{ path: 'food',  loadChildren: './app/food/food.module#FoodModule', canActivate: [ AuthGuardService ] },
+    { path: 'food',  loadChildren: './app/food/food.module#FoodModule', canActivate: [ AuthGuardService ] },
     { path: 'themes',  loadChildren: './app/themes/themes.module#ThemesModule', canActivate: [ AuthGuardService ] },
     { path: 'settings',  loadChildren: './app/settings/settings.module#SettingsModule', canActivate: [ AuthGuardService ] },
     { path: 'about',  loadChildren: './app/about/about.module#AboutModule' }

@@ -1,0 +1,209 @@
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-6">
+          <p-panel header="Food Diary" [toggleable]="false">
+            <div class="ui raised segment">
+              <div class="ui-grid-row ">
+                <div class="ui-grid-col-12 ">Breakfast </div>
+              </div>
+              <div class="ui-grid-row form-group ">
+                <div class="ui-grid-col-12 ">
+                  <div class="ui-grid-col-1 ">
+                    <span [style.font-weight]=" 'bold' ">Breakfast</span>
+                  </div>
+                  <div class="ui-grid-col-1 ">
+                    <button pButton type="button " icon="fa-plus " iconPos="left " (click)="addFood( 'breakfast') "></button>
+                  </div>
+                  <p-dataTable [value]="breakfastData " selectionMode="single " [(selection)]="selectedBreakfast
+                    " (onRowSelect)="onBreakfastSelect($event) ">
+                    <p-column *ngFor="let col of foodCols " [field]="col.field " [header]="col.header "></p-column>
+                  </p-dataTable>
+                </div>
+              </div>
+              <!--<datatable class='material striped' [rows]='rows' [options]='options'>
+              </datatable>-->
+
+
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<table class="tftable">
+                  <tr>
+                    <th class="width20">Item</th>
+                    <th class="width15" style="margin-left:10px">Calories</th>
+                    <th class="width15">Carbs</th>
+                    <th class="width15">Protein</th>
+                    <th class="width15">Fat</th>
+                     <th class="width15">Protein</th>
+                    <th class="width15">Fat</th>
+                    <tr *ngFor="let b of breakfastData">
+                      <td>Eggs and more with ben</td>
+                      <td class="tdCenter">300</td>
+                      <td class="tdCenter">0</td>
+                      <td class="tdCenter">33</td>
+                      <td class="tdCenter">0</td>
+                      <td class="tdCenter">33</td>
+                      <td class="tdCenter">0</td>
+                     </tr>
+                     <tr>
+                      <td>Sirloin</td>
+                      <td class="tdCenter">300</td>
+                      <td class="tdCenter">0</td>
+                      <td class="tdCenter">33</td>
+                      <td class="tdCenter">0</td>
+                       <td class="tdCenter">33</td>
+                      <td class="tdCenter">0</td>
+                  </tr>
+                </table>-->
+
+<!--<div class="ui-grid ui-grid-responsive ui-grid-pad ">
+  <div class="ui-g ">
+    <div class="ui-g-12 ">
+      <div class="ui-g ">
+
+        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+          &nbsp;
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-6 ">
+          <p-panel header="Food Diary ">
+            <div class="ui-g ">
+
+              <div class="ui raised segment ">
+                <div class="ui-grid-row ">
+                  <div class="ui-grid-col-12 ">Breakfast </div>
+                </div>
+
+                <div class="ui-grid-row ">
+                  <div class="ui-grid-col-4 ">
+                    <label class="ui-widget labelCheckbox ">Item</label>
+                  </div>
+
+                  <div class="ui-grid-col-2 ">
+                    <label class="ui-widget labelCheckbox ">Calories</label>
+                  </div>
+
+                  <div class="ui-grid-col-2 ">
+                    <label class="ui-widget labelCheckbox ">Net Carbs </label>
+                  </div>
+
+                  <div class="ui-grid-col-2 ">
+                    <label class="ui-widget labelCheckbox ">Protein </label>
+                  </div>
+
+                  <div class="ui-grid-col-2 ">
+                    <label class="ui-widget labelCheckbox ">Fat </label>
+                  </div>
+                </div>-->
+
+
+
+<!--
+                  <p-dataList [value]="breakfastData ">
+                    <template let-breakfast>
+                      <div class="ui-grid ui-grid-responsive ui-fluid " style="font-size:16px;padding:20px;border-bottom:1px
+                    solid #D5D5D5; ">
+                        <div class="ui-grid-row ">
+                          <div class="ui-grid-col-12 ">
+                            <div class="ui-grid ui-grid-responsive ui-fluid ">
+                              <div class="ui-grid-row ">
+                                <div class="ui-grid-col-12 ">
+                                  <div class="ui-grid-col-4 ">{{breakfast.name}}</div>
+                                  <div class="ui-grid-col-2 ">{{breakfast.calories}}</div>
+                                  <div class="ui-grid-col-2 ">{{breakfast.carbs}}</div>
+                                  <div class="ui-grid-col-2 ">{{breakfast.protein}}</div>
+                                  <div class="ui-grid-col-2 ">{{breakfast.fat}}</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                  </p-dataList>
+              </div>
+              </div>
+            </div>
+          </p-panel>
+        </div>-->
+
+
+<!--<div class="ui-grid ui-grid-responsive ui-grid-pad ">
+  <div class="ui-g ">
+    <div class="ui-g-12 ">
+      <div class="ui-g ">
+        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-6 ">
+          <p-panel header="Food Intake " [toggleable]="false ">
+            <div class="ui raised segment ">
+              <div class="ui-grid-row form-group ">
+                <div class="ui-grid-col-12 ">
+                  <div class="ui-grid-col-1 ">
+                    <span [style.font-weight]=" 'bold' ">Breakfast</span>
+                  </div>
+                  <div class="ui-grid-col-1 ">
+                    <button pButton type="button " icon="fa-plus " iconPos="left " (click)="addFood( 'breakfast') " ></button>
+                  </div>
+                  <p-dataTable [value]="breakfastData " selectionMode="single " [(selection)]="selectedBreakfast
+                    " (onRowSelect)="onMacroSelect($event) ">
+                    <p-column *ngFor="let col of foodCols " [field]="col.field " [header]="col.header "></p-column>
+                  </p-dataTable>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group ">
+                <div class="ui-grid-col-12 ">
+                  <span>Lunch</span>
+                  <p-dataTable [value]="lunchData " selectionMode="single " [(selection)]="selectedLunch
+                    " (onRowSelect)="onMacroSelect($event) ">
+                    <p-column *ngFor="let col of foodCols " [field]="col.field " [header]="col.header "></p-column>
+                  </p-dataTable>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group ">
+                <div class="ui-grid-col-12 ">
+                  <span>Dinner</span>
+                  <p-dataTable [value]="dinnerData " selectionMode="single " [(selection)]="selectedDinner
+                    " (onRowSelect)="onMacroSelect($event) ">
+                    <p-column *ngFor="let col of foodCols " [field]="col.field " [header]="col.header "></p-column>
+                  </p-dataTable>
+                </div>
+              </div>
+
+              <div class="ui-grid-row form-group ">
+                <div class="ui-grid-col-12 ">
+                  <span>Snacks</span>
+                  <p-dataTable [value]="snackData " selectionMode="single " [(selection)]="selectedSnack
+                    " (onRowSelect)="onMacroSelect($event) ">
+                    <p-column *ngFor="let col of foodCols " [field]="col.field " [header]="col.header "></p-column>
+                  </p-dataTable>
+                </div>
+              </div>
+
+            </div>
+          </p-panel>
+        </div>
+
+        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>-->

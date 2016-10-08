@@ -1,0 +1,123 @@
+<div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5;">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3">
+                    </div>
+
+                    <div class="ui-grid-col-6">
+                        <div class="ui-grid-row  form-group">
+                            <div class="ui-grid-col-12">
+                                <form [formGroup]="foodSearchForm" novalidate (ngSubmit)="onSubmit()" class="ui form">
+
+                                    <div class="ui-grid-col-2 labelDiv">
+                                        <label class="ui-widget labelCheckbox">Search for food:</label>
+                                    </div>
+
+                                    <div class="ui-grid-col-3">
+                                        <input type="text" size="15" pInputText class="form-control" formControlName="searchText" />                                        &nbsp;&nbsp;
+                                    </div>
+
+                                    <div class="ui-grid-col-2" style="margin-left: 3px">
+                                        <button pButton type="submit" icon="fa-search" iconPos="left" label="Search"></button>
+                                    </div>
+                                </form>
+
+                                <div class="ui-grid-row form-group">
+                                    <div class="ui-grid-col-12">
+                                        <div class="ui-grid-col-5">
+                                            <p-panel header="Search results for '{{searchText}}'" [toggleable]="false">
+                                                <p-dataList [value]="searchResults">
+                                                    <template let-searchItem>
+                                                        <div class="ui-grid ui-grid-responsive ui-fluid addFoodRow"  (click)="onRowSelect(searchItem)">
+                                                            <div class="ui-grid-row">
+                                                                <div class="ui-grid-col-12">
+                                                                    <div class="ui-grid ui-grid-responsive ui-fluid">
+                                                                        <div class="ui-grid-row">
+                                                                            <span class="ui-grid-col-12 searchItem">{{searchItem.item_name}}</span>
+                                                                            <span class="ui-grid-col-12 searchItemDetail">{{searchItem.brand_name}} {{searchItem.nf_serving_size_qty}}
+                                                                                {{searchItem.nf_serving_size_unit}} {{searchItem.nf_calories}}
+                                                                                Calories
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </p-dataList>
+                                            </p-panel>
+                                        </div>
+
+                                        <div class="ui-grid-col-1">
+                                            &nbsp;
+                                        </div>
+
+                                        <div class="ui-grid-col-5" *ngIf="selectedRow != null" style="font-size: 12px">
+                                            <p-panel header="Food to add" [toggleable]="false">
+                                                <form [formGroup]="foodAddForm" novalidate (ngSubmit)="onAddFoodSubmit()" class="ui form">
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-12 labelDiv">
+                                                            <label class="ui-widget" style="font-size: 14px">{{itemLabel}}</label>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-12 labelDiv">
+                                                            <label class="ui-widget" >Add how much? </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-12">
+                                                            <div class="ui-grid-col-2" style="width:50px; padding-left:2px">
+                                                                <input type="text" size="15" pInputText class="form-control" formControlName="quantity"  autofocus/>
+                                                            </div>
+                                                            <div class="ui-grid-col-3 labelDiv" style="margin-left:5px; text-align:center;">
+                                                                Serving of
+                                                            </div>
+                                                            <div class="ui-grid-col-5" style="width:200px; padding-left:2px">
+                                                                 <input type="text" size="15" pInputText class="form-control" formControlName="unit" readonly/>
+                                                                <!--<p-dropdown [options]="unitList" formControlName="unit" (onChange)="onUnitSelect()"></p-dropdown>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-12 labelDiv">
+                                                            <label class="ui-widget">To which meal: </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-12">
+                                                            <p-selectButton [options]="meals" formControlName="meal" (onChange)="onMealChanged($event)"> </p-selectButton>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="ui-grid-row form-group">
+                                                        <div class="ui-grid-col-4">
+                                                            &nbsp;
+                                                        </div>
+
+                                                        <div class="ui-grid-col-4">
+                                                            <button pButton type="submit" icon="fa-plus" iconPos="left" label="Add food"></button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </p-panel>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

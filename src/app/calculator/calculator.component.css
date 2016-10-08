@@ -1,0 +1,26 @@
+.macroHeader {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.macroSubHeader {
+    margin-top: -25px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.centerDivText {
+    text-align: center;
+}
+
+a href {
+    color: darkblue;
+}
+
+.spinnerMargin {
+    margin-top: 5px;
+}
