@@ -20,6 +20,7 @@ import { FormModeType } from '../enums/formModeType.enum';
 import * as moment from "moment";
 
 @Component({
+    
     templateUrl: 'settings.component.html',
     styleUrls: ['settings.component.css']
 

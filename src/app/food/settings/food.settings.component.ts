@@ -9,7 +9,7 @@ import { Nutrient } from '../../interfaces/nutrient';
 
 
 @Component({
-  moduleId: module.id,
+  
   selector: 'app-settings',
   templateUrl: 'food.settings.component.html',
   styleUrls: ['food.settings.component.css']

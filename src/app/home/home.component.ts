@@ -13,6 +13,7 @@ import { FoodDashboardComponent } from '../shared/foodDashboard/food.dashboard.c
 
 
 @Component({
+    
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
@@ -32,9 +33,9 @@ export class HomeComponent implements OnInit {
         private ls: LoginService) {
 
         this.images = [];
-        this.images.push({ source: 'assets/broccoli.jpg', alt: 'Broccoli', title: '' });
-        this.images.push({ source: 'assets/coconut.jpg', alt: 'Coconut', title: '' });
-        this.images.push({ source: 'assets/saturatedOil.jpg', alt: 'Saturated Oils', title: '' });
+        this.images.push({ source: 'app/resources/broccoli.jpg', alt: 'Broccoli', title: '' });
+        this.images.push({ source: 'app/resources/coconut.jpg', alt: 'Coconut', title: '' });
+        this.images.push({ source: 'app/resources/saturatedOil.jpg', alt: 'Saturated Oils', title: '' });
     }
 
 
@@ -43,7 +44,6 @@ export class HomeComponent implements OnInit {
 
         this.isLoggedIn = this.ls.isLoggedIn;
         if (!this.isLoggedIn) {
-            debugger;
             this.clearUserSettings();
         }
     }

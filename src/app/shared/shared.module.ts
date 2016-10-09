@@ -3,10 +3,11 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { AuthorizationService } from '../services/authorization.service';
 import { LoginService } from '../services/login.service';
+import { LogoutService } from '../services/logout.service';
+
 import { RegisterService } from '../services/register.service';
 import { ThemeService } from '../services/theme.service';
 import { NutritionixService } from '../services/nutritionix.service';
@@ -26,11 +27,11 @@ import {InputTextModule, GalleriaModule, MenubarModule, CheckboxModule, DialogMo
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, //Angular2DataTableModule, 
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, 
             CalendarModule, SelectButtonModule, CheckboxModule, ProgressBarModule, DataTableModule, DataListModule],
   declarations: [ ErrorMessagesComponent, FoodDashboardComponent ],
-  exports: [ CommonModule, ReactiveFormsModule, HttpModule, RouterModule, //Angular2DataTableModule, 
+  exports: [ CommonModule, ReactiveFormsModule, HttpModule, RouterModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, CalendarModule,
             SelectButtonModule, CheckboxModule, DataTableModule, DataListModule, ProgressBarModule, ErrorMessagesComponent, FoodDashboardComponent ]
 })
@@ -40,7 +41,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [SettingsService, AppMenuService, AuthorizationService, LoginService, RegisterService, ThemeService, ValidationService,
+      providers: [SettingsService, AppMenuService, AuthorizationService, LoginService, LogoutService, RegisterService, ThemeService, ValidationService,
         NutritionixService, AuthGuardService, CalculationService, ChallengeService, FoodService ]
     };
   }

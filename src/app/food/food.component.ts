@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SettingsService } from '../services/settings.service';
+import { FoodService } from '../services/food.service';
+import { LogoutService } from '../services/logout.service';
 
 // import { InputText, Checkbox, Dialog, Panel, Calendar, RadioButton, InputSwitch,
 //   SelectButton, SelectItem, DataTable, Column, SplitButton, SplitButtonItem,
 //   Button, Dropdown, Accordion, AccordionTab } from 'primeng/primeng'
-import moment = require("moment");
+import * as moment from "moment";
 
 @Component({
-  moduleId: module.id,
+  
   templateUrl: 'food.component.html',
   styleUrls: ['food.component.css']
 })
@@ -21,11 +23,23 @@ export class FoodComponent implements OnInit {
 
   constructor(
     private ss: SettingsService,
-    private r: Router ) {
-
+    private r: Router,
+    private fs: FoodService,
+    private los: LogoutService) {
+      console.log("food component constructor");
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log("get logout subscribe food component")
+     
+    this.los.getLogout()
+        .subscribe(
+        logout => {
+            if (logout) {
+              this.fs.completeLogout();
+            }
+        });
+  }
 
   trackFood() {
     this.r.navigate(["/diary"]);

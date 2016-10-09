@@ -11,6 +11,7 @@ import { AuthorizationService } from '../services/authorization.service';
 import { NutritionixService } from '../services/Nutritionix.service';
 import { SettingsService } from '../services/settings.service';
 import { ThemeService } from '../services/theme.service';
+import { LogoutService } from '../services/logout.service';
 import { AppMenuService } from '../services/appMenu.service';
 import { LocalUser } from '../interfaces/localUser';
 import { Token } from '../interfaces/token';
@@ -37,7 +38,7 @@ import { LoggedIn } from '../interfaces/loggedIn';
 
 
 @Injectable()
-export class LoginService {
+export class LoginService  {
     private loggedIn$: Subject<LoggedIn>;
     private passwordReset$: Subject<boolean>;
 
@@ -62,7 +63,8 @@ export class LoginService {
         private ss: SettingsService,
         private themeService: ThemeService,
         private auth: AuthorizationService,
-        private as: AppMenuService
+        private as: AppMenuService,
+        private los: LogoutService
         //private nutritionixService: NutritionixService
     ) {
         this.loggedIn$ = <Subject<LoggedIn>>new Subject();
@@ -70,7 +72,8 @@ export class LoginService {
         // this.isLoggedIn = true;
     }
 
-    logOutUser() {
+
+    logoutUser() {
         console.log("logging out");
         localStorage.removeItem("accessToken");
         this.setLoggedIn(new LoggedIn("","",""));
@@ -114,6 +117,16 @@ export class LoginService {
                 this.router.navigate([""]);
             }
         }
+
+          this.los.getLogout()
+            .subscribe(
+            logout => {
+                if (logout) {
+                    console.log("completing logoff in login servcie");
+                    this.logoutUser();
+                   
+                }
+            });
     }
 
     private extractData(res: Response) {

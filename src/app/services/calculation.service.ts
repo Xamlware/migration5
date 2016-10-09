@@ -69,7 +69,6 @@ export class CalculationService {
 
 
     updateCalculationData(calc: Calculation) {
-       debugger;
         var c: BareCalculationFormat = CalculationFactory.createBareCalaculationFormat(calc, this.ss.getUserSettings());
 
         var headers = new Headers();
@@ -86,14 +85,13 @@ export class CalculationService {
             })
             .catch(this.handleError)
             .subscribe(
-            dro => this.dro = <DataResponseObject> dro,
+            dro => this.dro = dro,
             error => this.errorMessage = error,
             () => this.completeAddCalculation()
             );
     }
 
     completeAddCalculation() {
-        debugger;
         console.log("in add calc");
         if (this.dro) {
             if (this.dro.data.length > 1) {

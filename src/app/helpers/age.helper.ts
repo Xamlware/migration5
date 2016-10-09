@@ -18,7 +18,6 @@ export function GetAge(user: User) {
 //     var by = new Date(user.dob).getFullYear();
 
 //     // b = new Date(bm + '/' + bm + '/' + by);
-// debugger;
 
 //     var now = new Date();
 //     var age = now.getFullYear() - new Date(user.dob).getFullYear();

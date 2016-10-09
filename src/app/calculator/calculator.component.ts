@@ -18,7 +18,6 @@ import { SettingsService } from '../services/settings.service';
 import { SettingsPhysicalService } from '../settings/physical/settings.physical.service';
 import { CalculationService } from '../services/calculation.service';
 import { ValidationService } from '../services/validation.service';
-
 import * as moment from "moment";
 import { SpinnerReturn } from '../interfaces/spinnerReturn';
 
@@ -79,7 +78,7 @@ export class CalculatorComponent implements OnInit {
     selectedTableMacro: Macro;
     selectedMacro: Macro;
     calorieDifferenceType: string;
-    firstCalc: boolean = false;; 
+    firstCalc: boolean = false;;
     startValue: number;
     proteinRange: number[];
 

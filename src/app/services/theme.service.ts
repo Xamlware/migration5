@@ -40,8 +40,6 @@ export class ThemeService {
     this.selectedTheme = theme;
     var ft = this.findTheme(this.selectedTheme);
     var d = document.getElementById('themeStyleSheet')
-  debugger; 
-
     d.setAttribute('href', this.getThemePath(theme));
     this.setNewTheme(ft);
   }

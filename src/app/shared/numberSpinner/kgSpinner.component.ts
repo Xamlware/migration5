@@ -5,8 +5,8 @@ import { Round } from '../../helpers/math.helper';
 import { ThemeService } from '../../services/theme.service';
 @Component({
   selector: 'kg-spinner',
-  templateUrl: './kgSpinner.component.html',
-  styleUrls: ['./kgSpinner.component.css']
+  templateUrl: 'kgSpinner.component.html',
+  styleUrls: ['kgSpinner.component.css']
 })
 
 export class KgSpinnerComponent implements OnInit {

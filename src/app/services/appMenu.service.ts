@@ -6,10 +6,9 @@ import { Subscription } from 'rxjs';
 
 @Injectable()
 export class AppMenuService {
-  private isLogout$: Subject<boolean>;
-
+ 
   constructor() {
-    this.isLogout$ = <Subject<boolean>>new Subject();
+
   }
 
   getNoLoginMenu() {
@@ -62,17 +61,5 @@ export class AppMenuService {
       }];
   }
 
-  
-  onLogout() {
-    this.setIsLogout(true);
-  }
-
-  setIsLogout(isLogout: boolean): void {
-    this.isLogout$.next(isLogout);
-  }
-
-  getIsLogout(): Observable<boolean> {
-    return this.isLogout$.asObservable();
-  }
 
 }

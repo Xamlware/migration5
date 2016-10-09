@@ -34,3 +34,13 @@
 .tdCenter {
   text-align: center;
 }
+
+.diaryButton {
+    height: 25px;
+    widows: 25px;
+    margin-left: 4px;
+}
+
+.foodDiv {
+    margin-bottom: 5px;
+}

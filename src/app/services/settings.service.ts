@@ -258,7 +258,6 @@ export class SettingsService {
   }
 
   setDailyFood(df: DailyFood) {
-    debugger;
     this.userSettings.dailyFoodData = df;
   }
 

@@ -9,6 +9,7 @@ import { SettingsService } from '../services/settings.service';
 import { Menubar, MenuItem, SelectItem, Dropdown, Button, Dialog, Panel, Accordion, AccordionTab, UIChart, Calendar   } from 'primeng/primeng'
 
 @Component({
+  
   templateUrl: './themes.component.html',
 })
 

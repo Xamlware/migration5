@@ -15,7 +15,7 @@ import { FoodSearchType } from '../../../enums/foodSearchType.enum';
 import { MealType } from '../../../enums/mealType.enum';
 
 @Component({
-  moduleId: module.id,
+  
   templateUrl: 'food.add.component.html',
   styleUrls: ['food.add.component.css']
 })

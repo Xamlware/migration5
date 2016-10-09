@@ -9,7 +9,7 @@ import { LocalUser } from '../../../interfaces/localUser';
 
 
 @Component({
-
+  
   templateUrl: 'forgot.component.html',
   styleUrls: ['forgot.component.css']
 })

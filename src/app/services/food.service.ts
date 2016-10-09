@@ -16,6 +16,7 @@ import { FindHelper } from '../helpers/find.helper';
 
 import { MealType } from '../enums/mealType.enum';
 import { Constants } from '../constants/http.constants';
+
 import * as moment from "moment";
 
 @Injectable()
@@ -32,6 +33,15 @@ export class FoodService {
     private r: Router,
     private http: Http,
     private ss: SettingsService) {
+        console.log("food service constructor");
+
+  }
+
+
+  completeLogout() {
+    console.log("complete food service logout")
+    this.dailyFood = new DailyFood();
+    this.dailyFoodArray = new DailyFoodArray();
   }
 
   calculateRemaining() {
@@ -46,7 +56,7 @@ export class FoodService {
 
   setDailyFood(dfi: DailyFoodItem) {
     let ok = false;
-debugger;
+
     if (!FindHelper.FindDailyFoodArrayByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodArray)) {
       switch (dfi.meal) {
         case MealType.breakfast:
@@ -82,7 +92,6 @@ debugger;
   }
 
   updateDailyFood() {
-    debugger;
     let df = new DailyFood().createDailyFood(this.dailyFoodArray, this.ss.getUserSettings());
     var headers = new Headers();
     headers.append('Content-Type', this.constants.jsonContentType);

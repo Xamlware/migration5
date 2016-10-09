@@ -11,7 +11,7 @@ import {DataResponseObject} from '../../interfaces/dataResponseObject';
 
 
 @Component({
-
+  
   templateUrl: 'verifyEmail.component.html',
   styleUrls: ['verifyEmail.component.css']
 })
