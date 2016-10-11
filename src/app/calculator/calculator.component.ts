@@ -19,7 +19,7 @@ import { SettingsPhysicalService } from '../settings/physical/settings.physical.
 import { CalculationService } from '../services/calculation.service';
 import { ValidationService } from '../services/validation.service';
 import * as moment from "moment";
-import { SpinnerReturn } from '../interfaces/spinnerReturn';
+import { NumberSpinnerReturn } from '../interfaces/numberSpinnerReturn';
 
 @Component({
     
@@ -470,7 +470,7 @@ export class CalculatorComponent implements OnInit {
     }
 
 
-    onChanged(sr: SpinnerReturn) {
+    onChanged(sr: NumberSpinnerReturn) {
         if (sr.spinName === "carbGoal") {
             (<FormControl>this.macroForm.controls['carbGoal']).setValue(sr.spinValue);
         } else if (sr.spinName === "proteinGoal") {

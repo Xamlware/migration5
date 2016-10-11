@@ -10,6 +10,7 @@ import { FoodService } from '../../services/food.service';
 import { LogoutService } from '../../services/logout.service';
 import { NutritionixService } from '../../services/nutritionix.service';
 import { MealType } from '../../enums/mealType.enum';
+import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
 
 @Component({
         
@@ -26,6 +27,7 @@ export class FoodDiaryComponent implements OnInit {
         dinnerData: DailyFoodItem[] = [];
         snackData: DailyFoodItem[] = [];
         userSettings: User;
+        diaryDate: string;
 
         constructor(
                 private ss: SettingsService,
@@ -37,8 +39,6 @@ export class FoodDiaryComponent implements OnInit {
         ngOnInit() {
                 this.userSettings = this.ss.getUserSettings();
                 this.setTableData();
-
-                //this.breakfastData.push(new Food("1", MealType.breakfast, 1, "Taco", "Egg & Sausage Burrito supreme", 350, 38, 15, 30));
 
                 this.foodCols = [
                         { field: 'name', header: 'Item' },
@@ -54,12 +54,10 @@ export class FoodDiaryComponent implements OnInit {
                         }
                 }
 
-                console.log("get logout subscribe food diary component")
                 this.los.getLogout()
                         .subscribe(
                         logout => {
                                 if (logout) {
-                                        console.log("complete logout food diary component")
                                         this.breakfastData = [];
                                         this.lunchData = [];
                                         this.dinnerData = [];
@@ -88,5 +86,17 @@ export class FoodDiaryComponent implements OnInit {
         addFood() {
                 this.r.navigate(["/foodAdd"]);
         }
+
+
+        onChanged(sr: DateSpinnerReturn) {
+           this.diaryDate = sr.spinValue;
+        }
+
+        onLoadFood(sr: DateSpinnerReturn) {
+                debugger;
+           this.diaryDate = sr.spinValue;
+
+
+    }
 
 }

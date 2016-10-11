@@ -1,23 +1,24 @@
-<!--<div class="ui-grid ui-grid-responsive ui-grid-pad">
+<div class="ui-grid ui-grid-responsive ui-grid-pad">
     <div class="ui-g">
         <div class="ui-g-12">
             <div class="ui-g">
-                <div class="ui-g-6 ui-md-4 ui-lg-8 spinnerDiv"  [ngStyle]="appPageHeaderDivStyle">
-
-                    <div class="ui-g-6 ui-md-4 ui-lg-3 leftPad5">
-                        <button pButton class="homeButton" (click)="onDecrement()" label="-"></button>
-                    </div>
-                    <div class="ui-g-6 ui-md-4 ui-lg-5">
-                        <label class="ui-widget labelCheckbox">  {{curValue}} {{unit}}  </label>
-                    </div>
-                    <div class="ui-g-6 ui-md-4 ui-lg-3">
-                        <button pButton class="homeButton" (click)="onIncrement()" label="+"></button>
+                <div class="ui-g-6 ui-md-4 ui-lg-8 spinnerDiv" [ngStyle]="appPageHeaderDivStyle">
+                    <div class="ui-g-6 ui-md-4 ui-lg-12 leftPad5">
+                        <form [formGroup]="dateSpinnerForm" class="ui form" novalidate>
+                            <button pButton (click)="onDecrement()" icon="fa-backward"></button>
+                            <div style="padding-top: 2px;width: 208px; display: inline-block;">
+                                <p-calendar formControlName="currentDate" showAnim="slideDown" (onSelect)="onDateSelected($event)" [showIcon]="true" [readonlyInput]="true" dateFormat="MM d, yy"></p-calendar>
+                            </div>
+                            <!--<label class="ui-widget" style="width: 300px;text-align: center">Food Diary for: {{currentDate}}</label>-->
+                            <button pButton (click)="onIncrement()" icon="fa-forward"></button>
+                            <button pButton (click)="onLoadFoodRequest()" icon="fa-cutlery" iconPos="left"></button>
+                        </form>
                     </div>
                 </div>
-                
+
                 <div class="ui-g-6 ui-md-4 ui-lg-3">
                 </div>
             </div>
         </div>
     </div>
-</div>-->
+</div>

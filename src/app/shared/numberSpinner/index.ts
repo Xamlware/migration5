@@ -1,1 +1,1 @@
-export * from './kgSpinner.component';
+export * from './kgNumberSpinner.component';

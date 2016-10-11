@@ -5,7 +5,7 @@ import { RouterModule, RouterOutletMap } from '@angular/router';
 // import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 // import { ErrorMessagesComponent } from './errorMessages/error.messages.component';
-import { appRoutingProviders, appRoutes } from './app.routing';
+import { appRoutingProviders, routeConfig } from './app.routing';
 
 import { HomeModule } from './home/home.module';
 import { FoodModule } from './food/food.module';
@@ -20,7 +20,7 @@ import { SharedModule }   from './shared/shared.module';
 
 
 @NgModule({
-    imports: [ BrowserModule, RouterModule.forRoot(appRoutes), SharedModule.forRoot(),
+    imports: [ BrowserModule, RouterModule.forRoot(routeConfig), SharedModule.forRoot(),
     HomeModule, DocumentModule, AboutModule, SettingsModule, ThemesModule, CalculatorModule, FoodModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ],

@@ -22,14 +22,9 @@
         "../src/app/app.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "assets/js/jquery-ui.min.js", 
         "../node_modules/reflect-metadata/Reflect.js",
-        "../node_modules/moment/min/moment.min.js",
         "assets/js/site.js",
         "assets/js/jquery.inputmask.bundle.js",
-        "../node_modules/fullcalendar/dist/fullcalendar.min.js",
         "../node_modules/chart.js/dist/Chart.js"
 
       ],

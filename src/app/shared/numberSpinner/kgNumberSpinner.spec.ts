@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { async, inject } from '@angular/core/testing';
-import { KgSpinnerComponent } from './kgSpinner.component';
+import { KgNumberSpinnerComponent } from './kgNumberSpinner.component';
 
 // describe('Component: NutrientSpinner', () => {
 //   it('should create an instance', () => {
-//     let component = new KgSpinnerComponent();
+//     let component = new KgNumberSpinnerComponent();
 //     expect(component).toBeTruthy();
 //   });
 // });

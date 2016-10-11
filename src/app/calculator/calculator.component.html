@@ -204,7 +204,7 @@
                   <div class="ui-grid-row form-group formDiv">
                     <div class="ui-grid-col-4 labelDiv"><label class="ui-widget labelCheckbox">Carbohydrates:</label></div>
                     <div class="ui-grid-col-8 spinnerMargin">
-                      <kg-spinner spinName="carbGoal" [range]=[10,50] [increment]=5 [startValue]=20 [precision]=0 (onChanged)="onChanged($event)"></kg-spinner>
+                      <kg-numberSpinner spinName="carbGoal" [range]=[10,50] [increment]=5 [startValue]=20 [precision]=0 (onChanged)="onChanged($event)"></kg-numberSpinner>
                     </div>
                   </div>
 
@@ -223,7 +223,7 @@
                     </div>
 
                     <div class="ui-grid-col-8 spinnerMargin">
-                      <kg-spinner spinName="proteinGoal" [range]=[.6,1.2] [increment]=.1 [startValue]=.6 [precision]=1 (onChanged)="onChanged($event)"></kg-spinner>
+                      <kg-numberSpinner spinName="proteinGoal" [range]=[.6,1.2] [increment]=.1 [startValue]=.6 [precision]=1 (onChanged)="onChanged($event)"></kg-numberSpinner>
                     </div>
                     <!--<div class="ui-grid-col-8">
                       <input id="in" type="text" size="15" pInputText class="form-control" formControlName="proteinGoal" />
@@ -255,7 +255,7 @@
                     </div>
 
                     <div class="ui-grid-col-8 spinnerMargin">
-                      <kg-spinner spinName="calorieDifference" [range]=[10,30] [increment]=1 [startValue]="calorieDifference" [precision]=0 (onChanged)="onChanged($event)"></kg-spinner>
+                      <kg-numberSpinner spinName="calorieDifference" [range]=[10,30] [increment]=1 [startValue]="calorieDifference" [precision]=0 (onChanged)="onChanged($event)"></kg-numberSpinner>
                     </div>
                     <!--<div class="ui-grid-col-8">
                       <input id="in" type="text" size="15" pInputText class="form-control" formControlName="calorieDifference" />

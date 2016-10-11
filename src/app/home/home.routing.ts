@@ -10,7 +10,8 @@ import { ForgotComponent } from './login/forgot/forgot.component';
 import { ForgotVerifyComponent } from './login/forgotVerify/forgotVerify.component';
 import { LogoutComponent } from './logout/logout.component';
 
-export const routing = RouterModule.forChild([
+export const routeConfig = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -22,5 +23,5 @@ export const routing = RouterModule.forChild([
   { path: 'verifyPassword/:id', component: ForgotVerifyComponent },
   { path: 'verifyUserName/:id', component: ForgotVerifyComponent },
   { path: 'logout', component: LogoutComponent }
-]);
+];
 

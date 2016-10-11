@@ -1,9 +1,8 @@
-import { SpinnerReturn } from './SpinnerReturn';
 
 export interface IDateSpinnerReturn {
-  spinReturn: SpinnerReturn[];
+  spinValue: string;
 }
 
 export class DateSpinnerReturn implements IDateSpinnerReturn {
-  spinReturn: SpinnerReturn[];
+  spinValue: string;
 }

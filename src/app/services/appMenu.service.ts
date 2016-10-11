@@ -1,3 +1,4 @@
+import {RouterModule, RouterLinkActive, RouterLink} from '@angular/router';
 import {Injectable} from '@angular/core';
 import { Observable  } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -15,7 +16,9 @@ export class AppMenuService {
     return [
       {
         label: 'Home',
-        routerLink: ['']
+        routerLink: [''] //,
+        // routerLinkActive="menuActive",
+        // routerLinkOptions="{exact: true}"
       },  {
         label: 'Documents',
         routerLink: ['/documents']

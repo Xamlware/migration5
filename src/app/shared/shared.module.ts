@@ -20,6 +20,8 @@ import { AuthGuardService } from '../services/authGuard.service';
 import { FoodService } from '../services/food.service';
 import { ErrorMessagesComponent } from '../errorMessages/error.messages.component';
 import { FoodDashboardComponent } from '../shared/foodDashboard/food.dashboard.component';
+import { KgNumberSpinnerComponent } from '../shared/numberSpinner/kgNumberSpinner.component';
+import { KgDateSpinnerComponent } from '../shared/dateSpinner/kgDateSpinner.component';
 
 import {InputTextModule, GalleriaModule, MenubarModule, CheckboxModule, DialogModule, MessagesModule, GrowlModule,
   PanelModule, CalendarModule, RadioButtonModule, InputSwitchModule, SelectButtonModule, DataTableModule, DataListModule,
@@ -30,14 +32,14 @@ import {InputTextModule, GalleriaModule, MenubarModule, CheckboxModule, DialogMo
   imports: [CommonModule, RouterModule, ReactiveFormsModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, 
             CalendarModule, SelectButtonModule, CheckboxModule, ProgressBarModule, DataTableModule, DataListModule],
-  declarations: [ ErrorMessagesComponent, FoodDashboardComponent ],
+  declarations: [ ErrorMessagesComponent, FoodDashboardComponent, KgNumberSpinnerComponent, KgDateSpinnerComponent ],
   exports: [ CommonModule, ReactiveFormsModule, HttpModule, RouterModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, CalendarModule,
-            SelectButtonModule, CheckboxModule, DataTableModule, DataListModule, ProgressBarModule, ErrorMessagesComponent, FoodDashboardComponent ]
+            SelectButtonModule, CheckboxModule, DataTableModule, DataListModule, ProgressBarModule, ErrorMessagesComponent, FoodDashboardComponent,
+            KgNumberSpinnerComponent, KgDateSpinnerComponent ]
 })
 
 export class SharedModule {
-  //
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,

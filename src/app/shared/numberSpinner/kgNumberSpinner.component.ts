@@ -1,15 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { SpinnerReturn } from '../../interfaces/spinnerReturn';
+import { NumberSpinnerReturn } from '../../interfaces/numberSpinnerReturn';
 import { Theme } from '../../interfaces/theme';
 import { Round } from '../../helpers/math.helper';
 import { ThemeService } from '../../services/theme.service';
+
 @Component({
-  selector: 'kg-spinner',
-  templateUrl: 'kgSpinner.component.html',
-  styleUrls: ['kgSpinner.component.css']
+  selector: 'kg-numberSpinner',
+  templateUrl: 'kgNumberSpinner.component.html',
+  styleUrls: ['kgNumberSpinner.component.css']
 })
 
-export class KgSpinnerComponent implements OnInit {
+export class KgNumberSpinnerComponent implements OnInit {
 
 
   @Input('startValue') curValue: number;
@@ -19,19 +20,19 @@ export class KgSpinnerComponent implements OnInit {
   @Input() precision: number;
   @Input() theme: string;
 
-  @Output() onChanged = new EventEmitter<SpinnerReturn>();
+  @Output() onChanged = new EventEmitter<NumberSpinnerReturn>();
 
   lowerLimit: number;
   upperLimit: number;
   name: string;
   curTheme: Theme;
   errorMessage: string;
-  sr: SpinnerReturn;
+  sr: NumberSpinnerReturn;
   appPageHeaderDivStyle: {};
   unit: string = "(g)";
 
   constructor(private ts: ThemeService) {
-    this.sr = new SpinnerReturn();
+    this.sr = new NumberSpinnerReturn();
   }
 
   ngOnInit() {

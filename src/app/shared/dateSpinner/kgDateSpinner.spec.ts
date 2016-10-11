@@ -7,7 +7,7 @@ import { KgDateSpinnerComponent } from './kgDateSpinner.component';
 
 // describe('Component: NutrientSpinner', () => {
 //   it('should create an instance', () => {
-//     let component = new KgSpinnerComponent();
+//     let component = new KgNumberSpinnerComponent();
 //     expect(component).toBeTruthy();
 //   });
 // });
