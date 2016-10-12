@@ -45,7 +45,6 @@ export class KgDateSpinnerComponent implements OnInit {
   }
 
   onLoadFoodRequest() {
-    debugger;
     this.sr.spinValue = this.currentDate;
     this.onLoadFood.emit(this.sr)
   }

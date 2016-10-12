@@ -177,6 +177,7 @@ export class LoginService  {
                 this.dro = dro
             },
             error => {
+                debugger;
                 this.isLoggingIn = false;
                 var errorObject = JSON.parse(error._body);
                 this.errorMessage = errorObject.error_description;

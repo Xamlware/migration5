@@ -6,7 +6,7 @@
                     <div class="ui-g-6 ui-md-4 ui-lg-12 leftPad5">
                         <form [formGroup]="dateSpinnerForm" class="ui form" novalidate>
                             <button pButton (click)="onDecrement()" icon="fa-backward"></button>
-                            <div style="padding-top: 2px;width: 208px; display: inline-block;">
+                            <div style="padding-top: 10px;width: 208px; display: inline-block;">
                                 <p-calendar formControlName="currentDate" showAnim="slideDown" (onSelect)="onDateSelected($event)" [showIcon]="true" [readonlyInput]="true" dateFormat="MM d, yy"></p-calendar>
                             </div>
                             <!--<label class="ui-widget" style="width: 300px;text-align: center">Food Diary for: {{currentDate}}</label>-->
