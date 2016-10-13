@@ -1,14 +1,18 @@
-import {User} from '../interfaces/user';
-import {Physical} from '../interfaces/physical';
-import {Calculation} from '../interfaces/calculation';
-import {Blood} from '../interfaces/blood';
-import {Lipid} from '../interfaces/lipid';
-import {Measurement} from '../interfaces/measurement';
-import {MeasurementFactory} from '../factories/measurement.factory';
-import {PhysicalFactory} from '../factories/physical.factory';
-import {BloodFactory} from '../factories/blood.factory';
-import {LipidFactory} from '../factories/lipid.factory';
-import {CalculationFactory} from '../factories/calculation.factory';
+import { User } from '../interfaces/user';
+import { Physical } from '../interfaces/physical';
+import { Calculation } from '../interfaces/calculation';
+import { Blood } from '../interfaces/blood';
+import { Lipid } from '../interfaces/lipid';
+import { Measurement } from '../interfaces/measurement';
+import { Nutrient } from '../interfaces/nutrient';
+import { DailyFood } from '../interfaces/dailyFood';
+
+import { MeasurementFactory } from '../factories/measurement.factory';
+import { PhysicalFactory } from '../factories/physical.factory';
+import { BloodFactory } from '../factories/blood.factory';
+import { LipidFactory } from '../factories/lipid.factory';
+import { NutrientFactory } from '../factories/nutrient.factory';
+import { CalculationFactory } from '../factories/calculation.factory';
 
 export class UserFactory {
     createNewUser() : User{
@@ -30,6 +34,8 @@ export class UserFactory {
         u.bloodData = Array<Blood>();
         u.lipidData = Array<Lipid>();
         u.calculationData = Array<Calculation>();
+        u.nutrientData = Array<Nutrient>();
+        u.foodDates = Array<Date>();
 
         return u;
     }
@@ -53,9 +59,9 @@ export class UserFactory {
         ur.bloodData = new BloodFactory().createBloodArray(u.bloodData);
         ur.lipidData = new LipidFactory().createLipidArray(u.lipidData);
         ur.calculationData = CalculationFactory.createCalculationArray(u.calculationData, u, false);
+        ur.nutrientData = new NutrientFactory().createNutrientArray(u.nutrientData);
+        ur.foodDates = Array<Date>();
 
         return ur;
     }
-
-
 }

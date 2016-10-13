@@ -68,7 +68,7 @@ export class FoodDiaryComponent implements OnInit {
         }
 
         setTableData() {
-debugger;
+
                 let df = this.fs.getDailyFoodArray();
                 if (df != null && df != undefined) {
                         this.breakfastData = df.breakfast;
@@ -93,7 +93,7 @@ debugger;
         }
 
         onLoadFood(sr: DateSpinnerReturn) {
-debugger;
+
            this.diaryDate = sr.spinValue;
 
 
