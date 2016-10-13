@@ -119,13 +119,13 @@ export class LinkHelper {
       //this.guid = "8A8F29AE-62E0-4636-CE25-0600F8BFCEF7"
 
       var e = link.replace('/', '').split('~~~');
-      var curDate = moment(new Date()).format("MM/DD/YYYY");
+      var curDate = moment(new Date()).format("M/D/YYYY");
       var curTime = moment(new Date()).format("HH:mm:ss");
       var a = ai.split('-');
       var g = this.guid.split('-');
       var time = curTime.split(":");
       var d = curDate.split('/');
-
+debugger;
       console.log(link);
       console.log(curDate);
       console.log(curTime);

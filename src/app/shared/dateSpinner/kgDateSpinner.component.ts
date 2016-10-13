@@ -4,6 +4,7 @@ import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
 import { Theme } from '../../interfaces/theme';
 import { User } from '../../interfaces/user';
 import { Round } from '../../helpers/math.helper';
+import { FindHelper } from '../../helpers/find.helper';
 import { ThemeService } from '../../services/theme.service';
 import { SettingsService } from '../../services/settings.service';
 import * as moment from "moment";
@@ -26,8 +27,7 @@ export class KgDateSpinnerComponent implements OnInit {
   cd = moment();
   currentDate: string = this.cd.format("MMMM DD, YYYY");;
   dateSpinnerForm: FormGroup;
-
-  //@Output() onChanged = new EventEmitter<numberSpinnerReturn>();
+  isLoadFoodEnabled: boolean;
 
   constructor(
     private ts: ThemeService,
@@ -42,6 +42,8 @@ export class KgDateSpinnerComponent implements OnInit {
     this.dateSpinnerForm = this.fb.group({
       currentDate: [this.currentDate, []]
     });
+
+    this.isLoadFoodEnabled = this.checkFoodDate()
   }
 
   onLoadFoodRequest() {
@@ -64,7 +66,15 @@ export class KgDateSpinnerComponent implements OnInit {
     this.returnEvent();
   }
 
+  checkFoodDate(): boolean {
+    var fd = this.ss.getUserSettings().foodDates;
+    var ok = FindHelper.findFoodDate(this.cd.format("M/D/YYYY"), fd);
+    return ok;
+  }
+
   returnEvent() {
+    this.isLoadFoodEnabled = this.checkFoodDate();
+
     this.currentDate = this.cd.format("MMMM DD, YYYY");
     this.dateSpinnerForm.controls['currentDate'].setValue(this.currentDate, { onlySelf: true });
     this.sr.spinValue = this.currentDate;

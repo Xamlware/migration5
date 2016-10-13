@@ -5,12 +5,14 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DailyFoodItem } from '../../interfaces/dailyFoodItem';
 import { User } from '../../interfaces/user';
+import { FindHelper } from '../../helpers/find.helper';
 import { SettingsService } from '../../services/settings.service';
 import { FoodService } from '../../services/food.service';
 import { LogoutService } from '../../services/logout.service';
 import { NutritionixService } from '../../services/nutritionix.service';
 import { MealType } from '../../enums/mealType.enum';
 import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
+import * as moment from "moment";
 
 @Component({
         
@@ -28,6 +30,7 @@ export class FoodDiaryComponent implements OnInit {
         snackData: DailyFoodItem[] = [];
         userSettings: User;
         diaryDate: string;
+        isFoodDate: boolean = false;
 
         constructor(
                 private ss: SettingsService,
@@ -90,13 +93,14 @@ export class FoodDiaryComponent implements OnInit {
 
         onChanged(sr: DateSpinnerReturn) {
            this.diaryDate = sr.spinValue;
+           var fd = this.ss.getUserSettings().foodDates;
+           this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
         }
 
         onLoadFood(sr: DateSpinnerReturn) {
-
            this.diaryDate = sr.spinValue;
-
-
+           var d = moment(this.diaryDate).format("M-D-YYYY")
+           this.fs.getDailyFoodByDate(d);
     }
 
 }

@@ -63,6 +63,9 @@ export class SettingsService {
 
   }
 
+  getUserId() : number {
+    return this.userSettings.pK_User;    
+  }
 
   getAdminToken() {
     var headers = new Headers();
@@ -206,6 +209,7 @@ export class SettingsService {
 
     return this.selectedPhysical;
   }
+
 
   setSelectedCalculation(c: Calculation): string {
     var errorMsg: string = "Ok";

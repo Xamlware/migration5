@@ -9,9 +9,9 @@
                             <div style="padding-top: 10px;width: 208px; display: inline-block;">
                                 <p-calendar formControlName="currentDate" showAnim="slideDown" (onSelect)="onDateSelected($event)" [showIcon]="true" [readonlyInput]="true" dateFormat="MM d, yy"></p-calendar>
                             </div>
-                            <!--<label class="ui-widget" style="width: 300px;text-align: center">Food Diary for: {{currentDate}}</label>-->
+
                             <button pButton (click)="onIncrement()" icon="fa-forward"></button>
-                            <button pButton (click)="onLoadFoodRequest()" icon="fa-cutlery" iconPos="left"></button>
+                            <button pButton (click)="onLoadFoodRequest()" icon="fa-cutlery" iconPos="left" [disabled]="!isLoadFoodEnabled"></button>
                         </form>
                     </div>
                 </div>

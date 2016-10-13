@@ -8,6 +8,7 @@ import { Nutrient } from '../interfaces/nutrient';
 import { DailyFood, DailyFoodArray } from '../interfaces/dailyFood';
 import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 import { MealType } from '../enums/mealType.enum';
+import * as moment from "moment";
 
 export class FindHelper {
     public static FindMeasurement(u: User): Measurement {
@@ -203,7 +204,6 @@ export class FindHelper {
                 break;
         }
 
-
         return this.findFoodInMeal(meal, array, key);
     }
 
@@ -213,6 +213,16 @@ export class FindHelper {
         });
 
         return (item.length > 0);
+    }
+
+     public static findFoodDate(date: string, fda: Array<Date>): boolean {
+        var m = moment(date).format("M/D/YYYY");
+        debugger;
+        var fd = fda.filter(f => {
+            return moment(f).format("M/D/YYYY") === m;
+        });
+
+        return fd.length > 0;
     }
 
 }
