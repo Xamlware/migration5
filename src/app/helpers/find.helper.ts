@@ -5,7 +5,7 @@ import { CalculationFactory } from '../factories/calculation.factory';
 import { PhysicalFactory } from '../factories/physical.factory';
 import { User } from '../interfaces/user';
 import { Nutrient } from '../interfaces/nutrient';
-import { DailyFood, DailyFoodArray } from '../interfaces/dailyFood';
+import { DailyFood, DailyFoodMeals } from '../interfaces/dailyFood';
 import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 import { MealType } from '../enums/mealType.enum';
 import * as moment from "moment";
@@ -185,10 +185,26 @@ export class FindHelper {
         return rec;
     }
 
+    public static FindDailyFoodByDate(date: string, dfa: DailyFood[]): DailyFood {
+        var rec: DailyFood = null;
 
-    public static FindDailyFoodArrayByKey(key: number, meal: MealType, dfa: DailyFoodArray): boolean {
-        var array: DailyFoodItem[];
+        if (dfa != null) {
+            var df = dfa.filter(di => {
+                return moment(di.foodDate).format("M/D/YYYY") === moment(date).format("M/D/YYYY");
+            });
+
+            if (df.length > 0) {
+                rec = df[0];
+            }
+        }
         
+        return rec;
+    }
+
+
+    public static FindDailyFoodMealsByKey(key: number, meal: MealType, dfa: DailyFoodMeals): boolean {
+        var array: DailyFoodItem[];
+
         switch (meal) {
             case MealType.breakfast:
                 array = dfa.breakfast;
@@ -215,9 +231,9 @@ export class FindHelper {
         return (item.length > 0);
     }
 
-     public static findFoodDate(date: string, fda: Array<Date>): boolean {
+    public static findFoodDate(date: string, fda: Array<Date>): boolean {
         var m = moment(date).format("M/D/YYYY");
-        debugger;
+
         var fd = fda.filter(f => {
             return moment(f).format("M/D/YYYY") === m;
         });

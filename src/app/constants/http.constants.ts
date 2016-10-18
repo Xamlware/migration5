@@ -3,8 +3,8 @@ export class Constants {
   adminPassword: string = "*KetogeniqApi*admin**1*";
 
 
-  //baseUrl: string = "http://www.ketogeniqapi.com/";
-  baseUrl: string = "http://localhost:39897/";
+  baseUrl: string = "http://www.ketogeniqapi.com/";
+  //baseUrl: string = "http://localhost:39897/";
 
   userUrl: string = this.baseUrl + "api/users/";
   createUserUrl: string = this.baseUrl + "api/users/create/";

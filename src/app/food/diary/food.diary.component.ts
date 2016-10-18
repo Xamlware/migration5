@@ -15,7 +15,7 @@ import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
 import * as moment from "moment";
 
 @Component({
-        
+
         selector: 'k-fooddiary ',
         templateUrl: 'food.diary.component.html',
         styleUrls: ['food.diary.component.css']
@@ -23,11 +23,13 @@ import * as moment from "moment";
 
 export class FoodDiaryComponent implements OnInit {
         foodCols: any[];
-        breakfastData: DailyFoodItem[] = [];
         selectedBreakfast: DailyFoodItem;
+
+        breakfastData: DailyFoodItem[] = [];
         lunchData: DailyFoodItem[] = [];
         dinnerData: DailyFoodItem[] = [];
         snackData: DailyFoodItem[] = [];
+
         userSettings: User;
         diaryDate: string;
         isFoodDate: boolean = false;
@@ -41,6 +43,8 @@ export class FoodDiaryComponent implements OnInit {
 
         ngOnInit() {
                 this.userSettings = this.ss.getUserSettings();
+                this.fs.setDailyFood(this.userSettings.dailyFoodData);
+                this.fs.dailyFoodArray.push(this.fs.dailyFood)
                 this.setTableData();
 
                 this.foodCols = [
@@ -68,11 +72,20 @@ export class FoodDiaryComponent implements OnInit {
                                         this.fs.completeLogout();
                                 }
                         });
+
+                this.fs.getDailyFoodObservableByDate()
+                        .subscribe(
+                        dailyFood => {
+                                if (dailyFood) {
+                                        console.log("setting daily food from observable");
+                                        this.setTableData();
+                                }
+                        });
         }
 
         setTableData() {
 
-                let df = this.fs.getDailyFoodArray();
+                let df = this.fs.getDailyFoodMeals();
                 if (df != null && df != undefined) {
                         this.breakfastData = df.breakfast;
                         this.lunchData = df.lunch;
@@ -80,8 +93,8 @@ export class FoodDiaryComponent implements OnInit {
                         this.snackData = df.snack;
                 }
 
-                for (let df of this.userSettings.dailyFoodData.items) {
-                        this.fs.setDailyFood(df);
+                for (let df of this.fs.dailyFood.items) {
+                        this.fs.setDailyFoodItem(df);
                 }
 
         }
@@ -92,15 +105,28 @@ export class FoodDiaryComponent implements OnInit {
 
 
         onChanged(sr: DateSpinnerReturn) {
-           this.diaryDate = sr.spinValue;
-           var fd = this.ss.getUserSettings().foodDates;
-           this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
+                this.diaryDate = sr.spinValue;
+                debugger;
+                
+                this.fs.clearDailyFoodMeals();
+                var fd = this.fs.foodDates;
+                this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
         }
 
+
         onLoadFood(sr: DateSpinnerReturn) {
-           this.diaryDate = sr.spinValue;
-           var d = moment(this.diaryDate).format("M-D-YYYY")
-           this.fs.getDailyFoodByDate(d);
-    }
+                this.diaryDate = sr.spinValue;
+                var d = moment(this.diaryDate).format("M-D-YYYY");
+                debugger;
+                var dfaItem = FindHelper.FindDailyFoodByDate(d, this.fs.dailyFoodArray);
+                if (dfaItem != null) {
+                        this.fs.dailyFood = dfaItem;
+                        this.fs.setDailyFoodItemObservableByDate(dfaItem);
+                        this.setTableData();
+                }
+                else {
+                        this.fs.getDailyFoodByDate(d);
+                }
+        }
 
 }

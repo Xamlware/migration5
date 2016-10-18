@@ -261,9 +261,9 @@ export class SettingsService {
     return this.selectedLipid;
   }
 
-  setDailyFood(df: DailyFood) {
-    this.userSettings.dailyFoodData = df;
-  }
+  // setDailyFoodItem(df: DailyFood) {
+  //   this.userSettings.dailyFoodData = df;
+  // }
 
   updateNutrientData(user: User) {
     this.userSettings = user;

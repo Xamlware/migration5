@@ -3,12 +3,13 @@ import { Http, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map'; 
+import 'rxjs/add/operator/map';
 
 import { SettingsService } from '../services/settings.service';
 import { BaseMacro } from '../interfaces/macro';
-import { DailyFood, DailyFoodArray } from '../interfaces/dailyFood';
+import { DailyFood, DailyFoodMeals } from '../interfaces/dailyFood';
 import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 import { DataResponseObject } from '../interfaces/dataResponseObject';
 
@@ -24,11 +25,15 @@ import * as moment from "moment";
 export class FoodService {
   baseMacro: BaseMacro;
   remainMacro: BaseMacro;
-  dailyFoodArray: DailyFoodArray = new DailyFoodArray();
+  dailyFoodArray: DailyFood[] = [];
+  dailyFoodMeals: DailyFoodMeals = new DailyFoodMeals();
   dailyFood: DailyFood;
+  foodDates: Date[] = [];
   constants: Constants = new Constants();
   dro: DataResponseObject;
   errorMessage: string;
+  private dailyFood$: Subject<DailyFood>;
+
 
   constructor(
     private r: Router,
@@ -36,13 +41,14 @@ export class FoodService {
     private ss: SettingsService) {
     console.log("food service constructor");
 
+    this.dailyFood$ = <Subject<DailyFood>>new Subject();
   }
 
 
   completeLogout() {
     console.log("complete food service logout")
     this.dailyFood = new DailyFood();
-    this.dailyFoodArray = new DailyFoodArray();
+    this.dailyFoodMeals = new DailyFoodMeals();
   }
 
   calculateRemaining() {
@@ -55,26 +61,44 @@ export class FoodService {
     }
   }
 
-  setDailyFood(dfi: DailyFoodItem) {
+  clearDailyFoodMeals() {
+    this.dailyFoodMeals.breakfast = [];
+    this.dailyFoodMeals.lunch = [];
+    this.dailyFoodMeals.dinner = [];
+    this.dailyFoodMeals.snack = [];
+  }
+
+  setDailyFood(df: DailyFood) {
+    this.dailyFood = df;
+    this.dailyFoodArray.push(df);
+    if (!FindHelper.findFoodDate(moment(df.foodDate).format("M/D/YYYY"), this.foodDates)) {
+      this.foodDates.push(df.foodDate);
+    }
+  }
+
+  setDailyFoodItem(dfi: DailyFoodItem) {
     let ok = false;
 
-    if (!FindHelper.FindDailyFoodArrayByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodArray)) {
+    // var fd = this.ss.getUserSettings().foodDates;
+    // this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
+
+    if (!FindHelper.FindDailyFoodMealsByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodMeals)) {
       switch (dfi.meal) {
         case MealType.breakfast:
           ok = true;
-          this.dailyFoodArray.breakfast.push(dfi);
+          this.dailyFoodMeals.breakfast.push(dfi);
           break;
         case MealType.lunch:
           ok = true;
-          this.dailyFoodArray.lunch.push(dfi);
+          this.dailyFoodMeals.lunch.push(dfi);
           break;
         case MealType.dinner:
           ok = true;
-          this.dailyFoodArray.dinner.push(dfi);
+          this.dailyFoodMeals.dinner.push(dfi);
           break;
         case MealType.snack:
           ok = true;
-          this.dailyFoodArray.snack.push(dfi);
+          this.dailyFoodMeals.snack.push(dfi);
           break;
       }
     }
@@ -88,7 +112,7 @@ export class FoodService {
     var id = String(this.ss.getUserId());
     var parm = "Ketogf~~~" + date + "~~~" + id
     var headers = new Headers();
-debugger;
+
     headers.append("content-type", this.constants.jsonContentType);
     var t = this.ss.adminToken;
     var encrParm = LinkHelper.encryptAdminLink(parm, t)
@@ -99,7 +123,7 @@ debugger;
         var result = <DataResponseObject>response.json();
         return result;
       })
-     .subscribe(
+      .subscribe(
       dro => {
         this.dro = dro
       },
@@ -108,56 +132,68 @@ debugger;
         this.errorMessage = errorObject.error_description;
         console.log(this.errorMessage);
       },
-      () => this.completeGetDailyFood());
+      () => this.completeGetDailyFoodByDate());
   }
 
-  completeGetDailyFood() {
-    debugger;
-    var e = this.dro;
-  }
-
-getDailyFood() {
-  return this.dailyFood;
-}
-
-getDailyFoodArray() {
-  return this.dailyFoodArray;
-}
-
-updateDailyFood() {
-  let df = new DailyFood().createDailyFood(this.dailyFoodArray, this.ss.getUserSettings());
-  var headers = new Headers();
-  headers.append('Content-Type', this.constants.jsonContentType);
-
-  var s = localStorage.getItem("accessToken");
-  headers.append("Authorization", "Bearer " + s);
-  var body = JSON.stringify(df);
-
-  this.http.post(this.constants.userUrl + "UpdateDailyFood", body, { headers: headers })
-    .map((response: Response) => {
-      var result = <DataResponseObject>response.json();
-      return result;
-    })
-    .catch(this.handleError)
-    .subscribe(
-    dro => this.dro = <DataResponseObject>dro,
-    error => this.errorMessage = error,
-    () => this.completeUpdateDailyFood()
-    );
-}
-
-completeUpdateDailyFood() {
-  if (this.dro != null && this.dro.data != null && this.dro.data.length > 0) {
+  completeGetDailyFoodByDate() {
     this.dailyFood = <DailyFood>this.dro.data[0];
-    this.ss.setDailyFood(this.dailyFood);
+    this.dailyFoodArray.push(this.dailyFood);
+    this.setDailyFoodItemObservableByDate(this.dailyFood);
+
   }
-}
+
+  getDailyFood() {
+    return this.dailyFood;
+  }
+
+  getDailyFoodMeals() {
+    return this.dailyFoodMeals;
+  }
+
+  updateDailyFood() {
+    let df = new DailyFood().createDailyFood(this.dailyFoodMeals, this.ss.getUserSettings());
+    var headers = new Headers();
+    headers.append('Content-Type', this.constants.jsonContentType);
+
+    var s = localStorage.getItem("accessToken");
+    headers.append("Authorization", "Bearer " + s);
+    var body = JSON.stringify(df);
+
+    this.http.post(this.constants.userUrl + "UpdateDailyFood", body, { headers: headers })
+      .map((response: Response) => {
+        var result = <DataResponseObject>response.json();
+        return result;
+      })
+      .catch(this.handleError)
+      .subscribe(
+      dro => this.dro = <DataResponseObject>dro,
+      error => this.errorMessage = error,
+      () => this.completeUpdateDailyFood()
+      );
+  }
+
+  completeUpdateDailyFood() {
+    console.log("completed update food");
+    if (this.dro != null && this.dro.data != null && this.dro.data.length > 0) {
+      this.dailyFood = <DailyFood>this.dro.data[0];
+      this.setDailyFoodItemObservableByDate(this.dailyFood);
+    }
+  }
 
   private handleError(error: Response) {
-  console.error(error); // log to console instead
-  return Observable.throw(error.json().error || 'Server Error');
-}
+    console.error(error); // log to console instead
+    return Observable.throw(error.json().error || 'Server Error');
+  }
 
+
+  setDailyFoodItemObservableByDate(dailyFood: DailyFood): void {
+    this.dailyFood$.next(dailyFood);
+  }
+
+  getDailyFoodObservableByDate(): Observable<DailyFood> {
+    console.log("getting dailyFood observable")
+    return this.dailyFood$.asObservable();
+  }
 }
 
 

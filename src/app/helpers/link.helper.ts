@@ -125,7 +125,7 @@ export class LinkHelper {
       var g = this.guid.split('-');
       var time = curTime.split(":");
       var d = curDate.split('/');
-debugger;
+
       console.log(link);
       console.log(curDate);
       console.log(curTime);
