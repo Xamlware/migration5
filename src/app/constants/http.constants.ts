@@ -3,7 +3,7 @@ export class Constants {
   adminPassword: string = "*KetogeniqApi*admin**1*";
 
 
-  baseUrl: string = "http://www.ketogeniqapi.com/";
+  baseUrl: string = "http://api.ketogeniq.com/";
   //baseUrl: string = "http://localhost:39897/";
 
   userUrl: string = this.baseUrl + "api/users/";
@@ -17,4 +17,4 @@ export class Constants {
   passwordString: string = "&password=";
   formEncodedContentType: string = "Content-Type', 'application/x-www-form-urlencoded";
   jsonContentType: string = "application/json";
-}
+} 

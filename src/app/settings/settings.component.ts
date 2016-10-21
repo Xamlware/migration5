@@ -218,6 +218,7 @@ export class SettingsComponent implements OnInit {
     }
 
     onSubmit(): void {
+        debugger;
         if (this.profileForm.touched) {
             this.settingsService.updateProfileInformation(this.profileForm.value);
         }

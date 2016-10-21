@@ -110,7 +110,7 @@ export class LoginService  {
             this.themeService.setTheme(us.theme);
             this.loggedInEmail = us.emailAddress;
             this.isLoggingIn = false;
-
+debugger;
             if (us != undefined && (us.firstName === null || us.firstName === "")) {
                 this.router.navigate(["/settings"]);
             } else {

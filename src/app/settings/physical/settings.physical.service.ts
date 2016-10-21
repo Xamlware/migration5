@@ -1,8 +1,8 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {Http, Response, Headers } from '@angular/http';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -19,7 +19,7 @@ import { DataResponseObject } from '../../interfaces/dataResponseObject';
 import { PhysicalFactory } from '../../factories/physical.factory';
 import { MeasurementFactory } from '../../factories/measurement.factory';
 import { SettingsService } from '../../services/settings.service';
-import {Constants} from '../../constants/http.constants';
+import { Constants } from '../../constants/http.constants';
 import { FindHelper } from '../../helpers/find.helper';
 
 @Injectable()
@@ -33,10 +33,11 @@ export class SettingsPhysicalService {
   constructor(private router: Router,
     private http: Http,
     private ss: SettingsService) {
-       this.isPhysicalSaved$ = <Subject<boolean>>new Subject();
+    this.isPhysicalSaved$ = <Subject<boolean>>new Subject();
   }
 
   updatePhysicalData(value: Physical) {
+debugger;
     var p: Physical = new PhysicalFactory().updateNewPhysical(value, this.ss.getUserSettings());
 
 
@@ -85,23 +86,29 @@ export class SettingsPhysicalService {
 
   updatePhysicalRecord(p: Physical) {
     var us = this.ss.getUserSettings();
-    if (us.physicalData.length > 0) {
-      var rec: Physical = FindHelper.FindPhysicalByKey(p.fK_Measurement, us);
+    var rec: Physical;
 
-      if (rec != null) {
-        rec.pK_Physical = p.pK_Physical;
-        rec.dateString = p.dateString;
-        rec.type = p.type;
-        rec.weight = p.weight;
-        rec.height = p.height;
-        rec.hips = p.hips;
-        rec.waist = p.waist;
-        rec.neck = p.neck;
-        rec.activityLevel = p.activityLevel;
-        rec.activityLevelAsString = ActivityLevelType[p.activityLevel];
-        rec.userEmail = this.ss.getUserSettings().emailAddress;
-      }
+    debugger;
+    if (p.fK_Measurement != 0) {
+      rec = FindHelper.FindPhysicalByKey(p.fK_Measurement, us);
     }
+
+    if (rec == null) {
+      rec = new Physical();
+    }
+
+    rec.pK_Physical = p.pK_Physical;
+    rec.fK_Measurement = p.fK_Measurement;
+    rec.dateString = p.dateString;
+    rec.type = p.type;
+    rec.weight = p.weight;
+    rec.height = p.height;
+    rec.hips = p.hips;
+    rec.waist = p.waist;
+    rec.neck = p.neck;
+    rec.activityLevel = p.activityLevel;
+    rec.activityLevelAsString = ActivityLevelType[p.activityLevel];
+    rec.userEmail = this.ss.getUserSettings().emailAddress;
   }
 
   private handleError(error: Response) {
@@ -110,11 +117,11 @@ export class SettingsPhysicalService {
   }
 
   setIsPhysicalSaved(isPhysicalSaved: boolean) {
-        this.isPhysicalSaved$.next(isPhysicalSaved);
-    }
+    this.isPhysicalSaved$.next(isPhysicalSaved);
+  }
 
-    getIsPhysicalSaved(): Observable<boolean> {
-        return this.isPhysicalSaved$.asObservable();
-    }
+  getIsPhysicalSaved(): Observable<boolean> {
+    return this.isPhysicalSaved$.asObservable();
+  }
 
 }

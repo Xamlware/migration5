@@ -153,13 +153,16 @@ export class SettingsService {
 
 
   updateProfileInformation(user: User) {
-    this.userSettings = user;
+    this.userSettings.firstName  = user.firstName;
+    this.userSettings.lastName  = user.lastName;
+    this.userSettings.dob  = user.dob;
+
     var headers = new Headers();
     headers.append('Content-Type', this.constants.jsonContentType);
 
     var s = localStorage.getItem("accessToken");
     headers.append("Authorization", "Bearer " + s);
-    var body = JSON.stringify(user);
+    var body = JSON.stringify(this.userSettings);
 
     return this.http.post(this.constants.userUrl + "UpdateUser", body, { headers: headers })
       .map((response: Response) => {
@@ -169,13 +172,17 @@ export class SettingsService {
       .catch(this.handleError)
       .subscribe(
       status => this.statusMessage = status,
-      error => this.errorMessage = error,
+      error => {this.errorMessage = error,
+        console.log(error)},
       () => this.completeUpdateUser()
       );
   }
 
   completeUpdateUser() {
     //this.userSettings = this.statusMessage;
+    // this.userSettings.firstName = user.firstName;
+    // this.userSettings.lastName = user.lastName;
+    // this.userSettings.dob = user.dob;
   }
 
   setUserSettings(userSettings: User): string {

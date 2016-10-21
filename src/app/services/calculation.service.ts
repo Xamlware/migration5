@@ -70,7 +70,7 @@ export class CalculationService {
 
     updateCalculationData(calc: Calculation) {
         var c: BareCalculationFormat = CalculationFactory.createBareCalaculationFormat(calc, this.ss.getUserSettings());
-
+debugger;
         var headers = new Headers();
         headers.append('Content-Type', this.constants.jsonContentType);
 

@@ -54,6 +54,8 @@ export class FindHelper {
 
     public static FindPhysicalByKey(key: number, u: User) {
         var pl: Physical = new Physical;
+debugger;
+        
         for (let p of u.physicalData) {
             if (p.fK_Measurement === key) {
                 pl = new PhysicalFactory().createPhysical(p, u);
