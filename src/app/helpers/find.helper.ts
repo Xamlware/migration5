@@ -54,8 +54,6 @@ export class FindHelper {
 
     public static FindPhysicalByKey(key: number, u: User) {
         var pl: Physical = new Physical;
-debugger;
-        
         for (let p of u.physicalData) {
             if (p.fK_Measurement === key) {
                 pl = new PhysicalFactory().createPhysical(p, u);
@@ -233,7 +231,7 @@ debugger;
         return (item.length > 0);
     }
 
-    public static findFoodDate(date: string, fda: Array<Date>): boolean {
+    public static findFoodDate(date: Date, fda: Array<Date>): boolean {
         var m = moment(date).format("M/D/YYYY");
 
         var fd = fda.filter(f => {

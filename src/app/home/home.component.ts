@@ -13,7 +13,7 @@ import { FoodDashboardComponent } from '../shared/foodDashboard/food.dashboard.c
 
 
 @Component({
-    
+
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     errorMessage: string;
     localUser: LocalUser = new LocalUser("", "", "");
     isLoggedIn: boolean;
+    isToken: boolean = false;
 
     constructor(private themeService: ThemeService,
         private settingsService: SettingsService,
@@ -40,12 +41,27 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit() {
+        console.log("in home constructor");
         this.selectedDivBorderStyle = this.themeService.getAppPageHeaderDivStyle();
+
+        this.isToken = this.settingsService.isToken;
+        if (!this.isToken) {
+            this.settingsService.getIsAdminToken()
+                .subscribe(
+                at => {
+                    this.completeGetAdminToken();
+                });
+        }
 
         this.isLoggedIn = this.ls.isLoggedIn;
         if (!this.isLoggedIn) {
             this.clearUserSettings();
         }
+    }
+
+    completeGetAdminToken() {
+        this.settingsService.isToken = true;
+        this.isToken = true;
     }
 
     clearUserSettings() {

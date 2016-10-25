@@ -1,8 +1,8 @@
 
 export interface IDateSpinnerReturn {
-  spinValue: string;
+  spinValue: Date;
 }
 
 export class DateSpinnerReturn implements IDateSpinnerReturn {
-  spinValue: string;
+  spinValue: Date;
 }

@@ -53,7 +53,7 @@ export class SettingsService {
   newUser: NewUser;
   dro: DataResponseObject;
   private isAdminToken$: Subject<boolean>;
-
+  isToken: boolean = false;
 
   constructor(private http: Http,
     private auth: AuthorizationService) {
@@ -90,6 +90,7 @@ export class SettingsService {
       this.adminToken = this.dro.data[0]
       console.log("got admin token")
       this.setIsAdminToken(true);
+      this.isToken = true;
     }
   }
 

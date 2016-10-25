@@ -71,7 +71,7 @@ export class FoodService {
   setDailyFood(df: DailyFood) {
     this.dailyFood = df;
     this.dailyFoodArray.push(df);
-    if (!FindHelper.findFoodDate(moment(df.foodDate).format("M/D/YYYY"), this.foodDates)) {
+    if (!FindHelper.findFoodDate(moment(df.foodDate).toDate(), this.foodDates)) {
       this.foodDates.push(df.foodDate);
     }
   }

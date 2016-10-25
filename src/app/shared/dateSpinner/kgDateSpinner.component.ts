@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
 import { Theme } from '../../interfaces/theme';
@@ -18,14 +18,14 @@ import { Calendar } from 'primeng/primeng'
   styleUrls: ['kgDateSpinner.component.css']
 })
 
-export class KgDateSpinnerComponent implements OnInit {
+export class KgDateSpinnerComponent implements OnInit, AfterContentInit {
   @Output() onChanged = new EventEmitter<DateSpinnerReturn>();
   @Output() onLoadFood = new EventEmitter<DateSpinnerReturn>();
 
   sr: DateSpinnerReturn;
   userSettings: User;
   cd = moment();
-  currentDate: string = this.cd.format("MMMM DD, YYYY");;
+  currentDate: Date; //string = this.cd.format("MMMM DD, YYYY");;
   dateSpinnerForm: FormGroup;
   isLoadFoodEnabled: boolean;
 
@@ -39,12 +39,20 @@ export class KgDateSpinnerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.currentDate = this.cd.toDate();
     this.dateSpinnerForm = this.fb.group({
-      currentDate: [this.currentDate, []]
+      currentDate: ['', []]
     });
+
 
     this.isLoadFoodEnabled = this.checkFoodDate()
   }
+
+  ngAfterContentInit() {
+    console.log("setting date : ", this.currentDate)
+    this.dateSpinnerForm.controls['currentDate'].setValue(this.currentDate, { onlySelf: true });
+  }
+
 
   onLoadFoodRequest() {
     this.sr.spinValue = this.currentDate;
@@ -68,14 +76,13 @@ export class KgDateSpinnerComponent implements OnInit {
 
   checkFoodDate(): boolean {
     var fd = this.ss.getUserSettings().foodDates;
-    var ok = FindHelper.findFoodDate(this.cd.format("M/D/YYYY"), fd);
+    var ok = FindHelper.findFoodDate(this.cd.toDate(), fd);
     return ok;
   }
 
   returnEvent() {
     this.isLoadFoodEnabled = this.checkFoodDate();
-
-    this.currentDate = this.cd.format("MMMM DD, YYYY");
+    this.currentDate = this.cd.toDate(); //.format("MMMM DD, YYYY");
     this.dateSpinnerForm.controls['currentDate'].setValue(this.currentDate, { onlySelf: true });
     this.sr.spinValue = this.currentDate;
     this.onChanged.emit(this.sr)

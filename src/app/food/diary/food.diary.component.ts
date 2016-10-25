@@ -31,7 +31,7 @@ export class FoodDiaryComponent implements OnInit {
         snackData: DailyFoodItem[] = [];
 
         userSettings: User;
-        diaryDate: string;
+        diaryDate: Date;
         isFoodDate: boolean = false;
 
         constructor(

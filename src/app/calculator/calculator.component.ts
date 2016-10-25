@@ -315,6 +315,7 @@ export class CalculatorComponent implements OnInit {
     }
 
     calculate() {
+
         if (this.physicalForm.valid && this.macroForm.valid) {
 
             this.sp.getIsPhysicalSaved()
@@ -428,7 +429,6 @@ export class CalculatorComponent implements OnInit {
 
     onSaveCalculation() {
         //physical gets save; then calculation base on observable of isPhysicalSaved.
-        debugger;
         this.sp.updatePhysicalData(this.selectedPhysical)
         //this.firstCalc = false;
     }

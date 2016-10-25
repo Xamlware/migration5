@@ -44,12 +44,16 @@ export class PhysicalFactory {
     updateNewPhysical(p: Physical, u: User): Physical {
         var pl: Physical = null;
 
-        
-        pl = FindHelper.FindPhysicalByKey(p.pK_Physical, u)
-        if (pl === undefined) {
+        if (p != undefined && p.pK_Physical != undefined && p.pK_Physical != null) {
+            pl = FindHelper.FindPhysicalByKey(p.pK_Physical, u)
+        }
+
+        if (pl === undefined || pl == null) {
             pl = this.createNewPhysical(u.emailAddress);
         }
-        
+
+        pl.pK_Physical = (p.pK_Physical != undefined && p.pK_Physical != null) ? p.fK_Measurement : 0;
+        pl.fK_Measurement = (p.fK_Measurement != undefined && p.fK_Measurement != null) ? p.fK_Measurement : 0;
         pl.dateString = p.dateString;
         pl.type = p.type;
         pl.weight = p.weight;
