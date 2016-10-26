@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { InputText, Checkbox, Message, Messages, Growl, Panel, Calendar, RadioButton, InputSwitch,
-    SelectButton, SelectItem, DataTable, Column, SplitButton, Button, Dropdown } from 'primeng/primeng'
+import {
+    InputText, Checkbox, Message, Messages, Growl, Panel, Calendar, RadioButton, InputSwitch,
+    SelectButton, SelectItem, DataTable, Column, SplitButton, Button, Dropdown
+} from 'primeng/primeng'
 
 import { SettingsService } from '../services/settings.service';
+import { SettingsPhysicalService } from '../settings/physical/settings.physical.service';
+
 import { ValidationService } from '../services/validation.service';
 import { User } from '../interfaces/User';
 import { UserFactory } from '../factories/user.factory';
@@ -20,7 +24,7 @@ import { FormModeType } from '../enums/formModeType.enum';
 import * as moment from "moment";
 
 @Component({
-    
+
     templateUrl: 'settings.component.html',
     styleUrls: ['settings.component.css']
 
@@ -65,10 +69,13 @@ export class SettingsComponent implements OnInit {
 
 
     //, private tokenService: TokenService
-    constructor(private settingsService: SettingsService,
+    constructor(
+        private settingsService: SettingsService,
+        private sp: SettingsPhysicalService,
         private builder: FormBuilder,
         private router: Router) {
 
+        console.log("settings component constructor");
         this.physicalCols = [
             { field: 'dateString', header: 'Date' },
             { field: 'weight', header: 'Weight' },
@@ -121,8 +128,10 @@ export class SettingsComponent implements OnInit {
         this.grids.push({ label: 'Macro Calculation Data', value: "calculation" });
         this.grids.push({ label: 'Blood Test Data', value: "blood" });
         this.grids.push({ label: 'Lipid Data', value: "lipid" });
+    }
 
-
+    ngOnInit() {
+debugger;
         var us = this.settingsService.getUserSettings();
         if (us != undefined) {
             this.userSettings = new UserFactory().createUser(us);
@@ -153,9 +162,7 @@ export class SettingsComponent implements OnInit {
             }
         }
 
-    }
 
-    ngOnInit() {
         this.selectedGrid = "physical"
         if (this.physicalData.length > 0) {
             this.selectedTablePhysical = this.physicalData[0];
@@ -187,7 +194,7 @@ export class SettingsComponent implements OnInit {
         this.physicalForm.controls['date'].setValue(moment(new Date()).format("ddd, MMM DD, YYYY"));
 
         var us = this.settingsService.getUserSettings()
-//        this.profileForm.controls['userName'].setValue({value: us.userName, disabled: true }, {onlySelf: true });
+        //        this.profileForm.controls['userName'].setValue({value: us.userName, disabled: true }, {onlySelf: true });
         this.profileForm.controls['lastName'].setValue(us.lastName, { onlySelf: true });
         this.profileForm.controls['firstName'].setValue(us.firstName, { onlySelf: true });
         this.profileForm.controls['dob'].setValue(us.dob, { onlySelf: true });
@@ -215,6 +222,12 @@ export class SettingsComponent implements OnInit {
                 this.physicalCols.push({ field: 'hips', header: 'Hips' });
             }
         }
+
+        this.sp.getIsPhysicalSaved()
+            .subscribe(saved => {
+                console.log("update physical grid data");
+                this.physicalData = new PhysicalFactory().createPhysicalArray(this.userSettings.physicalData, this.userSettings);
+            });
     }
 
     onSubmit(): void {
@@ -277,11 +290,13 @@ export class SettingsComponent implements OnInit {
     }
 
     onPhysicalSelect(event: any) {
+        debugger;
         this.selectedPhysical = FindHelper.FindPhysicalByEmail(<Physical>event.data, this.userSettings);
         this.settingsService.setSelectedPhysical(this.selectedPhysical);
     }
 
     onCalculationSelect(event: any) {
+        debugger;
         this.selectedCalculation = FindHelper.FindCalculation(<Calculation>event.data, this.userSettings);
         this.settingsService.setSelectedCalculation(this.selectedCalculation);
     }

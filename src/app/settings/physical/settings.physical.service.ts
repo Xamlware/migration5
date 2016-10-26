@@ -70,7 +70,7 @@ export class SettingsPhysicalService {
         }
 
         var p = FindHelper.FindPhysicalByDate(dateString, this.ss.getUserSettings())
-        if (p === undefined) {
+        if (p === null || p === undefined) {
           this.ss.getUserSettings().physicalData.push(new PhysicalFactory().createPhysical(this.dro.data[1], this.ss.getUserSettings()));
         }
       } else {
@@ -84,8 +84,8 @@ export class SettingsPhysicalService {
   updatePhysicalRecord(p: Physical) {
     var us = this.ss.getUserSettings();
     var rec: Physical;
-
-    if (p != undefined && p.fK_Measurement != undefined && p.fK_Measurement != 0) {
+debugger;
+    if ( p != null && p != undefined && p.fK_Measurement != undefined && p.fK_Measurement != 0) {
       rec = FindHelper.FindPhysicalByKey(p.fK_Measurement, us);
     }
 
@@ -113,14 +113,10 @@ export class SettingsPhysicalService {
   }
 
   setIsPhysicalSaved(isPhysicalSaved: boolean) {
-    console.log("setting physical saved: " + isPhysicalSaved);
     this.isPhysicalSaved$.next(isPhysicalSaved);
   }
 
   getIsPhysicalSaved(): Observable<boolean> {
-    console.log("getting physical saved: ");
-    
     return this.isPhysicalSaved$.asObservable();
   }
-
 }

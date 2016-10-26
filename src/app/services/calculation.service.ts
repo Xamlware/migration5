@@ -96,12 +96,12 @@ export class CalculationService {
             if (this.dro.data.length > 1) {
                 var dateString = this.dro.data[0].dateString
                 var m = FindHelper.FindMeasurementByDate(dateString, this.ss.getUserSettings())
-                if (m === undefined) {
+                if (m === null || m === undefined) {
                     this.ss.getUserSettings().measurementData.push(new MeasurementFactory().createMeasurement(this.dro.data[0]));
                 }
 
                 var p = FindHelper.FindCalculationByDate(dateString, this.ss.getUserSettings())
-                if (p === undefined) {
+                if (p === null || p === undefined) {
                     this.ss.getUserSettings().calculationData.push(CalculationFactory.createCalculation(this.dro.data[1], this.ss.getUserSettings(), true));
                 }
             } else {

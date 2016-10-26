@@ -7,7 +7,7 @@
                         <form [formGroup]="dateSpinnerForm" class="ui form" novalidate>
                             <button pButton (click)="onDecrement()" icon="fa-backward"></button>
                             <div style="padding-top: 10px;width: 208px; display: inline-block;">
-                                <p-calendar formControlName="currentDate" showAnim="slideDown" (onSelect)="onDateSelected($event)" [showIcon]="true" [readonlyInput]="true" dateFormat="MM d, yy"></p-calendar>
+                                <p-calendar formControlName="currentDate" [defaultDate]="currentDate" showAnim="slideDown" (onSelect)="onDateSelected($event)" [showIcon]="true" [readonlyInput]="true" dateFormat="MM d, yy"></p-calendar>
                             </div>
 
                             <button pButton (click)="onIncrement()" icon="fa-forward"></button>

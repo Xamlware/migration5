@@ -8,7 +8,9 @@ import {Component} from '@angular/core';
 })
 
 export class DocumentComponent {    
- 
+ constructor() {
+     console.log("document constructor");
+ }
 }
 
-
+ 
