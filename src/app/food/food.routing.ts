@@ -7,10 +7,11 @@ import { FoodSettingsComponent } from './settings/food.settings.component';
 import { FoodAddComponent } from './diary/add/food.add.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuardService } from '../services/authGuard.service';
+import { CanDeactivateGuardService } from '../services/canDeactivateGuard.service';
 
 export const routing = RouterModule.forChild([
   { path: 'food', component: FoodComponent, canActivate: [ AuthGuardService ]},
-  { path: 'diary', component: FoodDiaryComponent, canActivate: [AuthGuardService] },
+  { path: 'diary', component: FoodDiaryComponent, canActivate: [AuthGuardService], canDeactivate: [ CanDeactivateGuardService ] },
   { path: 'recipe', component: FoodRecipeComponent, canActivate: [AuthGuardService] },
   { path: 'export', component: FoodExportComponent, canActivate: [AuthGuardService] },
   { path: 'foodSettings', component: FoodSettingsComponent, canActivate: [AuthGuardService] },

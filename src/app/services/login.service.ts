@@ -14,6 +14,7 @@ import { ThemeService } from '../services/theme.service';
 import { LogoutService } from '../services/logout.service';
 import { AppMenuService } from '../services/appMenu.service';
 import { LocalUser } from '../interfaces/localUser';
+import { UserFactory } from '../factories/user.factory';
 import { Token } from '../interfaces/token';
 import { Email } from '../interfaces/email';
 import { DataResponseObject } from '../interfaces/dataResponseObject';
@@ -106,7 +107,7 @@ export class LoginService  {
 
         if (this.dro.data != null && this.dro.data[0]) {
             this.ss.setUserSettings(<User>this.dro.data[0]);
-            var us = <User>this.dro.data[0];
+            var us = new UserFactory().createUser(<User>this.dro.data[0]);
             this.themeService.setTheme(us.theme);
             this.loggedInEmail = us.emailAddress;
             this.isLoggingIn = false;

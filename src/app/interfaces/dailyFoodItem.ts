@@ -29,6 +29,7 @@ export class DailyFoodItem {
     calcium: number = 0;
     iron: number = 0;
     potassium: number = 0;
+    processed: boolean = false;
 
     // getNewDailyFoodItem() : DailyFoodItem {
     //     let dfi = new DailyFoodItem();

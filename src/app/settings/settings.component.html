@@ -101,51 +101,74 @@
             <div *ngIf="userSettings && userSettings.userName != null">
               <div *ngIf="isPhysicalGrid">
                 <p-dataTable [value]="physicalData" selectionMode="single" [(selection)]="selectedTablePhysical" (onRowSelect)="onPhysicalSelect($event)">
-                  <p-column *ngFor="let col of physicalCols" [field]="col.field" [header]="col.header"></p-column>
+                  <p-column field="dateString" header="Date" [style]="{'width':'117px','text-align':'center'}" ></p-column>
+                  <p-column field="height" header="Height" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="waist" header="Waist" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="neck" header="Neck" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="hips" header="Hips" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="activityLevelAsString" header="Activity Level" [style]="{'text-align':'center'}"></p-column>
+
+                  <!--<p-column *ngFor="let col of physicalCols" [field]="col.field" [header]="col.header"></p-column>-->
                 </p-dataTable>
               </div>
-              <div *ngIf="isBloodGrid">
-                <p-dataTable [value]="bloodData" selectionMode="single" [(selection)]="selectedBlood" (onRowSelect)="onBloodSelect($event)">
-                  <p-column *ngFor="let col of bloodCols" [field]="col.field" [header]="col.header"></p-column>
-                </p-dataTable>
-              </div>
-              <div *ngIf="isLipidGrid">
-                <p-dataTable [value]="lipidData" selectionMode="single" [(selection)]="selectedLipid" (onRowSelect)="onLipidSelect($event)">
-                  <p-column *ngFor="let col of lipidCols" [field]="col.field" [header]="col.header"></p-column>
-                </p-dataTable>
-              </div>
+
 
               <div *ngIf="isCalculationGrid">
                 <p-dataTable [value]="calculationData" selectionMode="single" [(selection)]="selectedCalculation" (onRowSelect)="onCalculationSelect($event)">
-                  <p-column *ngFor="let col of calculationCols" [field]="col.field" [header]="col.header"></p-column>
+                  <p-column field="dateString" header="Date" [style]="{'width':'117px','text-align':'center'}" ></p-column>
+                  <p-column field="macroCarbs" header="Carbs" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="macroProtein" header="Protein" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="macroFat" header="Fat" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="fat" header="Body Fat" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="bmr" header="BMR" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="lbm" header="LBM" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="kmBmr" header="KmBMR" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="mjBmr" header="MjBMR" [style]="{'text-align':'center'}"></p-column>
+                  <p-column field="tdee" header="TDEE" [style]="{'text-align':'center'}"></p-column>
+                  
+                  <!--<p-column *ngFor=" let col of calculationCols " [field]="col.field " [header]="col.header "></p-column>-->
                 </p-dataTable>
               </div>
 
-              <div class="ui-grid-row  buttonContainer">
-                <div class="ui-grid-col-1">
-                  <button pButton type="button" (click)="onAddData()" label="Add"></button>
+              <div *ngIf="isBloodGrid ">
+                <p-dataTable [value]="bloodData " selectionMode="single " [(selection)]="selectedBlood
+                    " (onRowSelect)="onBloodSelect($event) ">
+                  <p-column *ngFor="let col of bloodCols " [field]="col.field " [header]="col.header "></p-column>
+                </p-dataTable>
+              </div>
+
+              <div *ngIf="isLipidGrid ">
+                <p-dataTable [value]="lipidData " selectionMode="single " [(selection)]="selectedLipid
+                    " (onRowSelect)="onLipidSelect($event) ">
+                  <p-column *ngFor="let col of lipidCols " [field]="col.field " [header]="col.header "></p-column>
+                </p-dataTable>
+              </div>
+
+              <div class="ui-grid-row buttonContainer ">
+                <div class="ui-grid-col-1 ">
+                  <button pButton type="button " (click)="onAddData() " label="Add "></button>
                 </div>
 
-                <div class="ui-grid-col-1">
-                  <button pButton type="button" (click)="onEditData()" label="Edit"></button>
+                <div class="ui-grid-col-1 ">
+                  <button pButton type="button " (click)="onEditData() " label="Edit "></button>
                 </div>
 
-                <div class="ui-grid-col-7">
+                <div class="ui-grid-col-7 ">
                 </div>
 
-                <div class="ui-grid-col-2">
-                  <button pButton type="button" (click)="onCalculateMacros()" label="Calculate Macros"></button>
+                <div class="ui-grid-col-2 ">
+                  <button pButton type="button " (click)="onCalculateMacros() " label="Calculate Macros "></button>
                 </div>
 
-                <div class="ui-grid-col-1">
-                  <button pButton type="button" (click)="onChartData()" label="Chart"></button>
+                <div class="ui-grid-col-1 ">
+                  <button pButton type="button " (click)="onChartData() " label="Chart "></button>
                 </div>
               </div>
             </div>
           </p-panel>
         </div>
 
-        <div class="ui-g-3 ui-md-4 ui-lg-4">
+        <div class="ui-g-3 ui-md-4 ui-lg-4 ">
         </div>
       </div>
     </div>

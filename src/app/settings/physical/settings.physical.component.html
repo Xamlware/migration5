@@ -44,12 +44,12 @@
                   </div>
                 </div>
 
-                <div class="ui-grid-row form-group">
+                <div class="ui-grid-row form-group" *ngIf="isHips">
                   <div class="ui-grid-col-4 labelDiv">
                     <label class="ui-widget labelCheckbox">Hips:</label>
                   </div>
                   <div class="ui-grid-col-8">
-                    <input [disabled]="sex==='F'" type="text" size="15" pInputText class="form-control" formControlName="hips" />
+                    <input type="text" size="15" pInputText class="form-control" formControlName="hips" />
                   </div>
                 </div>
 

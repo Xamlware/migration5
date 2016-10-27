@@ -24,10 +24,10 @@ import * as moment from "moment";
 export class SettingsPhysicalComponent implements OnInit {
   formMode: string;
   physicalForm: FormGroup;
-  sex: string = "M";
   userSettings: User;
   activityLevels: SelectItem[] = [];
   selectedActivityLevel: string;
+  isHips: boolean;;
 
   constructor(private settingsService: SettingsService,
     private router: Router,
@@ -51,8 +51,8 @@ export class SettingsPhysicalComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.userSettings = this.settingsService.getUserSettings();
+    this.isHips = this.userSettings.sex === "F";
     var currentDate = new Date();
     var v = ValidationService;
 
@@ -60,7 +60,7 @@ export class SettingsPhysicalComponent implements OnInit {
       date: [currentDate, [Validators.required, v.dateFieldValidator]],
       weight: ['', [Validators.required, v.numberFieldValidator]],
       height: ['', [Validators.required, v.numberFieldValidator]],
-      hips: ['', [v.numberFieldValidator]],
+      hips: ['0', [v.numberFieldValidator]],
       waist: ['', [Validators.required, v.numberFieldValidator]],
       neck: ['', [Validators.required, v.numberFieldValidator]],
       activityLevel: [ActivityLevelType.sedentary, []],

@@ -73,6 +73,7 @@ debugger;
         if (m === null || m === undefined) {
           this.ss.getUserSettings().measurementData.push(new MeasurementFactory().createMeasurement(this.dro.data[0]));
         }
+        
         var p = FindHelper.FindPhysicalByDate(dateString, this.ss.getUserSettings())
         if (p === null || p === undefined) {
           this.ss.getUserSettings().physicalData.push(new PhysicalFactory().createPhysical(this.dro.data[1], this.ss.getUserSettings()));

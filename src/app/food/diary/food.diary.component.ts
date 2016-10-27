@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 // import {InputText, Checkbox, Message, Messages, Growl, Panel, Calendar, RadioButton, InputSwitch,
 //         SelectButton, SelectItem, DataTable, Column, SplitButton, SplitButtonItem, Button} from 'primeng/primeng'
-import { Router } from '@angular/router';
+import { Router, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DailyFoodItem } from '../../interfaces/dailyFoodItem';
 import { User } from '../../interfaces/user';
@@ -9,10 +9,12 @@ import { FindHelper } from '../../helpers/find.helper';
 import { SettingsService } from '../../services/settings.service';
 import { FoodService } from '../../services/food.service';
 import { LogoutService } from '../../services/logout.service';
+import { CanDeactivateGuardService } from '../../services/canDeactivateGuard.service';
 import { NutritionixService } from '../../services/nutritionix.service';
 import { MealType } from '../../enums/mealType.enum';
 import { DateSpinnerReturn } from '../../interfaces/dateSpinnerReturn';
 import * as moment from "moment";
+import { Observable } from 'rxjs/Observable';
 
 @Component({
 
@@ -21,7 +23,7 @@ import * as moment from "moment";
         styleUrls: ['food.diary.component.css']
 })
 
-export class FoodDiaryComponent implements OnInit {
+export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryComponent> {
         foodCols: any[];
         selectedBreakfast: DailyFoodItem;
 
@@ -34,17 +36,41 @@ export class FoodDiaryComponent implements OnInit {
         diaryDate: Date;
         isFoodDate: boolean = false;
 
+        @HostListener('window:unload', ['$event'])
+        unloadHandler(event) {
+                debugger;
+        }
+
+        @HostListener('window:beforeunload', ['$event'])
+        beforeUnloadHander(event) {
+                debugger;
+        }
+
         constructor(
                 private ss: SettingsService,
                 private r: Router,
                 private fs: FoodService,
-                private los: LogoutService) {
+                private los: LogoutService,
+                private cd: CanDeactivateGuardService) {
         }
+
+        canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+                // // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+                // if (!this.crisis || this.crisis.name === this.editName) {
+                //         return true;
+                // }
+                // // Otherwise ask the user with the dialog service and return its
+                // // promise which resolves to true or false when the user decides
+                // return this.dialogService.confirm('Discard changes?');
+                debugger;
+                return true;
+        }
+
 
         ngOnInit() {
                 this.userSettings = this.ss.getUserSettings();
                 this.fs.setDailyFood(this.userSettings.dailyFoodData);
-                this.fs.dailyFoodArray.push(this.fs.dailyFood)
+                // this.fs.dailyFoodArray.push(this.fs.dailyFood)
                 this.setTableData();
 
                 this.foodCols = [
@@ -94,7 +120,11 @@ export class FoodDiaryComponent implements OnInit {
                 }
 
                 for (let df of this.fs.dailyFood.items) {
-                        this.fs.setDailyFoodItem(df);
+                        debugger;
+                        if (!df.processed) {
+                                this.fs.setDailyFoodItem(df);
+                                df.processed = true;
+                        }
                 }
 
         }
@@ -107,7 +137,7 @@ export class FoodDiaryComponent implements OnInit {
         onChanged(sr: DateSpinnerReturn) {
                 this.diaryDate = sr.spinValue;
                 debugger;
-                
+
                 this.fs.clearDailyFoodMeals();
                 var fd = this.fs.foodDates;
                 this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);

@@ -17,6 +17,7 @@ import { AppMenuService } from '../services/appMenu.service';
 import { CalculationService  } from '../services/calculation.service';
 import { ChallengeService  } from '../services/challenge.service';
 import { AuthGuardService } from '../services/authGuard.service';
+import { CanDeactivateGuardService } from '../services/canDeactivateGuard.service';
 import { FoodService } from '../services/food.service';
 import { ErrorMessagesComponent } from '../errorMessages/error.messages.component';
 import { FoodDashboardComponent } from '../shared/foodDashboard/food.dashboard.component';
@@ -37,6 +38,7 @@ import {InputTextModule, GalleriaModule, MenubarModule, CheckboxModule, DialogMo
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, CalendarModule,
             SelectButtonModule, CheckboxModule, DataTableModule, DataListModule, ProgressBarModule, ErrorMessagesComponent, FoodDashboardComponent,
             KgNumberSpinnerComponent, KgDateSpinnerComponent ]
+        
 })
 
 export class SharedModule {
@@ -44,7 +46,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [SettingsService, AppMenuService, AuthorizationService, LoginService, LogoutService, RegisterService, ThemeService, ValidationService,
-        NutritionixService, AuthGuardService, CalculationService, ChallengeService, FoodService ]
+        NutritionixService, AuthGuardService, CanDeactivateGuardService, CalculationService, ChallengeService, FoodService ]
     };
   }
 }

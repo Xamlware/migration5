@@ -97,6 +97,7 @@ export class FoodAddComponent implements OnInit {
     this.selectedFood.calcium = this.selectedRow.nf_calcium_dv;
     this.selectedFood.iron = this.selectedRow.nf_iron_dv;
     this.selectedFood.potassium = this.selectedRow.nf_potassium;
+    this.selectedFood.processed = false;
 
     this.fs.setDailyFoodItem(this.selectedFood);
 

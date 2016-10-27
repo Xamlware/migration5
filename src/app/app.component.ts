@@ -1,4 +1,4 @@
-import {  Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { AppMenuService } from './services/appMenu.service';
 import { LoginService } from './services/login.service';
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     appPageHeaderDivStyle: {};
     selectedTheme: Theme;
     errorMessage: string;
-    loggedIn: LoggedIn; 
+    loggedIn: LoggedIn;
     loggedInEmail: string = "";
     isLoggedIn: boolean;
 
@@ -32,14 +32,12 @@ export class AppComponent implements OnInit {
         private ls: LoginService) {
     }
 
-    // @HostListener('window:unload', ['$event'])
-    // unloadHandler(event) {
-    // }
+    @HostListener('window:beforeunload', ['$event'])
+    beforeUnloadHander(event) {
+        var shutdown = this.onShutdown();
+        //event.preventDefault();
 
-    // @HostListener('window:beforeunload', ['$event'])
-    // beforeUnloadHander(event) {
-    //     this.onShutdown;
-    // }
+    }
 
     ngOnInit() {
 
@@ -66,7 +64,7 @@ export class AppComponent implements OnInit {
                         this.ts.setTheme(us.theme);
                     }
 
-                    
+
                 }
                 else {
                     this.items = this.as.getNoLoginMenu();
@@ -80,7 +78,7 @@ export class AppComponent implements OnInit {
     completeLoggedIn(email: string) {
         this.loggedInEmail = email;
         this.isLoggedIn = (this.loggedInEmail.length > 0);
-       
+
         // this.as.getIsLogout()
         //     .subscribe(
         //     logout => {
@@ -95,12 +93,20 @@ export class AppComponent implements OnInit {
         this.appPageHeaderDivStyle = this.ts.getAppPageHeaderDivStyle();
     }
 
-    onShutdown() {
-        alert("shutting down");
-        this.ss.updateProfileInformation(this.ss.getUserSettings());
+    onShutdown(): boolean {
+        var ok = true;
+        this.ss.updateProfileInformation(this.ss.getUserSettings())
+            .subscribe(
+            status => {
+                console.log("logout - updated user");
+            },
+            error => {
+                ok = false;;
+            },
+        );
+        return ok;
     }
 
     onLogout() {
-
     }
 }

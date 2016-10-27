@@ -136,6 +136,7 @@ export class FoodService {
   }
 
   completeGetDailyFoodByDate() {
+    debugger;
     this.dailyFood = <DailyFood>this.dro.data[0];
     this.dailyFoodArray.push(this.dailyFood);
     this.setDailyFoodItemObservableByDate(this.dailyFood);

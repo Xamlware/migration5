@@ -171,12 +171,6 @@ export class SettingsService {
         return result;
       })
       .catch(this.handleError)
-      .subscribe(
-      status => this.statusMessage = status,
-      error => {this.errorMessage = error,
-        console.log(error)},
-      () => this.completeUpdateUser()
-      );
   }
 
   completeUpdateUser() {
