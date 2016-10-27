@@ -131,7 +131,6 @@ export class SettingsComponent implements OnInit {
     }
 
     ngOnInit() {
-debugger;
         var us = this.settingsService.getUserSettings();
         if (us != undefined) {
             this.userSettings = new UserFactory().createUser(us);

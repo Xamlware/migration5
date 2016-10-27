@@ -16,9 +16,7 @@ export class AppMenuService {
     return [
       {
         label: 'Home',
-        routerLink: [''] //,
-        // routerLinkActive="menuActive",
-        // routerLinkOptions="{exact: true}"
+        routerLink: ['']
       },  {
         label: 'Documents',
         routerLink: ['/document']

@@ -17,4 +17,4 @@ export class Constants {
   passwordString: string = "&password=";
   formEncodedContentType: string = "Content-Type', 'application/x-www-form-urlencoded";
   jsonContentType: string = "application/json";
-}   
+}    

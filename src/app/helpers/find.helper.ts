@@ -26,6 +26,7 @@ export class FindHelper {
 
     public static FindMeasurementByKey(key: number, u: User): Measurement {
         var rec: Measurement = null;
+debugger;        
         var m = u.measurementData.filter(m => {
             return m.pK_Measurement == key;
         });
@@ -89,7 +90,7 @@ export class FindHelper {
         });
 
         if (ph.length > 0) {
-            rec = m[0];
+            rec = ph[0];
         }
 
         if (rec !== null && (rec.dateString !== undefined || rec.dateString === "")) {

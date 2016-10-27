@@ -25,6 +25,7 @@ export class PhysicalFactory {
 
     createPhysical(p: Physical, u: User): Physical {
         var pl: Physical = new Physical();
+ 
         pl.pK_Physical = p.pK_Physical;
         pl.fK_Measurement = p.fK_Measurement;
         pl.dateString = p.dateString;

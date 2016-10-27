@@ -37,7 +37,7 @@ export class SettingsPhysicalService {
   }
 
   updatePhysicalData(value: Physical) {
-
+debugger;
     var p: Physical = new PhysicalFactory().updateNewPhysical(value, this.ss.getUserSettings());
     var headers = new Headers();
     headers.append('Content-Type', this.constants.jsonContentType);
@@ -54,13 +54,18 @@ export class SettingsPhysicalService {
       .catch(this.handleError)
       .subscribe(
       dro => this.dro = dro,
-      error => this.errorMessage = error,
+      error => {
+        this.errorMessage = error
+        console.log(this.errorMessage)
+      },
       () => this.completeAddPhysical()
       );
   }
 
   completeAddPhysical() {
     console.log("in add phys");
+debugger;
+
     if (this.dro) {
       if (this.dro.data.length > 1) {
         var dateString = this.dro.data[0].dateString
@@ -68,7 +73,6 @@ export class SettingsPhysicalService {
         if (m === null || m === undefined) {
           this.ss.getUserSettings().measurementData.push(new MeasurementFactory().createMeasurement(this.dro.data[0]));
         }
-
         var p = FindHelper.FindPhysicalByDate(dateString, this.ss.getUserSettings())
         if (p === null || p === undefined) {
           this.ss.getUserSettings().physicalData.push(new PhysicalFactory().createPhysical(this.dro.data[1], this.ss.getUserSettings()));
