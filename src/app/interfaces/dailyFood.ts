@@ -21,7 +21,7 @@ export class DailyFood {
                 let df = new DailyFood();
                 df.foodDate = new Date();
                 df.fK_User = u.pK_User;
-debugger;
+
                 for (var b of dfa.breakfast) {
                         b.meal = MealType.breakfast;
                         df.items.push(b);

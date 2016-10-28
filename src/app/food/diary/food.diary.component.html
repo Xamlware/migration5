@@ -2,13 +2,15 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <div class="ui-g">
-        <div class="ui-g-6 ui-md-4 ui-lg-3">
+        <div class="ui-g-6 ui-md-4 ui-lg-2">
         </div>
 
-        <div class="ui-g-6 ui-md-4 ui-lg-6">
+        <div class="ui-g-6 ui-md-4 ui-lg-8">
           <p-panel [toggleable]="false">
             <header>
               <kg-dateSpinner (onChanged)="onChanged($event)" (onLoadFood)="onLoadFood($event)"></kg-dateSpinner>
+              <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood()"></button>
+              <button pButton type="button" class="diaryButton" icon="fa-floppy-o" iconPos="left" (click)="updateFood()" style="margin-left: 3px;"></button>
             </header>
             <div class="ui raised segment">
               <div class="ui-grid-row form-group">
@@ -17,7 +19,6 @@
                     <span [style.font-weight]="'bold'">Breakfast</span>
                   </div>
                   <div class="ui-grid-col-1 ">
-                    <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('breakfast')"></button>
                   </div>
                 </div>
               </div>
@@ -35,9 +36,9 @@
                   <div class="ui-grid-col-1 ">
                     <span [style.font-weight]="'bold'">Lunch</span>
                   </div>
-                  <div class="ui-grid-col-1 ">
+                  <!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('lunch')"></button>
-                  </div>
+                  </div>-->
                 </div>
               </div>
 
@@ -54,9 +55,9 @@
                   <div class="ui-grid-col-1 ">
                     <span [style.font-weight]="'bold'">Dinner</span>
                   </div>
-                  <div class="ui-grid-col-1 ">
+                  <!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('dinner')"></button>
-                  </div>
+                  </div>-->
                 </div>
               </div>
 
@@ -73,9 +74,9 @@
                   <div class="ui-grid-col-1 ">
                     <span [style.font-weight]="'bold'">Snacks</span>
                   </div>
-                  <div class="ui-grid-col-1 ">
+                  <!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('Snacks')"></button>
-                  </div>
+                  </div>-->
                 </div>
               </div>
 
@@ -95,7 +96,7 @@
           </p-panel>
         </div>
 
-        <div class="ui-g-6 ui-md-4 ui-lg-3 ">
+        <div class="ui-g-6 ui-md-4 ui-lg-2">
         </div>
       </div>
     </div>

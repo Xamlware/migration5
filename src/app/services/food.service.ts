@@ -12,6 +12,8 @@ import { BaseMacro } from '../interfaces/macro';
 import { DailyFood, DailyFoodMeals } from '../interfaces/dailyFood';
 import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 import { DataResponseObject } from '../interfaces/dataResponseObject';
+import { FoodFactory } from '../factories/food.factory';
+
 
 import { FindHelper } from '../helpers/find.helper';
 import { LinkHelper } from '../helpers/link.helper';
@@ -77,35 +79,29 @@ export class FoodService {
   }
 
   setDailyFoodItem(dfi: DailyFoodItem) {
-    let ok = false;
-
-    // var fd = this.ss.getUserSettings().foodDates;
-    // this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
-
-    if (!FindHelper.FindDailyFoodMealsByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodMeals)) {
+debugger;
+    var exist =FindHelper.FindDailyFoodMealsByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodMeals); 
+    if (!exist) {
+      this.dailyFood.items.push(dfi);
       switch (dfi.meal) {
         case MealType.breakfast:
-          ok = true;
           this.dailyFoodMeals.breakfast.push(dfi);
           break;
         case MealType.lunch:
-          ok = true;
           this.dailyFoodMeals.lunch.push(dfi);
           break;
         case MealType.dinner:
-          ok = true;
           this.dailyFoodMeals.dinner.push(dfi);
           break;
         case MealType.snack:
-          ok = true;
           this.dailyFoodMeals.snack.push(dfi);
           break;
       }
     }
 
-    if (ok) {
-      this.updateDailyFood();
-    }
+    // if (ok) {
+    //   this.updateDailyFood();
+    // }
   }
 
   getDailyFoodByDate(date: string) {
@@ -175,10 +171,10 @@ export class FoodService {
 
   completeUpdateDailyFood() {
     console.log("completed update food");
-    if (this.dro != null && this.dro.data != null && this.dro.data.length > 0) {
-      this.dailyFood = <DailyFood>this.dro.data[0];
-      this.setDailyFoodItemObservableByDate(this.dailyFood);
-    }
+    // if (this.dro != null && this.dro.data != null && this.dro.data.length > 0) {
+    //   this.dailyFood = new FoodFactory().createDailyFood(<DailyFood>this.dro.data[0]);
+    //   //this.setDailyFoodItemObservableByDate(this.dailyFood);
+    // }
   }
 
   private handleError(error: Response) {

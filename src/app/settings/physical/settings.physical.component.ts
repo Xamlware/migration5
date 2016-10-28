@@ -84,7 +84,6 @@ export class SettingsPhysicalComponent implements OnInit {
   onSubmit() {
     var val = <Physical>this.physicalForm.value;
     //val.userEmail = this.userSettings.emailAddress;
-debugger;
     this.sps.updatePhysicalData(val);
   }
 

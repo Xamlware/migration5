@@ -37,7 +37,7 @@ export class UserFactory {
         u.lipidData = Array<Lipid>();
         u.calculationData = Array<Calculation>();
         u.nutrientData = Array<Nutrient>();
-        u.dailyFoodData =  new DailyFood();
+        u.dailyFoodData =  Array<DailyFood>();
         u.foodDates = Array<Date>();
         u.theme = "";
 
@@ -64,7 +64,7 @@ export class UserFactory {
         ur.lipidData = new LipidFactory().createLipidArray(u.lipidData);
         ur.calculationData = CalculationFactory.createCalculationArray(u.calculationData, u, false);
         ur.nutrientData = new NutrientFactory().createNutrientArray(u.nutrientData);
-        ur.dailyFoodData = new FoodFactory().createDailyFood(u.dailyFoodData);
+        ur.dailyFoodData = new FoodFactory().createDailyFoodArray(u.dailyFoodData);
         ur.foodDates = Array<Date>();
         ur.theme = u.theme;
 

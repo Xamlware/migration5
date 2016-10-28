@@ -37,7 +37,6 @@ export class SettingsPhysicalService {
   }
 
   updatePhysicalData(value: Physical) {
-debugger;
     var p: Physical = new PhysicalFactory().updateNewPhysical(value, this.ss.getUserSettings());
     var headers = new Headers();
     headers.append('Content-Type', this.constants.jsonContentType);
@@ -64,8 +63,6 @@ debugger;
 
   completeAddPhysical() {
     console.log("in add phys");
-debugger;
-
     if (this.dro) {
       if (this.dro.data.length > 1) {
         var dateString = this.dro.data[0].dateString
@@ -89,7 +86,7 @@ debugger;
   updatePhysicalRecord(p: Physical) {
     var us = this.ss.getUserSettings();
     var rec: Physical;
-debugger;
+
     if ( p != null && p != undefined && p.fK_Measurement != undefined && p.fK_Measurement != 0) {
       rec = FindHelper.FindPhysicalByKey(p.fK_Measurement, us);
     }

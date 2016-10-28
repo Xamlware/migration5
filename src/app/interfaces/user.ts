@@ -29,7 +29,7 @@ export interface IUser {
     lipidData: Lipid[];
     calculationData: Calculation[];
     nutrientData: Nutrient[];
-    dailyFoodData: DailyFood;
+    dailyFoodData: DailyFood[];
     foodDates: Date[];
     theme: string;
 }
@@ -57,7 +57,7 @@ export class User implements IUser {
     calculationData: Calculation[] = [];
     nutrientData: Nutrient[] = [];
     foodDates: Date[];
-    dailyFoodData: DailyFood = new DailyFood();
+    dailyFoodData: DailyFood[] = [];
 
     theme: string = "";
 }

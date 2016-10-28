@@ -289,13 +289,11 @@ export class SettingsComponent implements OnInit {
     }
 
     onPhysicalSelect(event: any) {
-        debugger;
         this.selectedPhysical = FindHelper.FindPhysicalByEmail(<Physical>event.data, this.userSettings);
         this.settingsService.setSelectedPhysical(this.selectedPhysical);
     }
 
     onCalculationSelect(event: any) {
-        debugger;
         this.selectedCalculation = FindHelper.FindCalculation(<Calculation>event.data, this.userSettings);
         this.settingsService.setSelectedCalculation(this.selectedCalculation);
     }

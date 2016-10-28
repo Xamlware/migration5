@@ -26,7 +26,7 @@ export class FindHelper {
 
     public static FindMeasurementByKey(key: number, u: User): Measurement {
         var rec: Measurement = null;
-debugger;        
+
         var m = u.measurementData.filter(m => {
             return m.pK_Measurement == key;
         });
@@ -172,13 +172,16 @@ debugger;
 
 
 
-    public static FindDailyFoodByKey(key: number, u: User) {
+    public static FindDailyFoodByKey(date: string, key: number, u: User) {
         var rec: DailyFoodItem = null;
+        var dfi: DailyFoodItem[];
 
-        var dfi = u.dailyFoodData.items.filter(di => {
-            return di.pK_DailyFoodItem === key;
-        });
-
+        var df = FindHelper.FindDailyFoodByDate(date, u.dailyFoodData);
+        if (df != null) {
+            dfi = df.items.filter(di => {
+                return di.pK_DailyFoodItem === key;
+            });
+        }
         if (dfi.length > 0) {
             rec = dfi[0];
         }
@@ -186,6 +189,9 @@ debugger;
         return rec;
     }
 
+    /*
+        Find daily food record by Date.
+    */
     public static FindDailyFoodByDate(date: string, dfa: DailyFood[]): DailyFood {
         var rec: DailyFood = null;
 
@@ -198,7 +204,7 @@ debugger;
                 rec = df[0];
             }
         }
-        
+
         return rec;
     }
 
