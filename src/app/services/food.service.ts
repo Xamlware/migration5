@@ -12,6 +12,7 @@ import { BaseMacro } from '../interfaces/macro';
 import { DailyFood, DailyFoodMeals } from '../interfaces/dailyFood';
 import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 import { DataResponseObject } from '../interfaces/dataResponseObject';
+import { NutrientDisplay } from '../interfaces/nutrientDisplay';
 import { FoodFactory } from '../factories/food.factory';
 
 
@@ -35,6 +36,7 @@ export class FoodService {
   dro: DataResponseObject;
   errorMessage: string;
   private dailyFood$: Subject<DailyFood>;
+  nutrientDisplay: NutrientDisplay;
 
 
   constructor(
@@ -44,6 +46,7 @@ export class FoodService {
     console.log("food service constructor");
 
     this.dailyFood$ = <Subject<DailyFood>>new Subject();
+    this.resetNutrientDisplay();
   }
 
 
@@ -63,6 +66,77 @@ export class FoodService {
     }
   }
 
+  setNutrientDisplay(nd: NutrientDisplay) {
+    this.nutrientDisplay = nd;
+  }
+
+  getNutrientDisplay(): NutrientDisplay {
+    return this.nutrientDisplay;
+  }
+
+  resetNutrientDisplay(): NutrientDisplay {
+    this.nutrientDisplay = new NutrientDisplay();
+    return this.getNutrientDisplay();
+  }
+
+  setNutrientDisplayItem(name: string, value: boolean) {
+    switch (name) {
+
+      case 'fiber': {
+        this.nutrientDisplay.isFiber = !value;
+        break;
+      }
+      case 'satFat': {
+        this.nutrientDisplay.isSatFat = !value;
+        break;
+      }
+      case 'monoFat': {
+        this.nutrientDisplay.isMonoFat = !value;
+        break;
+      }
+      case 'polyFat': {
+        this.nutrientDisplay.isPolyFat = !value;
+        break;
+      }
+      case 'transFat': {
+        this.nutrientDisplay.isTransFat = !value;
+        break;
+      }
+      case 'cholesterol': {
+        this.nutrientDisplay.isCholesterol = !value;
+        break;
+      }
+      case 'sugars': {
+        this.nutrientDisplay.isSugars = !value;
+        break;
+      }
+      case 'vitA': {
+        this.nutrientDisplay.isVitA = !value;
+        break;
+      }
+      case 'vitC': {
+        this.nutrientDisplay.isVitC = !value;
+        break;
+      }
+      case 'sodium': {
+        this.nutrientDisplay.isSodium = !value;
+        break;
+      }
+      case 'calcium': {
+        this.nutrientDisplay.isCalcium = !value;
+        break;
+      }
+      case 'iron': {
+        this.nutrientDisplay.isIron = !value;
+        break;
+      }
+      case 'potassium': {
+        this.nutrientDisplay.isPotassium = !value;
+        break;
+      }
+    }
+  }
+
   clearDailyFoodMeals() {
     this.dailyFoodMeals.breakfast = [];
     this.dailyFoodMeals.lunch = [];
@@ -79,8 +153,8 @@ export class FoodService {
   }
 
   setDailyFoodItem(dfi: DailyFoodItem) {
-debugger;
-    var exist =FindHelper.FindDailyFoodMealsByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodMeals); 
+    debugger;
+    var exist = FindHelper.FindDailyFoodMealsByKey(dfi.pK_DailyFoodItem, dfi.meal, this.dailyFoodMeals);
     if (!exist) {
       this.dailyFood.items.push(dfi);
       switch (dfi.meal) {

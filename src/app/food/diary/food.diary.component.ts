@@ -5,6 +5,8 @@ import { Router, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } fr
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DailyFoodItem } from '../../interfaces/dailyFoodItem';
 import { User } from '../../interfaces/user';
+import { NutrientDisplay } from '../../interfaces/nutrientDisplay';
+
 import { FindHelper } from '../../helpers/find.helper';
 import { SettingsService } from '../../services/settings.service';
 import { FoodService } from '../../services/food.service';
@@ -36,7 +38,8 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
         userSettings: User;
         diaryDate: Date;
         isFoodDate: boolean = false;
-
+        nutrientDisplay: NutrientDisplay;
+        
         // @HostListener('window:unload', ['$event'])
         // unloadHandler(event) {
         //         debugger;
@@ -71,6 +74,8 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
         ngOnInit() {
                 this.userSettings = this.ss.getUserSettings();
                 var df = FindHelper.FindDailyFoodByDate(moment(this.diaryDate).format("M-D-YYYY"), this.userSettings.dailyFoodData)
+                this.nutrientDisplay = this.fs.getNutrientDisplay();
+debugger;
                 this.fs.setDailyFood(df);
                 this.setTableData();
 

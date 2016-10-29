@@ -3,10 +3,10 @@ import { DailyFoodItem } from '../interfaces/dailyFoodItem';
 
 export class FoodFactory {
 
-    createDailyFoodArray(df: DailyFood) : DailyFood[] {
+    createDailyFoodArray(dfa: DailyFood[]) : DailyFood[] {
         var dfao: DailyFood[] = []; 
-        dfao.push(this.createDailyFood(df)); 
 
+        dfa.forEach(df => dfao.push(this.createDailyFood(df)));
         return dfao;
     }
 

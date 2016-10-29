@@ -21,7 +21,7 @@ export class AppMenuService {
         label: 'Documents',
         routerLink: ['/document']
       }, {
-        label: 'KetoCalculator',
+        label: 'Calculator',
         routerLink: ['/calculator']
       }, {
         label: 'Verify',
@@ -44,7 +44,7 @@ export class AppMenuService {
         label: 'Food',
         routerLink: ['/food']
       }, {
-        label: 'KetoCalculator',
+        label: 'Calculator',
         routerLink: ['/calculator']
       }, {
         label: 'Settings',

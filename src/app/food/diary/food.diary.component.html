@@ -1,104 +1,130 @@
 <div class="ui-grid ui-grid-responsive ui-grid-pad">
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <div class="ui-g">
-        <div class="ui-g-6 ui-md-4 ui-lg-2">
-        </div>
+	<div class="ui-g">
+		<div class="ui-g-12">
+			<div class="ui-g">
+				<div class="ui-g-6 ui-md-4 ui-lg-2">
+				</div>
 
-        <div class="ui-g-6 ui-md-4 ui-lg-8">
-          <p-panel [toggleable]="false">
-            <header>
-              <kg-dateSpinner (onChanged)="onChanged($event)" (onLoadFood)="onLoadFood($event)"></kg-dateSpinner>
-              <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood()"></button>
-              <button pButton type="button" class="diaryButton" icon="fa-floppy-o" iconPos="left" (click)="updateFood()" style="margin-left: 3px;"></button>
-            </header>
-            <div class="ui raised segment">
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <div class="ui-grid-col-1 ">
-                    <span [style.font-weight]="'bold'">Breakfast</span>
-                  </div>
-                  <div class="ui-grid-col-1 ">
-                  </div>
-                </div>
-              </div>
+				<div class="ui-g-6 ui-md-4 ui-lg-8">
+					<p-panel [toggleable]="false">
+						<header>
+							<kg-dateSpinner (onChanged)="onChanged($event)" (onLoadFood)="onLoadFood($event)"></kg-dateSpinner>
+							<button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood()"></button>
+							<button pButton type="button" class="diaryButton" icon="fa-floppy-o" iconPos="left" (click)="updateFood()" style="margin-left: 3px;"></button>
+						</header>
+						<div class="ui raised segment">
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<div class="ui-grid-col-1 ">
+										<span [style.font-weight]="'bold'">Breakfast</span>
+									</div>
+									<div class="ui-grid-col-1 ">
+									</div>
+								</div>
+							</div>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <p-dataTable [value]="breakfastData" selectionMode="single" [(selection)]="selectedBreakfast" (onRowSelect)="onRowSelect($event, 'breakfast')">
-                    <p-column *ngFor="let col of foodCols" [field]="col.field" [header]="col.header"></p-column>
-                  </p-dataTable>
-                </div>
-              </div>
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<p-dataTable [value]="breakfastData" selectionMode="single" [(selection)]="selectedBreakfast" (onRowSelect)="onRowSelect($event, 'breakfast')">
+										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fiber" header="Fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
+										<p-column field="sodium" header="Sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <div class="ui-grid-col-1 ">
-                    <span [style.font-weight]="'bold'">Lunch</span>
-                  </div>
-                  <!--<div class="ui-grid-col-1 ">
+
+										<!--<p-column *ngFor="let col of foodCols" [field]="col.field" [header]="col.header"></p-column>-->
+									</p-dataTable>
+								</div>
+							</div>
+
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<div class="ui-grid-col-1 ">
+										<span [style.font-weight]="'bold'">Lunch</span>
+									</div>
+									<!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('lunch')"></button>
                   </div>-->
-                </div>
-              </div>
+								</div>
+							</div>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <p-dataTable [value]="lunchData" selectionMode="single" [(selection)]="selectedLunch" (onRowSelect)="onRowSelect($event, 'lunch')">
-                    <p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>
-                  </p-dataTable>
-                </div>
-              </div>
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<p-dataTable [value]="lunchData" selectionMode="single" [(selection)]="selectedLunch" (onRowSelect)="onRowSelect($event, 'lunch')">
+										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <div class="ui-grid-col-1 ">
-                    <span [style.font-weight]="'bold'">Dinner</span>
-                  </div>
-                  <!--<div class="ui-grid-col-1 ">
+										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
+									</p-dataTable>
+								</div>
+							</div>
+
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<div class="ui-grid-col-1 ">
+										<span [style.font-weight]="'bold'">Dinner</span>
+									</div>
+									<!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('dinner')"></button>
                   </div>-->
-                </div>
-              </div>
+								</div>
+							</div>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <p-dataTable [value]="dinnerData" selectionMode="single" [(selection)]="selectedDinner" (onRowSelect)="onRowSelect($event, 'dinner')">
-                    <p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>
-                  </p-dataTable>
-                </div>
-              </div>
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<p-dataTable [value]="dinnerData" selectionMode="single" [(selection)]="selectedDinner" (onRowSelect)="onRowSelect($event, 'dinner')">
+										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <div class="ui-grid-col-1 ">
-                    <span [style.font-weight]="'bold'">Snacks</span>
-                  </div>
-                  <!--<div class="ui-grid-col-1 ">
+										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
+									</p-dataTable>
+								</div>
+							</div>
+
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<div class="ui-grid-col-1 ">
+										<span [style.font-weight]="'bold'">Snacks</span>
+									</div>
+									<!--<div class="ui-grid-col-1 ">
                     <button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood('Snacks')"></button>
                   </div>-->
-                </div>
-              </div>
+								</div>
+							</div>
 
-              <div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <p-dataTable [value]="snackData" selectionMode="single" [(selection)]="selectedSnacks" (onRowSelect)="onRowSelect($event, 'Snacks')">
-                    <p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>
-                    <footer>
-                      <!--<div class="ui-grid-row form-group">
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<p-dataTable [value]="snackData" selectionMode="single" [(selection)]="selectedSnacks" (onRowSelect)="onRowSelect($event, 'Snacks')">
+										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
+										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
+										<footer>
+											<!--<div class="ui-grid-row form-group">
                 <div class="ui-grid-col-12">
                   <div class="ui-grid-col-1 ">-->
-                    </footer>
-                  </p-dataTable>
-                </div>
-              </div>
-            </div>
-          </p-panel>
-        </div>
+										</footer>
+									</p-dataTable>
+								</div>
+							</div>
+						</div>
+					</p-panel>
+				</div>
 
-        <div class="ui-g-6 ui-md-4 ui-lg-2">
-        </div>
-      </div>
-    </div>
-  </div>
+				<div class="ui-g-6 ui-md-4 ui-lg-2">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

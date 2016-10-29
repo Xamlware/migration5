@@ -3,9 +3,12 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Food } from '../../interfaces/food';
 import { SettingsService } from '../../services/settings.service';
+import { FoodService } from '../../services/food.service';
+
 import { FindHelper } from '../../helpers/find.helper';
 import { User } from '../../interfaces/user';
 import { Nutrient } from '../../interfaces/nutrient';
+import { NutrientDisplay } from '../../interfaces/nutrientDisplay';
 
 
 @Component({
@@ -25,14 +28,19 @@ export class FoodSettingsComponent implements OnInit {
   isChanged: boolean;
   value: boolean;
   errorMessage: string;
+  nutrientDisplay: NutrientDisplay;
 
   constructor(
     private ss: SettingsService,
+    private fs: FoodService,
     private r: Router,
     private fb: FormBuilder,
     private er: ElementRef) { }
 
   ngOnInit() {
+    this.nutrientDisplay = this.fs.resetNutrientDisplay();
+    
+
     this.foodSettingsForm = this.fb.group({
       nutrientMetric: [false],
       recipeMetric: [false],
@@ -68,6 +76,7 @@ export class FoodSettingsComponent implements OnInit {
         var nut = FindHelper.FindNutrientItemByName(n.abbr, this.userSettings.nutrientData);
         if (nut !== null) {
           this.foodSettingsForm.controls[n.abbr].setValue(n.track, { onlySelf: true });
+          this.fs.setNutrientDisplayItem(n.abbr, this.foodSettingsForm.controls[n.abbr].value)
         }
       }
     }
@@ -104,6 +113,7 @@ export class FoodSettingsComponent implements OnInit {
 
 
   onSubmit() {
+    debugger;
     this.ss.updateNutrientData(this.userSettings);
     this.r.navigate(["/food"]);
   }
