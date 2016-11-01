@@ -1,0 +1,20 @@
+export class DailyFoodTotals {
+    name: string = "";
+    calories: number = 0;
+    carbs: number = 0;
+    protein: number = 0;
+    fat: number = 0;
+    sodium: number = 5000;
+    fiber: number = 30;
+    satFat: number = 50;
+    monoFat: number = 0;
+    polyFat: number = 0;
+    transFat: number = 0;
+    cholesterol: number = 300;
+    sugars: number = 0;
+    vitA: number = 100;
+    vitC: number = 100;
+    calcium: number = 100;
+    iron: number = 100;
+    potassium: number = 3500;
+}

@@ -99,45 +99,13 @@ export class FoodAddComponent implements OnInit {
     this.selectedFood.potassium = this.selectedRow.nf_potassium;
     this.selectedFood.processed = false;
 
-    this.fs.setDailyFoodItem(this.selectedFood);
+    this.fs.addFoodToUser(this.selectedFood);
 
-    // "nf_water_grams": null,
-    //     "nf_calories": 170,
-    //     "nf_calories_from_fat": 90,
-    //     "nf_total_fat": 9,
-    //     "nf_saturated_fat": 3.5,
-    //     "nf_trans_fatty_acid": 0,
-    //     "nf_polyunsaturated_fat": null,
-    //     "nf_monounsaturated_fat": null,
-    //     "nf_cholesterol": 25,
-    //     "nf_sodium": 310,
-    //     "nf_total_carbohydrate": 13,
-    //     "nf_dietary_fiber": 3,
-    //     "nf_sugars": 1,
-    //     "nf_protein": 8,
-    //     "nf_vitamin_a_dv": 6,
-    //     "nf_vitamin_c_dv": 0,
-    //     "nf_calcium_dv": 6,
-    //     "nf_iron_dv": 4,
-    //     "nf_refuse_pct": null,
-    //     "nf_servings_per_container": null,
-    //     "nf_serving_size_qty": 1,
-    //     "nf_serving_size_unit": "Taco",
-    //     "nf_serving_weight_grams": null,
-    //     "allergen_contains_milk": null,
-    //     "allergen_contains_eggs": null,
-    //     "allergen_contains_fish": null,
-    //     "allergen_contains_shellfish": null,
-    //     "allergen_contains_tree_nuts": null,
-    //     "allergen_contains_peanuts": null,
-    //     "allergen_contains_wheat": null,
-    //     "allergen_contains_soybeans": null,
-    //     "allergen_contains_gluten": null
-    //   this.breakfast.push(
-    //     new Food(this.selectedFood.id, MealType.breakfast, this.selectedFood.quantity, this.selectedFood.unit, this.selectedFood.name, this.selectedFood.calories,38, 15, 30));
+   
 
     this.r.navigate(['/diary']);
   }
+
 
 
   onSubmit() {
@@ -209,3 +177,37 @@ export class FoodAddComponent implements OnInit {
   }
 }
 
+ // "nf_water_grams": null,
+    //     "nf_calories": 170,
+    //     "nf_calories_from_fat": 90,
+    //     "nf_total_fat": 9,
+    //     "nf_saturated_fat": 3.5,
+    //     "nf_trans_fatty_acid": 0,
+    //     "nf_polyunsaturated_fat": null,
+    //     "nf_monounsaturated_fat": null,
+    //     "nf_cholesterol": 25,
+    //     "nf_sodium": 310,
+    //     "nf_total_carbohydrate": 13,
+    //     "nf_dietary_fiber": 3,
+    //     "nf_sugars": 1,
+    //     "nf_protein": 8,
+    //     "nf_vitamin_a_dv": 6,
+    //     "nf_vitamin_c_dv": 0,
+    //     "nf_calcium_dv": 6,
+    //     "nf_iron_dv": 4,
+    //     "nf_refuse_pct": null,
+    //     "nf_servings_per_container": null,
+    //     "nf_serving_size_qty": 1,
+    //     "nf_serving_size_unit": "Taco",
+    //     "nf_serving_weight_grams": null,
+    //     "allergen_contains_milk": null,
+    //     "allergen_contains_eggs": null,
+    //     "allergen_contains_fish": null,
+    //     "allergen_contains_shellfish": null,
+    //     "allergen_contains_tree_nuts": null,
+    //     "allergen_contains_peanuts": null,
+    //     "allergen_contains_wheat": null,
+    //     "allergen_contains_soybeans": null,
+    //     "allergen_contains_gluten": null
+    //   this.breakfast.push(
+    //     new Food(this.selectedFood.id, MealType.breakfast, this.selectedFood.quantity, this.selectedFood.unit, this.selectedFood.name, this.selectedFood.calories,38, 15, 30));

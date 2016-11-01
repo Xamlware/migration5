@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-// import {InputText, Checkbox, Message, Messages, Growl, Panel, Calendar, RadioButton, InputSwitch,
-//         SelectButton, SelectItem, DataTable, Column, SplitButton, SplitButtonItem, Button} from 'primeng/primeng'
 import { Router, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ConfirmationService } from 'primeng/primeng';
+
 import { DailyFoodItem } from '../../interfaces/dailyFoodItem';
 import { User } from '../../interfaces/user';
 import { NutrientDisplay } from '../../interfaces/nutrientDisplay';
@@ -34,12 +34,14 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
         lunchData: DailyFoodItem[] = [];
         dinnerData: DailyFoodItem[] = [];
         snackData: DailyFoodItem[] = [];
+        totalData: DailyFoodItem[] = [];
 
         userSettings: User;
         diaryDate: Date;
         isFoodDate: boolean = false;
         nutrientDisplay: NutrientDisplay;
-        
+        isAddFood: boolean = false;
+
         // @HostListener('window:unload', ['$event'])
         // unloadHandler(event) {
         //         debugger;
@@ -48,14 +50,24 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
         // @HostListener('window:beforeunload', ['$event'])
         // beforeUnloadHander(event) {
         //         debugger;
+        //         this.confirm();
+
         // }
 
         constructor(
+                private cs: ConfirmationService,
                 private ss: SettingsService,
                 private r: Router,
                 private fs: FoodService,
                 private los: LogoutService,
                 private cd: CanDeactivateGuardService) {
+        }
+
+        confirm() {
+                this.cs.confirm({
+                        message: 'Do you want to save the additions to your food diary?',
+                        accept: () => this.updateFood()
+                })
         }
 
         canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -66,6 +78,10 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
                 // // Otherwise ask the user with the dialog service and return its
                 // // promise which resolves to true or false when the user decides
                 // return this.dialogService.confirm('Discard changes?');
+                if (!this.isAddFood) {
+                        this.isAddFood = false;
+                        this.updateFood();
+                }
 
                 return true;
         }
@@ -73,25 +89,22 @@ export class FoodDiaryComponent implements OnInit, CanDeactivate<FoodDiaryCompon
 
         ngOnInit() {
                 this.userSettings = this.ss.getUserSettings();
-                var df = FindHelper.FindDailyFoodByDate(moment(this.diaryDate).format("M-D-YYYY"), this.userSettings.dailyFoodData)
                 this.nutrientDisplay = this.fs.getNutrientDisplay();
-debugger;
-                this.fs.setDailyFood(df);
                 this.setTableData();
 
-                this.foodCols = [
-                        { field: 'name', header: 'Item' },
-                        { field: 'calories', header: 'Calories' },
-                        { field: 'carbs', header: 'Net Carbs' },
-                        { field: 'protein', header: 'Protein' },
-                        { field: 'fat', header: 'Fat' },
-                ];
+                // this.foodCols = [
+                //         { field: 'name', header: 'Item' },
+                //         { field: 'calories', header: 'Calories' },
+                //         { field: 'carbs', header: 'Net Carbs' },
+                //         { field: 'protein', header: 'Protein' },
+                //         { field: 'fat', header: 'Fat' },
+                // ];
 
-                for (let n of this.userSettings.nutrientData) {
-                        if (n.track) {
-                                this.foodCols.push({ field: n.abbr, header: n.name });
-                        }
-                }
+                // for (let n of this.userSettings.nutrientData) {
+                //         if (n.track) {
+                //                 this.foodCols.push({ field: n.abbr, header: n.name });
+                //         }
+                // }
 
                 this.los.getLogout()
                         .subscribe(
@@ -107,34 +120,47 @@ debugger;
 
                 this.fs.getDailyFoodObservableByDate()
                         .subscribe(
-                        dailyFood => {
-                                if (dailyFood) {
+                        df => {
+                                if (df) {
+                                        debugger;
                                         console.log("setting daily food from observable");
                                         this.setTableData();
                                 }
                         });
         }
 
+        setTableDataToEmpty() {
+                this.breakfastData = [];
+                this.lunchData = [];
+                this.dinnerData = [];
+                this.snackData = [];
+                this.totalData = [];
+        }
+
         setTableData() {
-                let df = this.fs.getDailyFoodMeals();
-                if (df != null && df != undefined) {
-                        this.breakfastData = df.breakfast;
-                        this.lunchData = df.lunch;
-                        this.dinnerData = df.dinner;
-                        this.snackData = df.snack;
+                if (this.diaryDate === null || this.diaryDate === undefined) {
+                        this.diaryDate = moment(new Date()).toDate();
+                        this.fs.diaryDate = this.diaryDate;
                 }
-
-                for (let df of this.fs.dailyFood.items) {
-                        if (!df.processed) {
-                                this.fs.setDailyFoodItem(df);
-                                df.processed = true;
-                        }
+                this.setTableDataToEmpty();
+                var dailyFood = FindHelper.FindDailyFoodByDate(this.diaryDate, this.userSettings.dailyFoodData);
+                if (dailyFood != null || dailyFood != undefined) {
+                        this.breakfastData = FindHelper.FindDailyFoodByMeal(MealType.breakfast, dailyFood.items);
+                        this.lunchData = FindHelper.FindDailyFoodByMeal(MealType.lunch, dailyFood.items);
+                        this.dinnerData = FindHelper.FindDailyFoodByMeal(MealType.dinner, dailyFood.items);
+                        this.snackData = FindHelper.FindDailyFoodByMeal(MealType.snack, dailyFood.items);
+                        this.totalFoodItems(dailyFood.items);
                 }
-
         }
 
         addFood() {
+                this.isAddFood = true;
                 this.r.navigate(["/foodAdd"]);
+        }
+
+        totalFoodItems(dfi: DailyFoodItem[]) {
+                this.totalData.push(this.fs.totalDailyFoodItems(dfi));
+                // this.totalData.push(this.fs.totalDailyGoal(dfi));
         }
 
         updateFood() {
@@ -143,9 +169,11 @@ debugger;
 
         onChanged(sr: DateSpinnerReturn) {
                 this.diaryDate = sr.spinValue;
-                this.fs.clearDailyFoodMeals();
+                this.fs.resetNutrientFieldsToDisplay();
                 var fd = this.fs.foodDates;
+                this.fs.diaryDate = this.diaryDate;
                 this.isFoodDate = FindHelper.findFoodDate(this.diaryDate, fd);
+                this.setTableData();
         }
 
 
@@ -153,13 +181,8 @@ debugger;
                 this.diaryDate = sr.spinValue;
                 var d = moment(this.diaryDate).format("M-D-YYYY");
                 debugger;
-                var dfaItem = FindHelper.FindDailyFoodByDate(d, this.fs.dailyFoodArray);
-                if (dfaItem != null) {
-                        this.fs.dailyFood = dfaItem;
-                        this.fs.setDailyFoodItemObservableByDate(dfaItem);
-                        this.setTableData();
-                }
-                else {
+                var dfaItem = FindHelper.FindDailyFoodByDateString(d, this.fs.dailyFoodArray);
+                if (dfaItem === null) {
                         this.fs.getDailyFoodByDate(d);
                 }
         }

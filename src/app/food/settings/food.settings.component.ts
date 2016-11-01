@@ -38,7 +38,7 @@ export class FoodSettingsComponent implements OnInit {
     private er: ElementRef) { }
 
   ngOnInit() {
-    this.nutrientDisplay = this.fs.resetNutrientDisplay();
+    this.nutrientDisplay = this.fs.resetNutrientFieldsToDisplay();
     
 
     this.foodSettingsForm = this.fb.group({

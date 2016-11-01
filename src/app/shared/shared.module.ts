@@ -26,18 +26,17 @@ import { KgDateSpinnerComponent } from '../shared/dateSpinner/kgDateSpinner.comp
 
 import {InputTextModule, GalleriaModule, MenubarModule, CheckboxModule, DialogModule, MessagesModule, GrowlModule,
   PanelModule, CalendarModule, RadioButtonModule, InputSwitchModule, SelectButtonModule, DataTableModule, DataListModule,
-  SplitButtonModule, ButtonModule, DropdownModule, AccordionModule, ProgressBarModule} from 'primeng/primeng'
-
+  SplitButtonModule, ButtonModule, DropdownModule, AccordionModule, ProgressBarModule, ConfirmDialogModule,ConfirmationService } from 'primeng/primeng'
 
 @NgModule({
   imports: [CommonModule, RouterModule, ReactiveFormsModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, 
-            CalendarModule, SelectButtonModule, CheckboxModule, ProgressBarModule, DataTableModule, DataListModule],
+            CalendarModule, SelectButtonModule, CheckboxModule, ProgressBarModule, DataTableModule, DataListModule, ConfirmDialogModule],
   declarations: [ ErrorMessagesComponent, FoodDashboardComponent, KgNumberSpinnerComponent, KgDateSpinnerComponent ],
   exports: [ CommonModule, ReactiveFormsModule, HttpModule, RouterModule, 
             MenubarModule, GalleriaModule, InputTextModule, PanelModule, ButtonModule, DropdownModule, DialogModule, AccordionModule, CalendarModule,
             SelectButtonModule, CheckboxModule, DataTableModule, DataListModule, ProgressBarModule, ErrorMessagesComponent, FoodDashboardComponent,
-            KgNumberSpinnerComponent, KgDateSpinnerComponent ]
+            KgNumberSpinnerComponent, KgDateSpinnerComponent, ConfirmDialogModule ]
         
 })
 
@@ -46,7 +45,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [SettingsService, AppMenuService, AuthorizationService, LoginService, LogoutService, RegisterService, ThemeService, ValidationService,
-        NutritionixService, AuthGuardService, CanDeactivateGuardService, CalculationService, ChallengeService, FoodService ]
+        NutritionixService, AuthGuardService, CanDeactivateGuardService, CalculationService, ChallengeService, FoodService, ConfirmationService ]
     };
   }
 }

@@ -1,7 +1,11 @@
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="300"></p-confirmDialog>
+
+
 <div class="ui-grid ui-grid-responsive ui-grid-pad">
 	<div class="ui-g">
 		<div class="ui-g-12">
 			<div class="ui-g">
+
 				<div class="ui-g-6 ui-md-4 ui-lg-2">
 				</div>
 
@@ -12,6 +16,7 @@
 							<button pButton type="button" class="diaryButton" icon="fa-plus" iconPos="left" (click)="addFood()"></button>
 							<button pButton type="button" class="diaryButton" icon="fa-floppy-o" iconPos="left" (click)="updateFood()" style="margin-left: 3px;"></button>
 						</header>
+
 						<div class="ui raised segment">
 							<div class="ui-grid-row form-group">
 								<div class="ui-grid-col-12">
@@ -33,7 +38,7 @@
 										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
 										<p-column field="fiber" header="Fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
 										<p-column field="sodium" header="Sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
-
+										<p-column field="sugars" header="Sugars" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSugars"></p-column>
 
 										<!--<p-column *ngFor="let col of foodCols" [field]="col.field" [header]="col.header"></p-column>-->
 									</p-dataTable>
@@ -54,11 +59,14 @@
 							<div class="ui-grid-row form-group">
 								<div class="ui-grid-col-12">
 									<p-dataTable [value]="lunchData" selectionMode="single" [(selection)]="selectedLunch" (onRowSelect)="onRowSelect($event, 'lunch')">
-										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
-										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="name" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
+										<p-column field="sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
+										<p-column field="sugars" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSugars"></p-column>
 
 										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
 									</p-dataTable>
@@ -79,11 +87,14 @@
 							<div class="ui-grid-row form-group">
 								<div class="ui-grid-col-12">
 									<p-dataTable [value]="dinnerData" selectionMode="single" [(selection)]="selectedDinner" (onRowSelect)="onRowSelect($event, 'dinner')">
-										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
-										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="name" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
+										<p-column field="sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
+										<p-column field="sugars" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSugars"></p-column>
 
 										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
 									</p-dataTable>
@@ -104,20 +115,34 @@
 							<div class="ui-grid-row form-group">
 								<div class="ui-grid-col-12">
 									<p-dataTable [value]="snackData" selectionMode="single" [(selection)]="selectedSnacks" (onRowSelect)="onRowSelect($event, 'Snacks')">
-										<p-column field="name" header="Item" [style]="{'width':'250px','text-align':'center'}"></p-column>
-										<p-column field="calories" header="Calories" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="carbs" header="Net Carbs" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="protein" header="Protein" [style]="{'text-align':'center'}"></p-column>
-										<p-column field="fat" header="Fat" [style]="{'text-align':'center'}"></p-column>
-										<!--<p-column *ngFor="let col of foodCols" [field]="col.field"></p-column>-->
-										<footer>
-											<!--<div class="ui-grid-row form-group">
-                <div class="ui-grid-col-12">
-                  <div class="ui-grid-col-1 ">-->
-										</footer>
+										<p-column field="name" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
+										<p-column field="sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
+										<p-column field="sugars" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSugars"></p-column>
+
 									</p-dataTable>
 								</div>
 							</div>
+
+							<div class="ui-grid-row form-group">
+								<div class="ui-grid-col-12">
+									<p-dataTable [value]="totalData">
+										<p-column field="name" [style]="{'width':'250px','text-align':'center'}"></p-column>
+										<p-column field="calories" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="carbs" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="protein" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fat" [style]="{'text-align':'center'}"></p-column>
+										<p-column field="fiber" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isFiber"></p-column>
+										<p-column field="sodium" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSodium"></p-column>
+										<p-column field="sugars" [style]="{'text-align':'center'}" [hidden]="nutrientDisplay.isSugars"></p-column>
+									</p-dataTable>
+								</div>
+							</div>
+
 						</div>
 					</p-panel>
 				</div>

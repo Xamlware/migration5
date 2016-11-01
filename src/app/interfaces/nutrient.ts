@@ -1,17 +1,19 @@
 import { FindHelper } from '../helpers/find.helper';
 
-export interface INutrient {  
-   pK_Nutrient: number;
-   fK_User: number;
-   name: string;
-   abbr: string;
-}    
-
-export class Nutrient implements INutrient {  
+export interface INutrient {
     pK_Nutrient: number;
     fK_User: number;
     name: string;
     abbr: string;
+    rda: number;
+}
+
+export class Nutrient implements INutrient {
+    pK_Nutrient: number;
+    fK_User: number;
+    name: string;
+    abbr: string;
+    rda: number;
     order: number;
     track: boolean;
 
@@ -19,8 +21,7 @@ export class Nutrient implements INutrient {
     public static updateNutrient(name: string, value: boolean, nuts: Nutrient[]) {
 
         var n = FindHelper.FindNutrientItemByName(name, nuts);
-        if (n != null)
-        {
+        if (n != null) {
             n.track = value;
         }
     }

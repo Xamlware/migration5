@@ -176,7 +176,7 @@ export class FindHelper {
         var rec: DailyFoodItem = null;
         var dfi: DailyFoodItem[];
 
-        var df = FindHelper.FindDailyFoodByDate(date, u.dailyFoodData);
+        var df = FindHelper.FindDailyFoodByDateString(date, u.dailyFoodData);
         if (df != null) {
             dfi = df.items.filter(di => {
                 return di.pK_DailyFoodItem === key;
@@ -192,7 +192,7 @@ export class FindHelper {
     /*
         Find daily food record by Date.
     */
-    public static FindDailyFoodByDate(date: string, dfa: DailyFood[]): DailyFood {
+    public static FindDailyFoodByDateString(date: string, dfa: DailyFood[]): DailyFood {
         var rec: DailyFood = null;
 
         if (dfa != null) {
@@ -206,6 +206,30 @@ export class FindHelper {
         }
 
         return rec;
+    }
+
+    public static FindDailyFoodByDate(date: Date, dfa: DailyFood[]): DailyFood {
+        var rec: DailyFood = null;
+
+        if (dfa != null) {
+            var df = dfa.filter(di => {
+                return moment(di.foodDate).format("M/D/YYYY") === moment(date.toDateString()).format("M/D/YYYY");
+            });
+
+            if (df.length > 0) {
+                rec = df[0];
+            }
+        }
+
+        return rec;
+    }
+
+    public static FindDailyFoodByMeal(meal: MealType, dfi: DailyFoodItem[]): DailyFoodItem[] {
+
+        return dfi.filter(di => {
+            return di.meal === meal;
+        });
+
     }
 
 
